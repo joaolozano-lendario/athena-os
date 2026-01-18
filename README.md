@@ -1,6 +1,6 @@
 # ATHENA OS
 
-> **Cognitive Operating System for AI-Native Work**
+> **A Claude Code Native System for Intelligent Workflow Architecture**
 
 ```
       ___  _________ _   _ _____ _   _   ___    _____ _____
@@ -10,7 +10,7 @@
     | | | |  | |  | | | | |___| |\  || | | | \ \_/\/ \__/ /
     \_| |_/  \_/  \_| |_/\____/\_| \_/\_| |_/  \___/\____/
 
-    The Bridge Between Intention and Flawless Execution
+    Slash Commands for Smarter AI Workflows
 ```
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -21,198 +21,219 @@
 
 ## What is ATHENA OS?
 
-ATHENA OS is a **cognitive pre-processing layer** that transforms raw intentions into precise, transferable **Operational Blueprints**.
+**ATHENA OS is a slash command system for Claude Code** that transforms how you plan and execute complex work.
+
+### In Plain Terms
 
 ```
-RAW INTENTION ──► ATHENA OS ──► BLUEPRINT ──► TARGET PROJECT ──► FLAWLESS EXECUTION
+You type:    /ATHENA:tasks:forge-blueprint
+ATHENA does: Guides you through a 4-phase process to create a complete execution plan
+You get:     A Blueprint + Activation Prompt ready to execute in any Claude session
 ```
 
-**ATHENA doesn't execute tasks — she architects their execution.**
+### What It Actually Is
 
-Think of it as a **meta-system**: before you start coding, building, or creating anything, ATHENA forces you to think clearly about *what* you want, *why* you want it, and *exactly how* it should be done. The output is a comprehensive Blueprint that any Claude instance (or human) can execute without additional context.
+- **8 slash commands** that live in `.claude/commands/`
+- **A STATE.yaml file** that tracks everything across sessions
+- **Templates and protocols** that ensure consistent, high-quality outputs
+- **A knowledge base** of patterns and principles
+
+### What It Does
+
+1. **Takes your vague intention** ("I want to build an auth system")
+2. **Forces clarity** through structured questions (What exactly? Why? For whom? Constraints?)
+3. **Generates a Blueprint** with every task broken down to atomic level
+4. **Produces an Activation Prompt** you can paste into any Claude session to execute
+
+---
+
+## Why Claude Code Native Matters
+
+ATHENA isn't a standalone tool. It's designed specifically for **Claude Code's architecture**:
+
+| Claude Code Feature | How ATHENA Uses It |
+|--------------------|--------------------|
+| **Slash Commands** | 8 commands in `.claude/commands/ATHENA/tasks/` |
+| **CLAUDE.md** | System identity and instructions in `.claude/CLAUDE.md` |
+| **Project Context** | Reads/writes STATE.yaml for persistent memory |
+| **File Operations** | Generates Blueprints, templates, and configs |
+| **Multi-session** | Blueprints transfer perfectly between sessions |
+
+This means:
+- **Zero setup** — Clone and start using
+- **Native integration** — Works with Claude Code's existing features
+- **Persistent state** — STATE.yaml survives session restarts
+- **Transferable outputs** — Blueprints work in any Claude instance
 
 ---
 
 ## The Problem It Solves
 
-| Problem | Without ATHENA | With ATHENA |
-|---------|----------------|-------------|
-| **Context Loss** | Information lost between sessions | Everything documented in Blueprint |
-| **Ambiguity** | "What did we decide again?" | Intent Specification forces clarity |
-| **Disorganized Outputs** | Files scattered everywhere | Rigid taxonomy, everything in place |
-| **Rework** | Redoing because of poor docs | Atomic checkpoints, traceable progress |
-| **Knowledge Transfer** | "Only I understand this" | Any Claude instance can execute |
+| Problem | What Happens | ATHENA's Solution |
+|---------|--------------|-------------------|
+| **Context Loss** | "We discussed this yesterday, now I have to re-explain" | STATE.yaml + Blueprint documentation |
+| **Vague Requirements** | "Make it better" → hours of rework | P1: DECODE forces explicit specs |
+| **Scattered Files** | "Where did I put that output?" | Rigid taxonomy, one place per thing |
+| **Invisible Progress** | "Are we done yet? What's left?" | Atomic tasks with binary completion |
+| **Session Dependency** | "Only this Claude instance has context" | Activation Prompts work anywhere |
 
 ---
 
-## Core Philosophy
-
-### The 7 Inviolable Principles
-
-1. **CONTEXT IS KING** — Every output carries enough context to be understood in isolation
-2. **OBSESSIVE FRAGMENTATION** — Every intention decomposed to atomic level: Epics → Stories → Tasks
-3. **STATE AS CONSCIOUSNESS** — If it's not in STATE, it didn't happen
-4. **RIGID TAXONOMY** — Zero creative exceptions in organization
-5. **CHECKPOINT BEFORE ADVANCING** — No phase advances without passing quality gate
-6. **META-APPLICATION** — ATHENA practices what ATHENA preaches
-7. **TOTAL TRANSFERABILITY** — Any Claude instance can execute the Blueprint
-
-> *"Excellence is not an act, it's a well-designed system."*
-
----
-
-## How It Works
+## How It Works (The Technical Reality)
 
 ### The 4-Phase Pipeline
 
 ```
-┌──────────────────────────────────────────────────────────────────────────────┐
-│                          THE ATHENA PIPELINE                                  │
-├──────────────────────────────────────────────────────────────────────────────┤
-│                                                                              │
-│   RAW INTENTION                                                              │
-│        │                                                                     │
-│        ▼                                                                     │
-│   ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐             │
-│   │   P1    │────►│   P2    │────►│   P3    │────►│   P4    │             │
-│   │ DECODE  │     │ARCHITECT│     │FRAGMENT │     │CRYSTAL- │             │
-│   │         │     │         │     │         │     │  LIZE   │             │
-│   └────┬────┘     └────┬────┘     └────┬────┘     └────┬────┘             │
-│        │               │               │               │                   │
-│       [G1]            [G2]            [G3]            [G4]                 │
-│     Intent?        Logical?        Complete?       Transfer-               │
-│                                                     able?                  │
-│        │               │               │               │                   │
-│        ▼               ▼               ▼               ▼                   │
-│   Intent Spec    Exec Arch       Checkpoint       BLUEPRINT                │
-│                                     Map          + ACTIVATION              │
-│                                                                              │
-└──────────────────────────────────────────────────────────────────────────────┘
+/ATHENA:tasks:forge-blueprint
+           │
+           ▼
+┌──────────────────────────────────────────────────────────────────┐
+│  P1: DECODE                                                       │
+│  "What do you actually want?"                                    │
+│  Input:  Your description      Output: intent-spec.yaml          │
+│  Gate:   Is intent unambiguous?                                  │
+├──────────────────────────────────────────────────────────────────┤
+│  P2: ARCHITECT                                                    │
+│  "How should this be built?"                                     │
+│  Input:  Intent spec           Output: exec-arch.yaml            │
+│  Gate:   Is architecture logical?                                │
+├──────────────────────────────────────────────────────────────────┤
+│  P3: FRAGMENT                                                     │
+│  "What are all the tasks?"                                       │
+│  Input:  Architecture          Output: checkpoint-map.yaml       │
+│  Gate:   Is everything broken into atomic tasks?                 │
+├──────────────────────────────────────────────────────────────────┤
+│  P4: CRYSTALLIZE                                                  │
+│  "Package it for execution"                                      │
+│  Input:  All above             Output: BLUEPRINT.md + ACTIVATION.md│
+│  Gate:   Can someone execute this without asking questions?      │
+└──────────────────────────────────────────────────────────────────┘
+           │
+           ▼
+    outputs/blueprints/{date}/{slug}/
 ```
 
-| Phase | What It Does | Output | Gate Question |
-|-------|--------------|--------|---------------|
-| **P1: DECODE** | Extracts the real intention behind words | Intent Specification | Is the intent unambiguously clear? |
-| **P2: ARCHITECT** | Designs the execution machine | Execution Architecture | Is it logical and executable? |
-| **P3: FRAGMENT** | Breaks down into atomic trackable units | Checkpoint Map | Is all work mapped to tasks? |
-| **P4: CRYSTALLIZE** | Generates final exportable artifacts | Blueprint + Activation | Is it self-contained and transferable? |
+### What Gets Generated
+
+```
+outputs/blueprints/2025-01-16/my-project/
+├── BLUEPRINT.md           # The complete execution plan
+├── ACTIVATION.md          # Paste this into any Claude to execute
+├── intent-spec.yaml       # Structured requirements
+├── exec-arch.yaml         # How it will be built
+├── checkpoint-map.yaml    # Every task, with dependencies
+├── taxonomy-config.yaml   # Where outputs go in target project
+└── _metadata.yaml         # Blueprint metadata
+```
+
+### The STATE.yaml (Persistent Memory)
+
+```yaml
+# STATE.yaml - ATHENA's memory across sessions
+current_session:
+  active_blueprint: "BP-2025-01-16-001"
+  current_phase: "P2"
+
+active_work:
+  intent_summary: "User auth system with OAuth2"
+  target_project: "D:/my-saas-app"
+  phases_status:
+    P1_DECODE: { status: "COMPLETED", gate_status: "PASSED" }
+    P2_ARCHITECT: { status: "IN_PROGRESS" }
+
+blueprints:
+  total_generated: 12
+  recent:
+    - id: "BP-2025-01-16-001"
+      title: "Auth System"
+      status: "IN_PROGRESS"
+```
+
+---
+
+## Core Principles (The "Why" Behind Decisions)
+
+### 1. Context is King
+Every output is self-contained. No "you had to be there" explanations needed.
+
+### 2. Obsessive Fragmentation
+Big task → Epics → Stories → Tasks. Every task has binary completion (done/not done).
+
+### 3. STATE as Consciousness
+If it's not in STATE.yaml, it didn't happen. This file IS the system's memory.
+
+### 4. Rigid Taxonomy
+Every file type has exactly one place it belongs. No creative folder structures.
+
+### 5. Gates Before Progress
+Each phase ends with a quality check. Failed? Go back. No shortcuts.
+
+### 6. Meta-Application
+ATHENA's own documentation follows ATHENA's principles. Recursively consistent.
+
+### 7. Total Transferability
+Any Claude instance can execute any Blueprint without verbal context.
 
 ---
 
 ## Quick Start
 
-### Prerequisites
-
-- [Claude Code CLI](https://claude.ai/code) installed
-- A terminal/shell environment
-
-### Installation
+### 1. Install
 
 ```bash
-# Clone the repository
 git clone https://github.com/yourusername/athena-os.git
-
-# Navigate to ATHENA OS
 cd athena-os
+cp STATE.example.yaml STATE.yaml  # Create your state file
+```
 
-# Open with Claude Code
+### 2. Open with Claude Code
+
+```bash
 claude
 ```
 
-### Your First Blueprint
+### 3. Create Your First Blueprint
 
 ```bash
-# 1. Check current state
+# Check system state
 /ATHENA:tasks:check-state
 
-# 2. Start the full pipeline
+# Start the pipeline
 /ATHENA:tasks:forge-blueprint
+```
 
-# 3. When prompted, describe your intention:
-"I want to build a user authentication system with OAuth2 support,
-focusing on security best practices and clean architecture."
+When prompted, describe what you want to build:
 
-# 4. Follow the guided pipeline through P1→P2→P3→P4
+```
+"I want to build a user authentication system with OAuth2,
+focusing on security and clean architecture."
+```
 
-# 5. Export to your target project
+ATHENA will guide you through P1→P2→P3→P4, asking clarifying questions and generating artifacts at each phase.
+
+### 4. Execute the Blueprint
+
+```bash
+# Export to your target project
 /ATHENA:tasks:export-to-project /path/to/your/project
+
+# Or copy the ACTIVATION.md and paste it into a new Claude session
 ```
 
 ---
 
-## Commands Reference
+## All Commands
 
-### Main Pipeline
-
-| Command | Description |
-|---------|-------------|
-| `/ATHENA:tasks:forge-blueprint` | **Full pipeline P1→P4** — Generate complete Blueprint |
-
-### Individual Phases
-
-| Command | Phase | Description |
-|---------|-------|-------------|
-| `/ATHENA:tasks:decode-intent` | P1 | Only intent decoding |
-| `/ATHENA:tasks:architect-execution` | P2 | Only execution architecture |
-| `/ATHENA:tasks:fragment-work` | P3 | Only work fragmentation |
-| `/ATHENA:tasks:crystallize-output` | P4 | Only artifact crystallization |
-
-### Utilities
-
-| Command | Description |
-|---------|-------------|
-| `/ATHENA:tasks:validate-blueprint` | Validate existing Blueprint |
-| `/ATHENA:tasks:export-to-project` | Export to target project |
-| `/ATHENA:tasks:check-state` | View current system state |
-
----
-
-## Generated Artifacts
-
-When you complete a Blueprint, ATHENA generates:
-
-```
-outputs/blueprints/{YYYY-MM-DD}/{slug}/
-├── BLUEPRINT.md           # Master document with everything
-├── ACTIVATION.md          # Ready-to-paste activation prompt
-├── intent-spec.yaml       # Structured intent specification
-├── exec-arch.yaml         # Execution architecture
-├── checkpoint-map.yaml    # Full work breakdown
-├── taxonomy-config.yaml   # Output organization config
-└── _metadata.yaml         # Blueprint metadata
-```
-
-### The Blueprint
-
-A comprehensive document containing:
-- Executive Summary
-- Intent Specification (what, why, who, where, when, how)
-- Execution Architecture (phases, agents, workflows)
-- Checkpoint Map (epics, stories, tasks)
-- Success Criteria
-- Execution Guide
-
-### The Activation Prompt
-
-A ready-to-use prompt you can paste into any Claude session:
-
-```markdown
-# ACTIVATION PROMPT: {Project Name}
-
-## CONTEXT
-You are about to execute a Blueprint generated by ATHENA OS.
-
-## BLUEPRINT LOCATION
-`{path/to/BLUEPRINT.md}`
-
-## FIRST COMMAND
-{suggested starting command}
-
-## RULES
-- DO NOT skip steps
-- DO NOT ignore checkpoints
-- UPDATE STATE after each completed task
-```
+| Command | What It Does |
+|---------|--------------|
+| `/ATHENA:tasks:forge-blueprint` | **Main command** — Full P1→P4 pipeline |
+| `/ATHENA:tasks:check-state` | Show current STATE (active work, history, metrics) |
+| `/ATHENA:tasks:decode-intent` | Run only P1: Extract and structure intent |
+| `/ATHENA:tasks:architect-execution` | Run only P2: Design execution architecture |
+| `/ATHENA:tasks:fragment-work` | Run only P3: Break into atomic tasks |
+| `/ATHENA:tasks:crystallize-output` | Run only P4: Generate final artifacts |
+| `/ATHENA:tasks:validate-blueprint` | Validate an existing Blueprint |
+| `/ATHENA:tasks:export-to-project` | Export Blueprint to target project |
 
 ---
 
@@ -220,160 +241,96 @@ You are about to execute a Blueprint generated by ATHENA OS.
 
 ```
 athena-os/
-│
 ├── .claude/
-│   ├── CLAUDE.md                    # System identity & config
-│   └── commands/ATHENA/tasks/       # Slash commands (8 total)
+│   ├── CLAUDE.md                    # System identity (read by Claude Code)
+│   └── commands/ATHENA/tasks/       # The 8 slash commands
 │
-├── docs/
-│   ├── 00-MANIFESTO.md              # Foundational principles
-│   ├── GENESIS.md                   # How ATHENA was born
-│   ├── PHILOSOPHY.md                # Deep dive into the vision
-│   └── architecture/
-│       ├── 01-ARCHITECTURE.md       # Technical architecture
-│       ├── 02-PROTOCOLS.md          # Operation protocols
-│       ├── 03-TEMPLATES.md          # Artifact templates
-│       ├── 04-TAXONOMY.md           # Naming system
-│       └── 05-INTEGRATION.md        # Project integration guide
+├── docs/                            # Deep documentation
+│   ├── 00-MANIFESTO.md              # Core principles
+│   ├── GENESIS.md                   # Origin story
+│   ├── PHILOSOPHY.md                # Why it works this way
+│   └── architecture/                # Technical docs
 │
-├── protocols/                       # Detailed protocol docs
+├── protocols/                       # Detailed phase protocols
 │   ├── P1-DECODE.md
 │   ├── P2-ARCHITECT.md
 │   ├── P3-FRAGMENT.md
 │   └── P4-CRYSTALLIZE.md
 │
-├── templates/                       # Master templates
-│   ├── blueprints/
-│   ├── prompts/
-│   └── checkpoints/
+├── templates/                       # Master templates for outputs
+├── knowledge/                       # Patterns and principles
+├── examples/                        # Example Blueprints to learn from
+├── outputs/                         # Your generated Blueprints (gitignored)
 │
-├── knowledge/                       # Knowledge base
-│   ├── patterns/
-│   └── principles/
-│
-├── examples/                        # Example Blueprints
-│   └── {example-blueprints}/
-│
-├── outputs/                         # Generated Blueprints (gitignored)
-│
-├── STATE.yaml                       # System consciousness
-├── LICENSE                          # MIT License
-├── CONTRIBUTING.md                  # Contribution guide
+├── STATE.yaml                       # System memory (your copy)
+├── STATE.example.yaml               # Template for new users
 └── README.md                        # This file
 ```
 
 ---
 
-## Examples
+## Example: See It In Action
 
-### Example 1: API Integration Blueprint
+Check `/examples/saas-mvp-architecture/` for a complete Blueprint showing:
 
-```yaml
-# Intent
-"When I need to integrate with a third-party payment API,
-I want a structured plan covering auth, error handling, and testing,
-so that I implement it correctly the first time."
+- **BLUEPRINT.md** — 5 epics, 12 stories, 34 atomic tasks
+- **ACTIVATION.md** — Ready to paste into any Claude session
+- **checkpoint-map.yaml** — Full task breakdown with dependencies
+- **intent-spec.yaml** — Structured requirements
 
-# Result
-- 3 Epics, 8 Stories, 24 Tasks
-- Includes security checklist
-- Test cases pre-defined
-- Error handling matrix
-```
-
-### Example 2: System Refactoring Blueprint
-
-```yaml
-# Intent
-"Refactor the authentication module from callbacks to async/await
-without breaking existing functionality."
-
-# Result
-- Migration phases clearly defined
-- Rollback checkpoints at each step
-- Test coverage requirements
-- Zero-downtime deployment plan
-```
-
-See the `/examples` folder for complete Blueprint examples.
+This example covers building a User Management Module (auth, RBAC, profiles, security hardening).
 
 ---
 
-## The VALUE Hierarchy
+## Who Is This For?
 
-When principles conflict, this is the priority order:
+ATHENA OS is for people who:
 
-```
-1. RIGOR & COHERENCE
-   └─► 2. CLARITY & TRANSFERABILITY
-       └─► 3. FRAGMENTATION & TRACEABILITY
-           └─► 4. EFFICIENCY & ELEGANCE
-               └─► 5. SPEED
-```
+- **Use Claude Code regularly** and want structured workflows
+- **Work on complex projects** that span multiple sessions
+- **Value documentation** but hate doing it manually
+- **Want transferable context** between Claude instances
+- **Believe planning prevents rework**
 
-**Translation:** Never sacrifice quality for speed. A well-structured Blueprint that takes longer is infinitely more valuable than a rushed, ambiguous one.
+It's NOT for:
 
----
-
-## Why ATHENA?
-
-The name ATHENA comes from the Greek goddess of wisdom, strategic warfare, and crafts. She represents:
-
-- **Wisdom** — Thinking before acting
-- **Strategy** — Planning, not just doing
-- **Craftsmanship** — Excellence in execution
-
-ATHENA OS embodies these qualities by forcing deliberate, structured thinking before any execution begins.
+- Simple one-off tasks (just ask Claude directly)
+- People who prefer improvisation over structure
+- Projects that don't benefit from documentation
 
 ---
 
 ## Documentation
 
-| Document | Content |
-|----------|---------|
-| [00-MANIFESTO](docs/00-MANIFESTO.md) | Foundational principles |
-| [GENESIS](docs/GENESIS.md) | How ATHENA was born |
-| [PHILOSOPHY](docs/PHILOSOPHY.md) | Deep vision & thinking |
-| [01-ARCHITECTURE](docs/architecture/01-ARCHITECTURE.md) | Technical architecture |
-| [02-PROTOCOLS](docs/architecture/02-PROTOCOLS.md) | Operation protocols |
-| [03-TEMPLATES](docs/architecture/03-TEMPLATES.md) | Artifact specifications |
-| [04-TAXONOMY](docs/architecture/04-TAXONOMY.md) | Naming conventions |
-| [05-INTEGRATION](docs/architecture/05-INTEGRATION.md) | Integration guide |
+| Doc | What's In It |
+|-----|--------------|
+| [MANIFESTO](docs/00-MANIFESTO.md) | The 7 core principles |
+| [GENESIS](docs/GENESIS.md) | Why ATHENA exists |
+| [PHILOSOPHY](docs/PHILOSOPHY.md) | Deep dive into the thinking |
+| [ARCHITECTURE](docs/architecture/01-ARCHITECTURE.md) | Technical structure |
+| [PROTOCOLS](docs/architecture/02-PROTOCOLS.md) | How each phase works |
 
 ---
 
 ## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md). We welcome:
 
-Areas where help is appreciated:
-- Additional templates for specific domains
-- Integration patterns for different project types
-- Translations of documentation
-- Example Blueprints
+- Example Blueprints for different domains
+- Template improvements
+- Documentation translations
+- Bug reports and suggestions
 
 ---
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
-
----
-
-## Acknowledgments
-
-ATHENA OS was born from real frustration with the gap between intention and execution. It's a system designed by someone who got tired of:
-
-- Re-explaining context every session
-- Losing track of decisions made
-- Finding outputs scattered everywhere
-- Redoing work due to poor documentation
-
-If you've felt that frustration, ATHENA was built for you.
+MIT — Use it however you want.
 
 ---
 
 <p align="center">
   <strong>ATHENA OS v1.0.0</strong><br>
-  <em>"Excellence is not an act, it's a well-designed system."</em>
+  <em>A Claude Code native system for intelligent workflow architecture</em><br><br>
+  Built for people who think in systems.
 </p>
