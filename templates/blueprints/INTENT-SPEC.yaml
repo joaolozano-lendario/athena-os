@@ -1,0 +1,133 @@
+# ╔═══════════════════════════════════════════════════════════════════╗
+# ║                    INTENT SPECIFICATION                           ║
+# ║                       Template v1.0                               ║
+# ╚═══════════════════════════════════════════════════════════════════╝
+
+# ─────────────────────────────────────────────────────────────────────
+# METADATA
+# ─────────────────────────────────────────────────────────────────────
+metadata:
+  id: "INT-YYYY-MM-DD-NNN"
+  version: "1.0.0"
+  created_at: ""
+  created_by: ""
+  athena_version: "1.0.0"
+
+# ─────────────────────────────────────────────────────────────────────
+# SUMÁRIO EXECUTIVO
+# ─────────────────────────────────────────────────────────────────────
+summary:
+  one_liner: ""
+  
+  jtbd: "Quando [SITUAÇÃO], eu quero [MOTIVAÇÃO], para que [RESULTADO]."
+  
+  complexity: "LOW | MEDIUM | HIGH | EXTREME"
+  
+  estimated_effort:
+    value: 0
+    unit: "hours | days | weeks"
+    confidence: "LOW | MEDIUM | HIGH"
+
+# ─────────────────────────────────────────────────────────────────────
+# DIMENSÕES EXTRAÍDAS
+# ─────────────────────────────────────────────────────────────────────
+dimensions:
+  what:
+    explicit: |
+      O que foi explicitamente pedido.
+    implicit: |
+      O que provavelmente é necessário mas não foi dito.
+    out_of_scope: |
+      O que definitivamente NÃO está incluído.
+      
+  why:
+    surface_reason: |
+      A razão aparente, o que foi dito.
+    deep_reason: |
+      A motivação real.
+    impact_if_not_done: |
+      O que acontece se isso NÃO for feito?
+      
+  who:
+    operator: 
+      name: ""
+      role: ""
+      context: ""
+    beneficiary:
+      primary: ""
+      secondary: []
+    stakeholders: []
+    
+  where:
+    target_project:
+      name: ""
+      path: ""
+      type: ""
+    target_location: ""
+      
+  when:
+    urgency: "LOW | MEDIUM | HIGH | CRITICAL"
+    deadline: null
+    dependencies:
+      must_be_ready_before: []
+      blocks: []
+      
+  how:
+    constraints:
+      technical: []
+      resource: []
+      time: []
+    preferences:
+      format: ""
+      style: ""
+      tools: []
+    anti_patterns:
+      - ""
+
+# ─────────────────────────────────────────────────────────────────────
+# CRITÉRIOS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────
+success_criteria:
+  must_have:
+    - criterion: ""
+      measurement: ""
+      
+  should_have:
+    - criterion: ""
+      measurement: ""
+      
+  must_not:
+    - ""
+
+# ─────────────────────────────────────────────────────────────────────
+# CONTEXTO ADICIONAL
+# ─────────────────────────────────────────────────────────────────────
+context:
+  related_projects:
+    - name: ""
+      relevance: ""
+      
+  reference_materials:
+    - type: "doc | url | file"
+      path: ""
+      relevance: ""
+      
+  prior_attempts:
+    - description: ""
+      result: ""
+      learning: ""
+      
+  known_blockers:
+    - blocker: ""
+      mitigation: ""
+
+# ─────────────────────────────────────────────────────────────────────
+# VALIDAÇÃO
+# ─────────────────────────────────────────────────────────────────────
+validation:
+  gate: "G1"
+  status: "PENDING | PASSED | FAILED"
+  checked_at: ""
+  checked_by: ""
+  notes: ""
+  issues_found: []

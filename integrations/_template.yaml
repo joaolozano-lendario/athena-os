@@ -1,0 +1,113 @@
+# ╔═══════════════════════════════════════════════════════════════════╗
+# ║               INTEGRATION: {NOME DO PROJETO}                      ║
+# ║              Template de Configuracao ATHENA OS                   ║
+# ╚═══════════════════════════════════════════════════════════════════╝
+#
+# INSTRUCOES:
+# 1. Copie este arquivo para: integrations/{slug-do-projeto}.yaml
+# 2. Preencha todos os campos marcados com {placeholder}
+# 3. Remova estas instrucoes
+# 4. Registre no STATE.yaml do ATHENA OS
+#
+
+# ─────────────────────────────────────────────────────────────────────
+# IDENTIFICACAO DO PROJETO
+# ─────────────────────────────────────────────────────────────────────
+project:
+  name: "{Nome do Projeto}"
+  slug: "{slug-do-projeto}"
+  path: "{D:/caminho/do/projeto}"
+  type: "{ANALYSIS | CREATION | ORCHESTRATION | HYBRID}"
+  description: |
+    {Descricao breve do projeto e seu proposito}
+
+# ─────────────────────────────────────────────────────────────────────
+# STATUS DA INTEGRACAO
+# ─────────────────────────────────────────────────────────────────────
+integration:
+  status: "ACTIVE"  # ACTIVE | INACTIVE | DEPRECATED
+  registered_at: "{YYYY-MM-DDTHH:MM:SS-03:00}"
+  last_sync: null
+  health: "HEALTHY"  # HEALTHY | DEGRADED | OFFLINE
+
+# ─────────────────────────────────────────────────────────────────────
+# TIPOS DE BLUEPRINT RELEVANTES
+# ─────────────────────────────────────────────────────────────────────
+relevant_blueprint_types:
+  - type: "{ANALYSIS | CREATION | ORCHESTRATION | HYBRID}"
+    description: "{Para que tipo de trabalho}"
+    frequency: "{alta | media | baixa}"
+
+  # Adicione mais tipos se necessario
+
+# ─────────────────────────────────────────────────────────────────────
+# MAPEAMENTO DE OUTPUTS
+# ─────────────────────────────────────────────────────────────────────
+output_mapping:
+  primary:
+    athena_output: "BLUEPRINT.md"
+    target_path: ".athena/blueprints/{slug}/"
+
+  by_type:
+    # Adicione mapeamentos especificos
+    # {tipo}:
+    #   athena_output: "{padrao de arquivo}"
+    #   target_path: "{caminho no projeto}"
+
+# ─────────────────────────────────────────────────────────────────────
+# CONFIGURACAO DE STATE
+# ─────────────────────────────────────────────────────────────────────
+state_config:
+  # Projeto tem STATE.yaml proprio?
+  has_local_state: true  # true | false
+  state_file: "STATE.yaml"  # caminho relativo
+
+  # Sincronizar com ATHENA OS?
+  sync_with_athena: false  # true | false
+
+  # Mapeamento de campos (se sync habilitado)
+  state_mapping:
+    athena_checkpoint: "external.athena.last_checkpoint"
+    athena_blueprint: "external.athena.active_blueprint"
+
+# ─────────────────────────────────────────────────────────────────────
+# HISTORICO DE EXPORTACOES
+# ─────────────────────────────────────────────────────────────────────
+export_history:
+  total_exports: 0
+  last_export: null
+  recent_exports: []
+
+# ─────────────────────────────────────────────────────────────────────
+# HOOKS (OPCIONAL)
+# ─────────────────────────────────────────────────────────────────────
+hooks:
+  # Hook executado quando Blueprint chega
+  on_blueprint_received:
+    enabled: false
+    action: null  # comando ou script
+
+  # Hook executado quando execucao inicia
+  on_execution_start:
+    enabled: false
+    action: null
+
+  # Hook executado em cada checkpoint
+  on_checkpoint:
+    enabled: false
+    action: null
+
+  # Hook executado quando Blueprint e concluido
+  on_completion:
+    enabled: false
+    action: null
+
+# ─────────────────────────────────────────────────────────────────────
+# NOTAS
+# ─────────────────────────────────────────────────────────────────────
+notes: |
+  {Notas especiais sobre esta integracao}
+
+# ─────────────────────────────────────────────────────────────────────
+# FIM
+# ─────────────────────────────────────────────────────────────────────

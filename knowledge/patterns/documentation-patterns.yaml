@@ -1,0 +1,254 @@
+# ╔═══════════════════════════════════════════════════════════════════╗
+# ║               DOCUMENTATION PATTERNS                              ║
+# ║          Padroes de Documentacao para Blueprints                  ║
+# ╚═══════════════════════════════════════════════════════════════════╝
+
+version: "1.0.0"
+description: |
+  Padroes reutilizaveis para documentar Blueprints de forma clara e transferivel.
+  Use como referencia ao executar o Protocolo P4 (CRYSTALLIZE).
+
+# ─────────────────────────────────────────────────────────────────────
+# PRINCIPIO FUNDAMENTAL
+# ─────────────────────────────────────────────────────────────────────
+fundamental_principle: |
+  "Se alguem que nunca viu este projeto ler apenas o Blueprint,
+   consegue executar sem perguntas adicionais."
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 1: PIRAMIDE INVERTIDA
+# ─────────────────────────────────────────────────────────────────────
+inverted_pyramid:
+  name: "Piramide Invertida"
+  description: "Mais importante primeiro, detalhes depois"
+
+  structure:
+    - level: 1
+      content: "Sumario executivo - uma frase"
+      example: "Sistema para orquestrar analise de pesquisas Tally"
+
+    - level: 2
+      content: "JTBD completo"
+      example: "Quando recebo dados do Tally, quero framework de analise..."
+
+    - level: 3
+      content: "Estrutura de fases"
+      example: "4 fases: Coleta, Analise Quant, Analise Qual, Sintese"
+
+    - level: 4
+      content: "Detalhes de cada fase"
+      example: "Fase 1 - Coleta: tasks, inputs, outputs..."
+
+    - level: 5
+      content: "Tasks atomicas"
+      example: "T-1.1.1: Verificar conexao com Tally API"
+
+  rule: "Leitor pode parar em qualquer nivel e ter entendimento proporcional"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 2: CONTEXTO-ACAO-RESULTADO
+# ─────────────────────────────────────────────────────────────────────
+context_action_result:
+  name: "Contexto-Acao-Resultado (CAR)"
+  description: "Para descrever tasks e stories"
+
+  template: |
+    **Contexto:** [Situacao atual]
+    **Acao:** [O que fazer]
+    **Resultado:** [O que muda apos feito]
+
+  example:
+    context: "API de dados brutos disponivel, sem processamento"
+    action: "Implementar parser que extrai campos relevantes"
+    result: "Dados estruturados prontos para analise"
+
+  when_to_use:
+    - "Descricao de tasks"
+    - "Criterios de aceitacao"
+    - "Documentacao de decisoes"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 3: PROBLEMA-SOLUCAO-EVIDENCIA
+# ─────────────────────────────────────────────────────────────────────
+problem_solution_evidence:
+  name: "Problema-Solucao-Evidencia (PSE)"
+  description: "Para documentar decisoes arquiteturais"
+
+  template: |
+    **Problema:** [O que precisava resolver]
+    **Solucao:** [Abordagem escolhida]
+    **Alternativas consideradas:** [O que foi descartado e por que]
+    **Evidencia:** [Por que esta solucao e a certa]
+
+  example:
+    problem: "Precisamos processar 10k registros/minuto"
+    solution: "Usar processamento em batch com fila"
+    alternatives:
+      - "Processamento sincrono - descartado por ser lento"
+      - "Streaming - descartado por complexidade"
+    evidence: "Testes mostraram 15k/min com batch"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 4: CHECKLIST VERIFICAVEL
+# ─────────────────────────────────────────────────────────────────────
+verifiable_checklist:
+  name: "Checklist Verificavel"
+  description: "Para criterios de sucesso e gates"
+
+  rules:
+    - "Cada item deve ser binario (sim/nao)"
+    - "Outra pessoa pode verificar sem contexto adicional"
+    - "Itens ordenados por criticidade"
+
+  bad_example:
+    - "[ ] Sistema funcionando bem"
+    - "[ ] Performance adequada"
+    - "[ ] Codigo limpo"
+
+  good_example:
+    - "[ ] Todos os testes passam (0 falhas)"
+    - "[ ] Tempo de resposta < 200ms (p95)"
+    - "[ ] Cobertura de testes > 80%"
+    - "[ ] Nenhum TODO no codigo"
+
+  when_to_use:
+    - "Gates de qualidade"
+    - "Criterios de sucesso"
+    - "Definicao de DONE"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 5: REFERENCIA PRECISA
+# ─────────────────────────────────────────────────────────────────────
+precise_reference:
+  name: "Referencia Precisa"
+  description: "Como referenciar outros documentos/secoes"
+
+  formats:
+    file:
+      pattern: "`path/to/file.ext`"
+      example: "`protocols/P1-DECODE.md`"
+
+    section:
+      pattern: "[Documento] secao [N]"
+      example: "BLUEPRINT.md secao 4.2"
+
+    task:
+      pattern: "T-[epic].[story].[task]"
+      example: "T-1.2.3"
+
+    id:
+      pattern: "[TIPO]-[YYYY-MM-DD]-[NNN]"
+      example: "BP-2025-01-16-001"
+
+  rule: "Toda referencia deve resolver para um local unico e existente"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 6: GLOSSARIO INLINE
+# ─────────────────────────────────────────────────────────────────────
+inline_glossary:
+  name: "Glossario Inline"
+  description: "Definir termos no primeiro uso"
+
+  format: "**Termo** (definicao breve)"
+
+  example: |
+    O **JTBD** (Job To Be Done - o trabalho que precisa ser feito)
+    define o que o operador quer realizar.
+
+  when_to_use:
+    - "Primeira ocorrencia de termo tecnico"
+    - "Termos especificos do dominio"
+    - "Acronimos"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 7: DIAGRAMA AUTO-EXPLICATIVO
+# ─────────────────────────────────────────────────────────────────────
+self_explanatory_diagram:
+  name: "Diagrama Auto-Explicativo"
+  description: "Diagramas que nao precisam de texto adicional"
+
+  rules:
+    - "Todos os nos tem labels claros"
+    - "Transicoes tem condicoes explicitas"
+    - "Legenda inclusa se usar simbolos"
+    - "Titulo descreve o que o diagrama mostra"
+
+  bad_example: |
+    A -> B -> C -> D
+
+  good_example: |
+    graph TD
+      A[Coleta de Dados] --> B{Dados validos?}
+      B -->|Sim| C[Processamento]
+      B -->|Nao| D[Correcao]
+      D --> A
+      C --> E[Output]
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 8: EXEMPLO CONCRETO
+# ─────────────────────────────────────────────────────────────────────
+concrete_example:
+  name: "Exemplo Concreto"
+  description: "Incluir exemplo real para cada conceito abstrato"
+
+  template: |
+    **Conceito:** [Explicacao abstrata]
+
+    **Exemplo:**
+    ```
+    [Exemplo concreto e executavel]
+    ```
+
+  example: |
+    **Conceito:** O criterio de aceite deve ser binario.
+
+    **Exemplo:**
+    - Errado: "Performance boa"
+    - Certo: "Tempo de resposta < 200ms"
+
+# ─────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS DE DOCUMENTACAO
+# ─────────────────────────────────────────────────────────────────────
+anti_patterns:
+  - name: "Documentacao Fantasma"
+    description: "Referencia a documento que nao existe"
+    solution: "Verificar todas as referencias antes de finalizar"
+
+  - name: "Jargao Inexplicado"
+    description: "Usa termos sem definir"
+    solution: "Glossario inline no primeiro uso"
+
+  - name: "Ambiguidade Proposital"
+    description: "'Melhorar', 'Otimizar', 'Conforme necessario'"
+    solution: "Ser especifico e mensuravel"
+
+  - name: "Wall of Text"
+    description: "Paragrafos enormes sem estrutura"
+    solution: "Usar listas, tabelas, headers"
+
+  - name: "Diagrama Orfao"
+    description: "Diagrama sem contexto ou explicacao"
+    solution: "Titulo + descricao breve antes do diagrama"
+
+  - name: "TODO Eterno"
+    description: "Placeholders nunca preenchidos"
+    solution: "Nao finalizar documento com TODOs"
+
+# ─────────────────────────────────────────────────────────────────────
+# CHECKLIST DE DOCUMENTACAO
+# ─────────────────────────────────────────────────────────────────────
+documentation_checklist:
+  before_finalizing:
+    - "[ ] Sumario executivo presente e claro"
+    - "[ ] JTBD formulado corretamente"
+    - "[ ] Todas as referencias resolvem"
+    - "[ ] Nenhum TODO ou placeholder"
+    - "[ ] Termos tecnicos definidos"
+    - "[ ] Criterios sao binarios"
+    - "[ ] Diagramas sao auto-explicativos"
+    - "[ ] Exemplos concretos incluidos"
+    - "[ ] Teste de transferibilidade passou"
+
+# ─────────────────────────────────────────────────────────────────────
+# FIM
+# ─────────────────────────────────────────────────────────────────────

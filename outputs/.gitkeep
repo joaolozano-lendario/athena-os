@@ -1,0 +1,12 @@
+# This directory stores generated Blueprints.
+# Contents are gitignored - only this .gitkeep is tracked.
+#
+# Your generated Blueprints will be organized as:
+# outputs/blueprints/{YYYY-MM-DD}/{slug}/
+#   ├── BLUEPRINT.md
+#   ├── ACTIVATION.md
+#   ├── intent-spec.yaml
+#   ├── exec-arch.yaml
+#   ├── checkpoint-map.yaml
+#   ├── taxonomy-config.yaml
+#   └── _metadata.yaml

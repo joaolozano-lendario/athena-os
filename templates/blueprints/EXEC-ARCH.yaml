@@ -1,0 +1,201 @@
+# ╔═══════════════════════════════════════════════════════════════════╗
+# ║                   EXECUTION ARCHITECTURE                          ║
+# ║                       Template v1.0                               ║
+# ╚═══════════════════════════════════════════════════════════════════╝
+
+# ─────────────────────────────────────────────────────────────────────
+# METADATA
+# ─────────────────────────────────────────────────────────────────────
+metadata:
+  id: "ARCH-YYYY-MM-DD-NNN"
+  intent_id: ""  # Referencia ao INT-*
+  version: "1.0.0"
+  created_at: ""
+  athena_version: "1.0.0"
+
+# ─────────────────────────────────────────────────────────────────────
+# CLASSIFICACAO
+# ─────────────────────────────────────────────────────────────────────
+classification:
+  complexity: "LOW | MEDIUM | HIGH | EXTREME"
+  type: "ANALYSIS | CREATION | TRANSFORMATION | ORCHESTRATION | HYBRID"
+  paradigm: "LINEAR | ITERATIVE | EVENT-DRIVEN | HYBRID"
+
+  summary:
+    total_phases: 0
+    total_agents: 0
+    total_decision_points: 0
+    estimated_duration:
+      value: 0
+      unit: "hours | days"
+
+# ─────────────────────────────────────────────────────────────────────
+# FASES
+# ─────────────────────────────────────────────────────────────────────
+phases:
+  - id: "PH-1"
+    name: "Nome da Fase"
+    objective: |
+      O que esta fase realiza.
+      Objetivo claro e mensuravel.
+
+    inputs:
+      - name: "Nome do input"
+        source: "De onde vem"
+        required: true
+
+    outputs:
+      - name: "Nome do output"
+        format: "md | yaml | json | etc"
+        destination: "Para onde vai"
+
+    agents_involved: []
+
+    gate:
+      id: "G-PH1"
+      question: "Pergunta de validacao"
+      criteria:
+        - "Criterio 1"
+        - "Criterio 2"
+      action_if_fail: "O que fazer se falhar"
+
+    estimated_duration:
+      value: 0
+      unit: "minutes | hours"
+
+    notes: ""
+
+# ─────────────────────────────────────────────────────────────────────
+# AGENTES
+# ─────────────────────────────────────────────────────────────────────
+agents:
+  - id: "AGT-1"
+    name: "Nome do Agente"
+    type: "THINKER | DOER | VALIDATOR | HYBRID"
+
+    role: |
+      Papel do agente no sistema.
+
+    expertise:
+      - "Area de conhecimento 1"
+      - "Area de conhecimento 2"
+
+    responsibilities:
+      - "Responsabilidade 1"
+      - "Responsabilidade 2"
+
+    invoked_in:
+      - phase: "PH-1"
+        purpose: "Por que e invocado nesta fase"
+
+    prompt_reference: "path/to/prompt.md ou inline"
+
+    collaboration:
+      receives_from: []
+      sends_to: []
+
+# ─────────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────────
+workflow:
+  type: "LINEAR | PARALLEL | CONDITIONAL | ITERATIVE | HYBRID"
+
+  # Diagrama Mermaid
+  diagram: |
+    ```mermaid
+    graph TD
+      A[PH-1] --> B[PH-2]
+      B --> C{Decisao}
+      C -->|Sim| D[PH-3A]
+      C -->|Nao| E[PH-3B]
+    ```
+
+  # Fluxo detalhado
+  flow:
+    - step: 1
+      phase: "PH-1"
+      agents: []
+      parallel: false
+      condition: null
+
+    - step: 2
+      phase: "PH-2"
+      agents: []
+      parallel: false
+      condition: "Apos G-PH1 PASS"
+
+# ─────────────────────────────────────────────────────────────────────
+# PONTOS DE DECISAO
+# ─────────────────────────────────────────────────────────────────────
+decision_points:
+  - id: "DP-1"
+    after_phase: "PH-X"
+    type: "HUMAN | AUTOMATIC | HYBRID"
+
+    question: |
+      Pergunta que precisa ser respondida.
+
+    options:
+      - id: "A"
+        label: "Opcao A"
+        leads_to: "PH-Y"
+        criteria: "Quando escolher esta opcao"
+
+      - id: "B"
+        label: "Opcao B"
+        leads_to: "PH-Z"
+        criteria: "Quando escolher esta opcao"
+
+    default: "A"
+    timeout_action: "O que fazer se nao houver resposta"
+
+# ─────────────────────────────────────────────────────────────────────
+# RECURSOS NECESSARIOS
+# ─────────────────────────────────────────────────────────────────────
+resources:
+  tools:
+    - name: ""
+      purpose: ""
+      required: true
+
+  mcps:
+    - name: ""
+      purpose: ""
+      config: ""
+
+  external_apis:
+    - name: ""
+      purpose: ""
+      auth_required: false
+
+  knowledge_bases:
+    - name: ""
+      path: ""
+      purpose: ""
+
+  files:
+    - path: ""
+      purpose: ""
+      access: "read | write | both"
+
+# ─────────────────────────────────────────────────────────────────────
+# RISCOS E MITIGACOES
+# ─────────────────────────────────────────────────────────────────────
+risks:
+  - id: "R-1"
+    description: ""
+    probability: "LOW | MEDIUM | HIGH"
+    impact: "LOW | MEDIUM | HIGH"
+    mitigation: ""
+    contingency: ""
+
+# ─────────────────────────────────────────────────────────────────────
+# VALIDACAO (preenchido pelo Gate G2)
+# ─────────────────────────────────────────────────────────────────────
+validation:
+  gate: "G2"
+  status: "PENDING | PASSED | FAILED"
+  checked_at: ""
+  checked_by: ""
+  notes: ""
+  issues_found: []

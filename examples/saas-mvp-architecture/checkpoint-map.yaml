@@ -1,0 +1,624 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# CHECKPOINT MAP
+# SaaS MVP — User Management Module
+# ═══════════════════════════════════════════════════════════════════════════
+
+id: "CKPT-EXAMPLE-001"
+blueprint_id: "BP-EXAMPLE-001"
+created_at: "2025-01-16T11:00:00-03:00"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SUMMARY
+# ─────────────────────────────────────────────────────────────────────────────
+summary:
+  total_epics: 5
+  total_stories: 12
+  total_tasks: 34
+  total_checkpoints: 5
+  estimated_total_effort: "3-4 days"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# EPICS
+# ─────────────────────────────────────────────────────────────────────────────
+epics:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # EPIC 1: SCHEMA DESIGN
+  # ═══════════════════════════════════════════════════════════════════════════
+  - id: "E-1"
+    title: "Schema Design"
+    objective: "Define all data structures before implementation"
+    acceptance_criteria: "All tables created, types compile"
+    status: "TODO"
+
+    stories:
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-1.1"
+        title: "Database Schema Design"
+        as_a: "Developer"
+        i_want: "Database tables defined"
+        so_that: "I have a solid data foundation"
+        acceptance_criteria:
+          - "User table with all fields"
+          - "Tenant table for multi-tenancy"
+          - "Role and Permission tables"
+          - "Audit log table"
+          - "Relationships and indexes defined"
+        status: "TODO"
+
+        tasks:
+          - id: "T-1.1.1"
+            title: "Create User table schema"
+            description: "Define User table with id, email, password_hash, google_id, tenant_id, etc."
+            acceptance_criteria: "Table created, all fields present"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on: []
+
+          - id: "T-1.1.2"
+            title: "Create Tenant table schema"
+            description: "Define Tenant table with id, name, slug for multi-tenancy"
+            acceptance_criteria: "Table created, slug is unique"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on: []
+
+          - id: "T-1.1.3"
+            title: "Create Role and Permission tables"
+            description: "Define Role table and user_roles junction for RBAC"
+            acceptance_criteria: "Tables created, junction works"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on: []
+
+          - id: "T-1.1.4"
+            title: "Create AuditLog table"
+            description: "Define audit_logs for security event tracking"
+            acceptance_criteria: "Table created, can store events"
+            estimated_duration: "20min"
+            status: "TODO"
+            depends_on: []
+
+          - id: "T-1.1.5"
+            title: "Define relationships and indexes"
+            description: "Add foreign keys, indexes for performance"
+            acceptance_criteria: "Constraints enforced, queries fast"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-1.1.1"
+              - "T-1.1.2"
+              - "T-1.1.3"
+              - "T-1.1.4"
+
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-1.2"
+        title: "TypeScript Types"
+        as_a: "Developer"
+        i_want: "Type definitions for all entities"
+        so_that: "I get compile-time safety"
+        acceptance_criteria:
+          - "User entity types defined"
+          - "Auth DTOs defined"
+          - "Permission enums defined"
+        status: "TODO"
+
+        tasks:
+          - id: "T-1.2.1"
+            title: "Define User entity types"
+            description: "Create TypeScript interfaces for User, Tenant"
+            acceptance_criteria: "Types compile without errors"
+            estimated_duration: "20min"
+            status: "TODO"
+            depends_on:
+              - "T-1.1.1"
+              - "T-1.1.2"
+
+          - id: "T-1.2.2"
+            title: "Define Auth DTOs"
+            description: "Create request/response types for auth endpoints"
+            acceptance_criteria: "RegisterDTO, LoginDTO, etc. defined"
+            estimated_duration: "20min"
+            status: "TODO"
+            depends_on:
+              - "T-1.2.1"
+
+          - id: "T-1.2.3"
+            title: "Define Permission enums"
+            description: "Create Role enum (ADMIN, MEMBER, VIEWER)"
+            acceptance_criteria: "Enums compile, exhaustive"
+            estimated_duration: "15min"
+            status: "TODO"
+            depends_on:
+              - "T-1.1.3"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # EPIC 2: AUTHENTICATION CORE
+  # ═══════════════════════════════════════════════════════════════════════════
+  - id: "E-2"
+    title: "Authentication Core"
+    objective: "Working email/password and OAuth2 authentication"
+    acceptance_criteria: "User can register, login, and OAuth"
+    status: "TODO"
+
+    stories:
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-2.1"
+        title: "Email/Password Authentication"
+        as_a: "User"
+        i_want: "To register and login with email/password"
+        so_that: "I can access the application"
+        acceptance_criteria:
+          - "Registration creates user with hashed password"
+          - "Login returns valid JWT"
+          - "Invalid credentials rejected"
+        status: "TODO"
+
+        tasks:
+          - id: "T-2.1.1"
+            title: "Implement password hashing service"
+            description: "Create service using bcrypt for password hashing"
+            acceptance_criteria: "Passwords hashed, verified correctly"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-1.2.1"
+            warnings:
+              - "NEVER use MD5 or SHA for passwords. Use bcrypt only."
+
+          - id: "T-2.1.2"
+            title: "Create user repository"
+            description: "Implement CRUD operations for users"
+            acceptance_criteria: "Can create, read, update users"
+            estimated_duration: "45min"
+            status: "TODO"
+            depends_on:
+              - "T-1.1.5"
+              - "T-1.2.1"
+
+          - id: "T-2.1.3"
+            title: "Implement registration endpoint"
+            description: "POST /auth/register creates user"
+            acceptance_criteria: "201 returned, user in database"
+            estimated_duration: "45min"
+            status: "TODO"
+            depends_on:
+              - "T-2.1.1"
+              - "T-2.1.2"
+
+          - id: "T-2.1.4"
+            title: "Implement login endpoint"
+            description: "POST /auth/login returns JWT"
+            acceptance_criteria: "JWT returned on valid credentials"
+            estimated_duration: "45min"
+            status: "TODO"
+            depends_on:
+              - "T-2.1.3"
+              - "T-2.1.5"
+
+          - id: "T-2.1.5"
+            title: "Implement JWT service"
+            description: "Create service for JWT generation/verification"
+            acceptance_criteria: "Tokens generated and verified"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-1.2.1"
+            warnings:
+              - "JWT secret must be at least 256 bits"
+              - "Always set expiration"
+
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-2.2"
+        title: "Google OAuth2"
+        as_a: "User"
+        i_want: "To login with Google"
+        so_that: "I don't need another password"
+        acceptance_criteria:
+          - "Google OAuth flow completes"
+          - "New users created on first login"
+          - "Existing users linked"
+        status: "TODO"
+
+        tasks:
+          - id: "T-2.2.1"
+            title: "Configure Passport Google strategy"
+            description: "Set up Google OAuth2 with Passport"
+            acceptance_criteria: "Strategy registered, redirects work"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-2.1.2"
+
+          - id: "T-2.2.2"
+            title: "Implement OAuth callback handler"
+            description: "Handle Google callback, create/link user"
+            acceptance_criteria: "User created/linked, JWT returned"
+            estimated_duration: "45min"
+            status: "TODO"
+            depends_on:
+              - "T-2.2.1"
+              - "T-2.1.5"
+
+          - id: "T-2.2.3"
+            title: "Handle existing email conflicts"
+            description: "Proper error when email already exists"
+            acceptance_criteria: "Clear error message, no data corruption"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-2.2.2"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # EPIC 3: RBAC SYSTEM
+  # ═══════════════════════════════════════════════════════════════════════════
+  - id: "E-3"
+    title: "RBAC System"
+    objective: "Role-based access control fully functional"
+    acceptance_criteria: "Roles restrict access, tenant isolation works"
+    status: "TODO"
+
+    stories:
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-3.1"
+        title: "Role Management"
+        as_a: "Admin"
+        i_want: "To manage user roles"
+        so_that: "I can control access"
+        acceptance_criteria:
+          - "Roles can be assigned to users"
+          - "Role hierarchy respected"
+          - "Permission middleware works"
+        status: "TODO"
+
+        tasks:
+          - id: "T-3.1.1"
+            title: "Implement role assignment service"
+            description: "Service to assign/revoke roles"
+            acceptance_criteria: "Users can be assigned roles"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-1.1.3"
+              - "T-2.1.2"
+
+          - id: "T-3.1.2"
+            title: "Create permission checking middleware"
+            description: "Middleware that checks role before proceeding"
+            acceptance_criteria: "Unauthorized users get 403"
+            estimated_duration: "45min"
+            status: "TODO"
+            depends_on:
+              - "T-3.1.1"
+              - "T-2.1.5"
+
+          - id: "T-3.1.3"
+            title: "Implement role hierarchy"
+            description: "Admin > Member > Viewer permissions"
+            acceptance_criteria: "Higher roles have lower permissions"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-3.1.2"
+
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-3.2"
+        title: "Protected Routes"
+        as_a: "System"
+        i_want: "Routes protected by role"
+        so_that: "Unauthorized access is prevented"
+        acceptance_criteria:
+          - "Admin routes protected"
+          - "Member routes protected"
+          - "Tenant isolation enforced"
+        status: "TODO"
+
+        tasks:
+          - id: "T-3.2.1"
+            title: "Protect admin routes"
+            description: "Apply admin-only middleware"
+            acceptance_criteria: "Non-admins get 403"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-3.1.2"
+
+          - id: "T-3.2.2"
+            title: "Protect member routes"
+            description: "Apply member-or-higher middleware"
+            acceptance_criteria: "Viewers get 403 on member routes"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-3.1.3"
+
+          - id: "T-3.2.3"
+            title: "Implement tenant isolation"
+            description: "Ensure users can only access their tenant"
+            acceptance_criteria: "Cross-tenant access blocked"
+            estimated_duration: "45min"
+            status: "TODO"
+            depends_on:
+              - "T-3.2.1"
+            warnings:
+              - "Test this exhaustively - security critical"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # EPIC 4: PROFILE MANAGEMENT
+  # ═══════════════════════════════════════════════════════════════════════════
+  - id: "E-4"
+    title: "Profile Management"
+    objective: "Users can manage their profiles"
+    acceptance_criteria: "Profile CRUD works, passwords manageable"
+    status: "TODO"
+
+    stories:
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-4.1"
+        title: "Profile CRUD"
+        as_a: "User"
+        i_want: "To manage my profile"
+        so_that: "I can update my information"
+        acceptance_criteria:
+          - "Can view profile"
+          - "Can update profile"
+          - "Can upload avatar"
+        status: "TODO"
+
+        tasks:
+          - id: "T-4.1.1"
+            title: "Implement get profile endpoint"
+            description: "GET /users/me returns user data"
+            acceptance_criteria: "User data returned (no password)"
+            estimated_duration: "20min"
+            status: "TODO"
+            depends_on:
+              - "T-2.1.4"
+
+          - id: "T-4.1.2"
+            title: "Implement update profile endpoint"
+            description: "PATCH /users/me updates user"
+            acceptance_criteria: "Changes persisted"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-4.1.1"
+
+          - id: "T-4.1.3"
+            title: "Implement avatar upload"
+            description: "POST /users/me/avatar stores image in S3"
+            acceptance_criteria: "Image stored, URL returned"
+            estimated_duration: "45min"
+            status: "TODO"
+            depends_on:
+              - "T-4.1.2"
+
+          - id: "T-4.1.4"
+            title: "Implement avatar deletion"
+            description: "DELETE /users/me/avatar removes image"
+            acceptance_criteria: "Image removed from S3"
+            estimated_duration: "20min"
+            status: "TODO"
+            depends_on:
+              - "T-4.1.3"
+
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-4.2"
+        title: "Password Management"
+        as_a: "User"
+        i_want: "To manage my password"
+        so_that: "I can keep my account secure"
+        acceptance_criteria:
+          - "Can change password"
+          - "Can request reset"
+          - "Can reset with token"
+        status: "TODO"
+
+        tasks:
+          - id: "T-4.2.1"
+            title: "Implement change password"
+            description: "POST /users/me/password changes password"
+            acceptance_criteria: "Old password verified, new saved"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-2.1.1"
+              - "T-4.1.1"
+
+          - id: "T-4.2.2"
+            title: "Implement password reset request"
+            description: "POST /auth/forgot-password sends email"
+            acceptance_criteria: "Reset token generated, email sent"
+            estimated_duration: "45min"
+            status: "TODO"
+            depends_on:
+              - "T-4.2.1"
+
+          - id: "T-4.2.3"
+            title: "Implement password reset confirm"
+            description: "POST /auth/reset-password with token"
+            acceptance_criteria: "Token validated, password changed"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-4.2.2"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # EPIC 5: SECURITY HARDENING
+  # ═══════════════════════════════════════════════════════════════════════════
+  - id: "E-5"
+    title: "Security Hardening"
+    objective: "Production-ready security measures"
+    acceptance_criteria: "All security tests pass"
+    status: "TODO"
+
+    stories:
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-5.1"
+        title: "Security Measures"
+        as_a: "System"
+        i_want: "Security protections in place"
+        so_that: "The system is protected from attacks"
+        acceptance_criteria:
+          - "Rate limiting active"
+          - "Audit logging works"
+          - "Account lockout works"
+        status: "TODO"
+
+        tasks:
+          - id: "T-5.1.1"
+            title: "Implement rate limiting"
+            description: "Add rate limiting to auth endpoints"
+            acceptance_criteria: "429 returned after threshold"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-2.1.4"
+
+          - id: "T-5.1.2"
+            title: "Add audit logging"
+            description: "Log security events to audit_logs"
+            acceptance_criteria: "Login, password change logged"
+            estimated_duration: "45min"
+            status: "TODO"
+            depends_on:
+              - "T-1.1.4"
+            warnings:
+              - "Never log passwords or tokens"
+
+          - id: "T-5.1.3"
+            title: "Implement account lockout"
+            description: "Lock account after failed attempts"
+            acceptance_criteria: "Account locked after 5 failures"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-5.1.2"
+
+      # ─────────────────────────────────────────────────────────────────────────
+      - id: "S-5.2"
+        title: "Security Testing"
+        as_a: "Security Team"
+        i_want: "Security tests passing"
+        so_that: "I know the system is secure"
+        acceptance_criteria:
+          - "No SQL injection"
+          - "No XSS"
+          - "No auth bypass"
+          - "No tenant leakage"
+        status: "TODO"
+
+        tasks:
+          - id: "T-5.2.1"
+            title: "SQL injection tests"
+            description: "Test all inputs for SQL injection"
+            acceptance_criteria: "No injection possible"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-4.2.3"
+
+          - id: "T-5.2.2"
+            title: "XSS prevention tests"
+            description: "Test input sanitization"
+            acceptance_criteria: "All input sanitized"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-4.2.3"
+
+          - id: "T-5.2.3"
+            title: "Auth bypass tests"
+            description: "Test for authentication bypasses"
+            acceptance_criteria: "No bypass possible"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-5.1.1"
+
+          - id: "T-5.2.4"
+            title: "Tenant isolation tests"
+            description: "Test cross-tenant access attempts"
+            acceptance_criteria: "No data leakage"
+            estimated_duration: "30min"
+            status: "TODO"
+            depends_on:
+              - "T-3.2.3"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CHECKPOINTS
+# ─────────────────────────────────────────────────────────────────────────────
+checkpoints:
+  - id: "CP-1"
+    title: "Schema Validated"
+    after_epic: "E-1"
+    validation:
+      - "All tables created successfully"
+      - "Migrations run without errors"
+      - "TypeScript types compile"
+    action_if_fail: "Review schema, fix errors, re-run migrations"
+    updates_state: true
+
+  - id: "CP-2"
+    title: "Authentication Working"
+    after_epic: "E-2"
+    validation:
+      - "Registration creates user"
+      - "Login returns valid JWT"
+      - "Google OAuth completes"
+    action_if_fail: "Debug auth flow, check credentials"
+    updates_state: true
+
+  - id: "CP-3"
+    title: "RBAC Enforced"
+    after_epic: "E-3"
+    validation:
+      - "Admin routes protected"
+      - "Member routes protected"
+      - "Tenant isolation verified"
+    action_if_fail: "Review middleware, test edge cases"
+    updates_state: true
+
+  - id: "CP-4"
+    title: "Profiles Working"
+    after_epic: "E-4"
+    validation:
+      - "Profile CRUD works"
+      - "Avatar upload/delete works"
+      - "Password flows work"
+    action_if_fail: "Debug specific flow, check storage"
+    updates_state: true
+
+  - id: "CP-5"
+    title: "Security Verified"
+    after_epic: "E-5"
+    validation:
+      - "Rate limiting active"
+      - "Audit logging works"
+      - "All security tests pass"
+    action_if_fail: "Fix vulnerabilities, re-run tests"
+    updates_state: true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DEPENDENCY GRAPH
+# ─────────────────────────────────────────────────────────────────────────────
+dependency_graph:
+  critical_path:
+    - "T-1.1.1"
+    - "T-1.1.5"
+    - "T-1.2.1"
+    - "T-2.1.1"
+    - "T-2.1.2"
+    - "T-2.1.3"
+    - "T-2.1.5"
+    - "T-2.1.4"
+    - "T-3.1.1"
+    - "T-3.1.2"
+    - "T-3.2.3"
+    - "T-5.2.4"
+
+  parallelizable_groups:
+    - name: "Schema tables"
+      tasks: ["T-1.1.1", "T-1.1.2", "T-1.1.3", "T-1.1.4"]
+
+    - name: "Security tests"
+      tasks: ["T-5.2.1", "T-5.2.2", "T-5.2.3", "T-5.2.4"]

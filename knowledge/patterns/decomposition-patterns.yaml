@@ -1,0 +1,316 @@
+# ╔═══════════════════════════════════════════════════════════════════╗
+# ║               DECOMPOSITION PATTERNS                              ║
+# ║          Padroes de Fragmentacao de Trabalho                      ║
+# ╚═══════════════════════════════════════════════════════════════════╝
+
+version: "1.0.0"
+description: |
+  Padroes reutilizaveis para decompor trabalho em Epicos, Stories e Tasks.
+  Use como referencia ao executar o Protocolo P3 (FRAGMENT).
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 1: PREPARAR-EXECUTAR-VALIDAR
+# ─────────────────────────────────────────────────────────────────────
+prepare_execute_validate:
+  name: "Preparar-Executar-Validar"
+  description: "Estrutura universal para qualquer fase"
+
+  structure:
+    epic: "[Nome da Fase]"
+    stories:
+      - name: "Preparacao"
+        tasks:
+          - "Verificar pre-requisitos"
+          - "Coletar inputs necessarios"
+          - "Validar disponibilidade de recursos"
+
+      - name: "Execucao"
+        tasks:
+          - "Executar passo 1"
+          - "Executar passo 2"
+          - "Executar passo N"
+
+      - name: "Validacao"
+        tasks:
+          - "Verificar outputs gerados"
+          - "Validar contra criterios"
+          - "Documentar resultado"
+
+  when_to_use:
+    - "Qualquer fase padrao"
+    - "Quando estrutura nao e clara"
+    - "Default seguro"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 2: CRUD
+# ─────────────────────────────────────────────────────────────────────
+crud:
+  name: "CRUD (Create-Read-Update-Delete)"
+  description: "Para operacoes de dados/recursos"
+
+  structure:
+    epic: "Gerenciamento de [Recurso]"
+    stories:
+      - name: "Criar [Recurso]"
+        tasks:
+          - "Definir schema/estrutura"
+          - "Implementar criacao"
+          - "Testar criacao"
+
+      - name: "Ler [Recurso]"
+        tasks:
+          - "Implementar leitura individual"
+          - "Implementar listagem"
+          - "Testar leituras"
+
+      - name: "Atualizar [Recurso]"
+        tasks:
+          - "Implementar atualizacao"
+          - "Validar integridade"
+          - "Testar atualizacao"
+
+      - name: "Deletar [Recurso]"
+        tasks:
+          - "Implementar delecao"
+          - "Tratar dependencias"
+          - "Testar delecao"
+
+  when_to_use:
+    - "Sistemas de dados"
+    - "APIs"
+    - "Gerenciamento de recursos"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 3: RESEARCH-DESIGN-BUILD
+# ─────────────────────────────────────────────────────────────────────
+research_design_build:
+  name: "Research-Design-Build"
+  description: "Para criacao de features ou sistemas"
+
+  structure:
+    epic: "[Feature/Sistema]"
+    stories:
+      - name: "Pesquisa"
+        tasks:
+          - "Levantar requisitos"
+          - "Pesquisar solucoes existentes"
+          - "Documentar findings"
+
+      - name: "Design"
+        tasks:
+          - "Criar arquitetura"
+          - "Definir interfaces"
+          - "Revisar design"
+
+      - name: "Implementacao"
+        tasks:
+          - "Configurar ambiente"
+          - "Implementar core"
+          - "Implementar extras"
+
+      - name: "Testes"
+        tasks:
+          - "Escrever testes"
+          - "Executar testes"
+          - "Corrigir bugs"
+
+      - name: "Documentacao"
+        tasks:
+          - "Documentar uso"
+          - "Documentar API"
+          - "Criar exemplos"
+
+  when_to_use:
+    - "Novas features"
+    - "Sistemas complexos"
+    - "Projetos greenfield"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 4: ANALISE-SINTESE
+# ─────────────────────────────────────────────────────────────────────
+analysis_synthesis:
+  name: "Analise-Sintese"
+  description: "Para trabalhos de analise e insight"
+
+  structure:
+    epic: "Analise de [Dominio]"
+    stories:
+      - name: "Coleta de Dados"
+        tasks:
+          - "Identificar fontes"
+          - "Coletar dados brutos"
+          - "Limpar dados"
+
+      - name: "Analise Quantitativa"
+        tasks:
+          - "Calcular metricas"
+          - "Identificar padroes numericos"
+          - "Gerar visualizacoes"
+
+      - name: "Analise Qualitativa"
+        tasks:
+          - "Identificar temas"
+          - "Codificar achados"
+          - "Extrair quotes"
+
+      - name: "Sintese"
+        tasks:
+          - "Cruzar achados"
+          - "Formular insights"
+          - "Priorizar descobertas"
+
+      - name: "Output"
+        tasks:
+          - "Criar relatorio"
+          - "Preparar apresentacao"
+          - "Definir proximos passos"
+
+  when_to_use:
+    - "Pesquisas"
+    - "Auditorias"
+    - "Diagnosticos"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 5: ITERACAO AGILE
+# ─────────────────────────────────────────────────────────────────────
+agile_iteration:
+  name: "Iteracao Agile"
+  description: "Para sprints ou ciclos de desenvolvimento"
+
+  structure:
+    epic: "Sprint/Iteracao [N]"
+    stories:
+      - name: "Planning"
+        tasks:
+          - "Revisar backlog"
+          - "Selecionar items"
+          - "Decompor em tasks"
+
+      - name: "Execucao"
+        tasks:
+          - "[Story 1 tasks]"
+          - "[Story 2 tasks]"
+          - "[Story N tasks]"
+
+      - name: "Review"
+        tasks:
+          - "Demo de entregas"
+          - "Coletar feedback"
+          - "Documentar decisoes"
+
+      - name: "Retro"
+        tasks:
+          - "O que funcionou"
+          - "O que melhorar"
+          - "Acoes para proxima iteracao"
+
+  when_to_use:
+    - "Projetos continuos"
+    - "Desenvolvimento iterativo"
+    - "Times ageis"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 6: MIGRACAO
+# ─────────────────────────────────────────────────────────────────────
+migration:
+  name: "Migracao"
+  description: "Para mover dados/sistemas de A para B"
+
+  structure:
+    epic: "Migracao de [Sistema/Dados]"
+    stories:
+      - name: "Assessment"
+        tasks:
+          - "Mapear estado atual"
+          - "Identificar dependencias"
+          - "Avaliar riscos"
+
+      - name: "Preparacao"
+        tasks:
+          - "Criar ambiente destino"
+          - "Configurar ferramentas"
+          - "Definir rollback"
+
+      - name: "Migracao"
+        tasks:
+          - "Executar migracao parcial (dry-run)"
+          - "Validar resultado parcial"
+          - "Executar migracao completa"
+
+      - name: "Validacao"
+        tasks:
+          - "Comparar origem x destino"
+          - "Testar funcionalidades"
+          - "Validar integridade"
+
+      - name: "Cutover"
+        tasks:
+          - "Mudar apontamentos"
+          - "Desligar origem"
+          - "Monitorar destino"
+
+  when_to_use:
+    - "Migracoes de dados"
+    - "Troca de sistemas"
+    - "Upgrades"
+
+# ─────────────────────────────────────────────────────────────────────
+# REGRAS DE ATOMIZACAO
+# ─────────────────────────────────────────────────────────────────────
+atomization_rules:
+  rule_1_duration:
+    name: "Regra de Duracao"
+    rule: "Task deve ser < 2 horas"
+    test: "SE estimativa > 2h ENTAO decompor mais"
+
+  rule_2_binary:
+    name: "Regra do Criterio Binario"
+    rule: "Criterio de conclusao deve ser sim/nao"
+    test: "SE criterio tem graduacao ENTAO reformular"
+    bad_example: "Melhorar performance"
+    good_example: "Tempo de resposta < 200ms"
+
+  rule_3_single_action:
+    name: "Regra de Acao Unica"
+    rule: "Uma task = uma acao"
+    test: "SE titulo tem 'e' ou virgula ENTAO provavelmente sao 2+ tasks"
+    bad_example: "Criar e testar funcao"
+    good_example: "Criar funcao" + "Testar funcao"
+
+  rule_4_independence:
+    name: "Regra de Independencia"
+    rule: "Se posso comecar sem X, X nao e dependencia"
+    test: "Posso iniciar esta task agora mesmo?"
+
+  rule_5_verifiable:
+    name: "Regra de Verificabilidade"
+    rule: "Deve ser possivel verificar conclusao objetivamente"
+    test: "Outra pessoa conseguiria dizer se esta feito?"
+
+# ─────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS DE DECOMPOSICAO
+# ─────────────────────────────────────────────────────────────────────
+anti_patterns:
+  - name: "Task Gigante"
+    description: "Task que demora dias"
+    solution: "Decompor em tasks menores"
+
+  - name: "Criterio Vago"
+    description: "'Melhorar', 'Otimizar', 'Bom'"
+    solution: "Tornar mensuravel e binario"
+
+  - name: "Dependencia Circular"
+    description: "A depende de B que depende de A"
+    solution: "Redesenhar fluxo ou criar task intermediaria"
+
+  - name: "Task Orfa"
+    description: "Task sem story pai"
+    solution: "Criar story apropriada ou mover para existente"
+
+  - name: "Story Monolitica"
+    description: "Story com 20+ tasks"
+    solution: "Dividir em multiplas stories"
+
+# ─────────────────────────────────────────────────────────────────────
+# FIM
+# ─────────────────────────────────────────────────────────────────────

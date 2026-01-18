@@ -1,0 +1,104 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# BLUEPRINT METADATA
+# ═══════════════════════════════════════════════════════════════════════════
+
+blueprint_id: "BP-EXAMPLE-001"
+title: "SaaS MVP Architecture — User Management Module"
+version: "1.0.0"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# GENERATION INFO
+# ─────────────────────────────────────────────────────────────────────────────
+generation:
+  system: "ATHENA OS"
+  system_version: "1.0.0"
+  created_at: "2025-01-16T10:00:00-03:00"
+  created_by: "ATHENA"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CLASSIFICATION
+# ─────────────────────────────────────────────────────────────────────────────
+classification:
+  type: "CREATION"
+  domain: "Backend Development"
+  complexity: "MEDIUM"
+  tags:
+    - "authentication"
+    - "authorization"
+    - "multi-tenancy"
+    - "security"
+    - "saas"
+    - "mvp"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# METRICS
+# ─────────────────────────────────────────────────────────────────────────────
+metrics:
+  total_epics: 5
+  total_stories: 12
+  total_tasks: 34
+  total_checkpoints: 5
+  estimated_effort: "3-4 days"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FILES IN THIS PACKAGE
+# ─────────────────────────────────────────────────────────────────────────────
+package_contents:
+  - file: "BLUEPRINT.md"
+    type: "Master Document"
+    description: "Complete Blueprint with all sections"
+
+  - file: "ACTIVATION.md"
+    type: "Activation Prompt"
+    description: "Ready-to-use prompt for execution"
+
+  - file: "intent-spec.yaml"
+    type: "Intent Specification"
+    description: "Structured intent from P1"
+
+  - file: "checkpoint-map.yaml"
+    type: "Checkpoint Map"
+    description: "Full work breakdown from P3"
+
+  - file: "_metadata.yaml"
+    type: "Metadata"
+    description: "This file"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STATUS
+# ─────────────────────────────────────────────────────────────────────────────
+status:
+  current: "REFERENCE_EXAMPLE"
+  gates_passed:
+    - gate: "G1"
+      status: "PASSED"
+      passed_at: "2025-01-16T10:30:00-03:00"
+    - gate: "G2"
+      status: "PASSED"
+      passed_at: "2025-01-16T11:00:00-03:00"
+    - gate: "G3"
+      status: "PASSED"
+      passed_at: "2025-01-16T11:30:00-03:00"
+    - gate: "G4"
+      status: "PASSED"
+      passed_at: "2025-01-16T12:00:00-03:00"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# USAGE NOTES
+# ─────────────────────────────────────────────────────────────────────────────
+notes: |
+  This is a REFERENCE EXAMPLE Blueprint demonstrating ATHENA OS capabilities.
+
+  It shows:
+  - Complete Intent Specification with all dimensions
+  - Multi-phase Execution Architecture
+  - Comprehensive Checkpoint Map with 34 atomic tasks
+  - Task dependencies and critical path
+  - Security warnings on sensitive tasks
+  - Full Activation Prompt ready for use
+
+  To use this as a template:
+  1. Copy the structure
+  2. Replace content with your specific needs
+  3. Run through the P1→P4 pipeline
+  4. Export to your target project

@@ -1,0 +1,311 @@
+# ╔═══════════════════════════════════════════════════════════════════╗
+# ║               ORCHESTRATION PATTERNS                              ║
+# ║           Padroes de Orquestracao de Blueprints                   ║
+# ╚═══════════════════════════════════════════════════════════════════╝
+
+version: "1.0.0"
+description: |
+  Padroes reutilizaveis para orquestracao de workflows em Blueprints.
+  Use como referencia ao projetar Execution Architectures.
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 1: PIPELINE LINEAR
+# ─────────────────────────────────────────────────────────────────────
+linear_pipeline:
+  name: "Pipeline Linear"
+  description: "Etapas sequenciais simples, cada fase depende da anterior"
+
+  diagram: |
+    INPUT -> [FASE 1] -> [FASE 2] -> [FASE 3] -> OUTPUT
+
+  when_to_use:
+    - "Processo bem definido"
+    - "Sem loops ou iteracoes"
+    - "Baixa complexidade"
+    - "Dependencias claras e lineares"
+
+  example:
+    phases:
+      - id: "PH-1"
+        name: "Coleta"
+        gate: "Dados coletados?"
+      - id: "PH-2"
+        name: "Processamento"
+        gate: "Dados processados?"
+      - id: "PH-3"
+        name: "Output"
+        gate: "Output gerado?"
+
+  pros:
+    - "Simples de entender"
+    - "Facil de debugar"
+    - "Checkpoints claros"
+
+  cons:
+    - "Nao aproveita paralelismo"
+    - "Bloqueio em cascata se uma fase falha"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 2: FORK-JOIN (PARALELO)
+# ─────────────────────────────────────────────────────────────────────
+fork_join:
+  name: "Fork-Join"
+  description: "Divide em ramos paralelos e junta ao final"
+
+  diagram: |
+           -> [FASE 2A] -
+    INPUT -> |             | -> [FASE 3] -> OUTPUT
+           -> [FASE 2B] -
+
+  when_to_use:
+    - "Tarefas independentes que podem rodar simultaneamente"
+    - "Reducao de tempo total"
+    - "Diferentes aspectos de um mesmo problema"
+
+  example:
+    phases:
+      - id: "PH-1"
+        name: "Preparacao"
+      - id: "PH-2A"
+        name: "Analise Quantitativa"
+        parallel_with: "PH-2B"
+      - id: "PH-2B"
+        name: "Analise Qualitativa"
+        parallel_with: "PH-2A"
+      - id: "PH-3"
+        name: "Sintese"
+        wait_for: ["PH-2A", "PH-2B"]
+
+  pros:
+    - "Tempo total menor"
+    - "Aproveitamento de paralelismo"
+
+  cons:
+    - "Sincronizacao no join"
+    - "Mais complexo de gerenciar"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 3: CONDICIONAL (DECISION TREE)
+# ─────────────────────────────────────────────────────────────────────
+conditional:
+  name: "Decision Tree"
+  description: "Caminhos diferentes baseado em condicoes"
+
+  diagram: |
+    INPUT -> [FASE 1] -> {DECISAO} -> [CAMINHO A] -> OUTPUT
+                            |
+                            -> [CAMINHO B] -> OUTPUT
+
+  when_to_use:
+    - "Resultado da fase anterior determina proxima"
+    - "Multiplos cenarios possiveis"
+    - "Necessita decisao humana ou automatica"
+
+  example:
+    phases:
+      - id: "PH-1"
+        name: "Avaliacao"
+        gate: "Qual caminho seguir?"
+
+    decision_points:
+      - id: "DP-1"
+        after_phase: "PH-1"
+        options:
+          - id: "A"
+            condition: "Complexidade LOW"
+            leads_to: "PH-2A"
+          - id: "B"
+            condition: "Complexidade HIGH"
+            leads_to: "PH-2B"
+
+  pros:
+    - "Flexibilidade"
+    - "Otimizacao por cenario"
+
+  cons:
+    - "Mais caminhos = mais complexidade"
+    - "Teste de todos os caminhos"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 4: LOOP ITERATIVO
+# ─────────────────────────────────────────────────────────────────────
+iterative_loop:
+  name: "Loop Iterativo"
+  description: "Repete ate atingir condicao de saida"
+
+  diagram: |
+    INPUT -> [FASE 1] -> [FASE 2] -?-> OUTPUT
+                  ^          |
+                  |__________|
+
+  when_to_use:
+    - "Refinamento progressivo"
+    - "Qualidade precisa atingir threshold"
+    - "Numero de iteracoes desconhecido"
+
+  example:
+    phases:
+      - id: "PH-1"
+        name: "Draft"
+      - id: "PH-2"
+        name: "Review"
+        loop_condition: "Qualidade >= 80%"
+        max_iterations: 5
+        on_max_reached: "Escalar para humano"
+
+  pros:
+    - "Garantia de qualidade"
+    - "Melhoria incremental"
+
+  cons:
+    - "Pode loop infinito (precisa max)"
+    - "Tempo total incerto"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 5: PIPELINE COM GATES
+# ─────────────────────────────────────────────────────────────────────
+gated_pipeline:
+  name: "Pipeline com Gates"
+  description: "Pipeline linear com checkpoints de validacao"
+
+  diagram: |
+    INPUT -> [F1] -> (G1) -> [F2] -> (G2) -> [F3] -> (G3) -> OUTPUT
+
+  when_to_use:
+    - "Qualidade e critica"
+    - "Retrabalho e caro"
+    - "Precisa aprovacao em pontos-chave"
+
+  example:
+    phases:
+      - id: "PH-1"
+        name: "Design"
+        gate:
+          id: "G1"
+          question: "Design aprovado?"
+          action_if_fail: "Voltar para PH-1"
+      - id: "PH-2"
+        name: "Implementacao"
+        gate:
+          id: "G2"
+          question: "Implementacao correta?"
+
+  pros:
+    - "Qualidade garantida em cada passo"
+    - "Erros pegos cedo"
+
+  cons:
+    - "Mais lento"
+    - "Overhead de validacao"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 6: SAGA (COMPENSACAO)
+# ─────────────────────────────────────────────────────────────────────
+saga_compensation:
+  name: "Saga com Compensacao"
+  description: "Cada fase tem uma acao de rollback em caso de falha"
+
+  diagram: |
+    [F1] -> [F2] -> [F3] -> OUTPUT
+     |       |       |
+    (C1)   (C2)    (C3)   <- Compensacoes
+
+  when_to_use:
+    - "Operacoes que podem precisar reverter"
+    - "Sistemas externos envolvidos"
+    - "Consistencia e critica"
+
+  example:
+    phases:
+      - id: "PH-1"
+        name: "Criar recurso"
+        compensation: "Deletar recurso"
+      - id: "PH-2"
+        name: "Configurar recurso"
+        compensation: "Reverter configuracao"
+
+  pros:
+    - "Recuperacao de falhas"
+    - "Consistencia eventual"
+
+  cons:
+    - "Complexidade de implementacao"
+    - "Compensacoes nem sempre possiveis"
+
+# ─────────────────────────────────────────────────────────────────────
+# PADRAO 7: MULTI-AGENT
+# ─────────────────────────────────────────────────────────────────────
+multi_agent:
+  name: "Orquestracao Multi-Agent"
+  description: "Multiplos agentes colaborando em um workflow"
+
+  diagram: |
+    ORCHESTRATOR
+         |
+    +----|----+
+    |    |    |
+    A1   A2   A3   <- Agentes especialistas
+    |    |    |
+    +----+----+
+         |
+      MERGE
+
+  when_to_use:
+    - "Diferentes especialidades necessarias"
+    - "Paralelismo de competencias"
+    - "Sistemas complexos"
+
+  example:
+    agents:
+      - id: "ORCH"
+        role: "Orquestrador"
+      - id: "ANALYST"
+        role: "Analise"
+      - id: "WRITER"
+        role: "Escrita"
+      - id: "REVIEWER"
+        role: "Revisao"
+
+    collaboration:
+      - ORCH distribui tarefa
+      - ANALYST analisa
+      - WRITER cria draft
+      - REVIEWER valida
+      - ORCH consolida
+
+  pros:
+    - "Especializacao"
+    - "Escala"
+
+  cons:
+    - "Coordenacao complexa"
+    - "Overhead de comunicacao"
+
+# ─────────────────────────────────────────────────────────────────────
+# GUIA DE SELECAO
+# ─────────────────────────────────────────────────────────────────────
+selection_guide:
+  decision_tree:
+    - question: "Precisa de loops/iteracao?"
+      yes: "iterative_loop"
+      no: "continue"
+
+    - question: "Tem tarefas paralelas independentes?"
+      yes: "fork_join"
+      no: "continue"
+
+    - question: "Precisa de decisoes/caminhos diferentes?"
+      yes: "conditional"
+      no: "continue"
+
+    - question: "Multiplos agentes necessarios?"
+      yes: "multi_agent"
+      no: "continue"
+
+    - question: "Qualidade critica com gates?"
+      yes: "gated_pipeline"
+      no: "linear_pipeline"
+
+# ─────────────────────────────────────────────────────────────────────
+# FIM
+# ─────────────────────────────────────────────────────────────────────

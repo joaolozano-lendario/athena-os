@@ -1,0 +1,162 @@
+# ╔═══════════════════════════════════════════════════════════════════╗
+# ║                       CHECKPOINT MAP                              ║
+# ║                       Template v1.0                               ║
+# ╚═══════════════════════════════════════════════════════════════════╝
+
+# ─────────────────────────────────────────────────────────────────────
+# METADATA
+# ─────────────────────────────────────────────────────────────────────
+metadata:
+  id: "CKPT-YYYY-MM-DD-NNN"
+  architecture_id: ""  # Referencia ao ARCH-*
+  intent_id: ""        # Referencia ao INT-*
+  version: "1.0.0"
+  created_at: ""
+
+# ─────────────────────────────────────────────────────────────────────
+# SUMARIO
+# ─────────────────────────────────────────────────────────────────────
+summary:
+  total_epics: 0
+  total_stories: 0
+  total_tasks: 0
+  total_checkpoints: 0
+
+  completion:
+    epics_done: 0
+    stories_done: 0
+    tasks_done: 0
+    percentage: 0
+
+  estimated_total_effort:
+    value: 0
+    unit: "hours"
+
+# ─────────────────────────────────────────────────────────────────────
+# EPICOS
+# ─────────────────────────────────────────────────────────────────────
+epics:
+  - id: "E-1"
+    derived_from: "PH-1"
+    title: "Titulo do Epico"
+
+    objective: |
+      O que este epico realiza.
+
+    acceptance_criteria: |
+      Como saber que o epico esta completo.
+
+    status: "TODO | IN_PROGRESS | DONE | BLOCKED"
+    progress: 0  # percentage
+
+    estimated_effort:
+      value: 0
+      unit: "days"
+
+    # ─────────────────────────────────────────────────────────────────
+    # STORIES DO EPICO
+    # ─────────────────────────────────────────────────────────────────
+    stories:
+      - id: "S-1.1"
+        title: "Titulo da Story"
+
+        # Formato User Story
+        user_story:
+          as_a: "Persona/Role"
+          i_want: "Acao desejada"
+          so_that: "Beneficio/Valor"
+
+        acceptance_criteria:
+          - "Criterio 1 - binario"
+          - "Criterio 2 - binario"
+
+        status: "TODO | IN_PROGRESS | DONE | BLOCKED"
+        progress: 0
+
+        estimated_effort:
+          value: 0
+          unit: "hours"
+
+        # ─────────────────────────────────────────────────────────────
+        # TASKS DA STORY
+        # ─────────────────────────────────────────────────────────────
+        tasks:
+          - id: "T-1.1.1"
+            title: "Titulo da Task"
+
+            description: |
+              O que fazer, em detalhes suficientes para execucao.
+
+            # UNICO criterio, BINARIO
+            acceptance_criterion: "Condicao binaria de conclusao"
+
+            status: "TODO | IN_PROGRESS | DONE | BLOCKED"
+
+            estimated_duration:
+              value: 30
+              unit: "minutes"
+
+            # Dependencias
+            depends_on: []   # IDs de outras tasks
+            blocks: []       # IDs de tasks que dependem desta
+
+            # Bloqueadores (se houver)
+            blockers:
+              - description: ""
+                type: "TECHNICAL | RESOURCE | DEPENDENCY | EXTERNAL"
+                resolution: ""
+
+            # Notas de execucao
+            execution_notes: ""
+            completed_at: null
+
+# ─────────────────────────────────────────────────────────────────────
+# CHECKPOINTS
+# ─────────────────────────────────────────────────────────────────────
+checkpoints:
+  - id: "CP-1"
+    name: "Nome do Checkpoint"
+    after_task: "T-X.Y.Z"
+
+    validation:
+      question: "O que verificar?"
+      criteria:
+        - "Criterio 1"
+        - "Criterio 2"
+
+    action_if_pass: "Prosseguir para proxima task"
+    action_if_fail: "O que fazer se falhar"
+
+    updates_state: true
+    state_updates:
+      - field: "path.to.field"
+        value: "novo valor"
+
+    triggered: false
+    triggered_at: null
+    result: null
+
+# ─────────────────────────────────────────────────────────────────────
+# GRAFO DE DEPENDENCIAS
+# ─────────────────────────────────────────────────────────────────────
+dependency_graph:
+  nodes:
+    - id: "T-1.1.1"
+      type: "task"
+      status: "TODO"
+
+  edges:
+    - from: "T-1.1.1"
+      to: "T-1.1.2"
+      type: "blocks"
+
+# ─────────────────────────────────────────────────────────────────────
+# VALIDACAO (preenchido pelo Gate G3)
+# ─────────────────────────────────────────────────────────────────────
+validation:
+  gate: "G3"
+  status: "PENDING | PASSED | FAILED"
+  checked_at: ""
+  checked_by: ""
+  notes: ""
+  issues_found: []

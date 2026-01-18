@@ -1,0 +1,208 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# INTENT SPECIFICATION
+# SaaS MVP — User Management Module
+# ═══════════════════════════════════════════════════════════════════════════
+
+id: "INT-EXAMPLE-001"
+created_at: "2025-01-16T10:00:00-03:00"
+created_by: "ATHENA OS"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# EXECUTIVE SUMMARY
+# ─────────────────────────────────────────────────────────────────────────────
+summary:
+  one_liner: "Complete user management module for SaaS MVP with auth, RBAC, and multi-tenancy"
+
+  jtbd: |
+    When starting a new SaaS MVP, I want a well-architected user management
+    foundation, so that I don't accumulate technical debt in the most critical
+    module of my application.
+
+  complexity: "MEDIUM"
+  estimated_effort: "3-4 days"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DIMENSIONS
+# ─────────────────────────────────────────────────────────────────────────────
+dimensions:
+  what:
+    explicit:
+      - "Email/password authentication"
+      - "Google OAuth2 integration"
+      - "Role-based access control (Admin, Member, Viewer)"
+      - "User profiles with avatar upload"
+      - "Multi-tenant data isolation"
+
+    implicit:
+      - "Password reset functionality"
+      - "Email verification"
+      - "Session management via JWT"
+      - "Audit logging for security events"
+      - "Rate limiting on auth endpoints"
+
+    out_of_scope:
+      - "Billing/subscription management"
+      - "Admin dashboard UI"
+      - "Two-factor authentication"
+      - "Social logins beyond Google"
+      - "User invitation system"
+
+  why:
+    surface: "Need user authentication for the MVP"
+
+    deep: |
+      User management is the foundational module of every SaaS application.
+      Getting it wrong early creates compounding technical debt because every
+      single feature touches users in some way. Authentication bugs become
+      security vulnerabilities. Authorization bugs become data leaks. A solid,
+      well-architected foundation here enables development velocity for every
+      feature that comes after.
+
+    impact_if_not_done:
+      - "Security vulnerabilities from ad-hoc auth implementation"
+      - "Hardcoded user logic scattered across codebase"
+      - "Impossible to add multi-tenancy retroactively"
+      - "Every new feature requires auth workarounds"
+      - "Technical debt compounds with each feature"
+
+  who:
+    operator: "Claude Code (with developer oversight)"
+
+    beneficiary:
+      primary: "End users of the SaaS application"
+      secondary: "Development team (maintainability)"
+
+    stakeholders:
+      - role: "Development Team"
+        interest: "Maintainability, clear interfaces"
+      - role: "Security Team"
+        interest: "No vulnerabilities, audit trail"
+      - role: "Product Team"
+        interest: "Foundation for feature development"
+
+  where:
+    target_project: "SaaS MVP Application"
+    target_path: "/src/modules/users/"
+
+    integration_points:
+      - path: "/src/middleware/auth.ts"
+        purpose: "Global auth middleware"
+      - path: "/src/lib/database.ts"
+        purpose: "Database connection"
+      - path: "/src/lib/storage.ts"
+        purpose: "Avatar storage"
+
+  when:
+    urgency: "HIGH"
+    deadline: "Before any other feature development"
+
+    dependencies:
+      required_before_start:
+        - "Database schema must be migrated"
+        - "Storage service must be configured"
+        - "Email service must be available"
+
+      can_be_parallel:
+        - "UI components (can develop against API contract)"
+
+  how:
+    constraints:
+      technical:
+        - "TypeScript strict mode enabled"
+        - "PostgreSQL 15.x as database"
+        - "S3-compatible storage for avatars"
+        - "JWT for session tokens"
+
+      non_technical:
+        - "Must follow Clean Architecture patterns"
+        - "Must be testable (dependency injection)"
+
+    preferences:
+      - "Repository pattern for data access"
+      - "Service layer for business logic"
+      - "Controller layer for HTTP handling"
+      - "Separate validation layer (Zod)"
+
+    anti_patterns:
+      critical:
+        - "NO hardcoded secrets in code"
+        - "NO direct SQL queries in handlers"
+        - "NO synchronous password hashing"
+        - "NO storing passwords in plaintext"
+
+      important:
+        - "NO god classes"
+        - "NO circular dependencies"
+        - "NO business logic in controllers"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SUCCESS CRITERIA
+# ─────────────────────────────────────────────────────────────────────────────
+success_criteria:
+  must_have:
+    - criterion: "User can register with email/password"
+      measurement: "POST /auth/register returns 201, user exists in database"
+
+    - criterion: "User can login and receive valid JWT"
+      measurement: "POST /auth/login returns 200 with valid, verifiable JWT"
+
+    - criterion: "Google OAuth2 flow completes successfully"
+      measurement: "GET /auth/google/callback creates/links user, returns JWT"
+
+    - criterion: "Roles restrict access correctly"
+      measurement: "Protected routes return 403 for unauthorized roles"
+
+    - criterion: "Multi-tenant isolation enforced"
+      measurement: "User A cannot access Tenant B's data via any endpoint"
+
+  should_have:
+    - criterion: "Password reset flow works end-to-end"
+      measurement: "Reset email sent, new password accepted"
+
+    - criterion: "Email verification flow works"
+      measurement: "Verification email sent, user status updated on click"
+
+    - criterion: "Audit log captures security events"
+      measurement: "Login attempts, password changes in audit_logs table"
+
+  must_not:
+    - "Passwords stored in plaintext or weak hash"
+    - "JWTs issued without expiration"
+    - "SQL injection possible on any endpoint"
+    - "Cross-tenant data access possible"
+    - "Sensitive data in error messages"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CONTEXT
+# ─────────────────────────────────────────────────────────────────────────────
+context:
+  related_projects:
+    - name: "Existing codebase"
+      relevance: "Integration with existing database and storage setup"
+
+  reference_materials:
+    - "OWASP Authentication Cheat Sheet"
+    - "OAuth 2.0 RFC 6749"
+    - "JWT RFC 7519"
+
+  prior_attempts: []
+
+  known_blockers:
+    - blocker: "Google OAuth credentials not yet configured"
+      mitigation: "Can proceed with email/password first"
+      severity: "LOW"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VALIDATION
+# ─────────────────────────────────────────────────────────────────────────────
+validation:
+  gate_status: "PASSED"
+  gate_notes: |
+    All CRITICAL and HIGH criteria met:
+    - JTBD clearly formulated
+    - Success criteria are binary and measurable
+    - Scope is closed (out_of_scope defined)
+    - Target project and path defined
+    - Anti-patterns explicitly listed
+  reviewed_by: "ATHENA OS"
+  reviewed_at: "2025-01-16T10:30:00-03:00"

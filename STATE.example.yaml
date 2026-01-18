@@ -1,0 +1,158 @@
+# ╔═══════════════════════════════════════════════════════════════════════════╗
+# ║                              ATHENA OS                                     ║
+# ║                         STATE.yaml (EXAMPLE)                               ║
+# ║                    Sistema Operacional Cognitivo                           ║
+# ╚═══════════════════════════════════════════════════════════════════════════╝
+#
+# This is an EXAMPLE STATE file. Copy it to STATE.yaml to get started.
+# The actual STATE.yaml is gitignored because it contains personal work data.
+#
+# Usage:
+#   cp STATE.example.yaml STATE.yaml
+#
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SYSTEM METADATA
+# ─────────────────────────────────────────────────────────────────────────────
+system:
+  name: "ATHENA OS"
+  version: "1.0.0"
+  status: "OPERATIONAL"
+  initialized_at: "2025-01-16T00:00:00-03:00"
+  last_updated: "2025-01-16T00:00:00-03:00"
+  updated_by: "OPERATOR"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CURRENT SESSION
+# ─────────────────────────────────────────────────────────────────────────────
+current_session:
+  started_at: null
+  active_blueprint: null
+  current_phase: "IDLE"
+  current_gate: null
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ACTIVE WORK
+# ─────────────────────────────────────────────────────────────────────────────
+active_work:
+  blueprint_id: null
+  intent_summary: null
+  target_project: null
+
+  phases_status:
+    P1_DECODE:
+      status: "NOT_STARTED"
+      started_at: null
+      completed_at: null
+      gate_status: null
+      notes: null
+
+    P2_ARCHITECT:
+      status: "NOT_STARTED"
+      started_at: null
+      completed_at: null
+      gate_status: null
+      notes: null
+
+    P3_FRAGMENT:
+      status: "NOT_STARTED"
+      started_at: null
+      completed_at: null
+      gate_status: null
+      notes: null
+
+    P4_CRYSTALLIZE:
+      status: "NOT_STARTED"
+      started_at: null
+      completed_at: null
+      gate_status: null
+      notes: null
+
+  current_checkpoint: null
+  blockers: []
+  notes: []
+
+# ─────────────────────────────────────────────────────────────────────────────
+# BLUEPRINT HISTORY
+# ─────────────────────────────────────────────────────────────────────────────
+blueprints:
+  total_generated: 0
+  total_exported: 0
+
+  recent: []
+  # Example entry:
+  # - id: "BP-2025-01-16-001"
+  #   title: "My First Blueprint"
+  #   target_project: "/path/to/project"
+  #   status: "COMPLETED"
+  #   created_at: "2025-01-16T10:00:00-03:00"
+  #   completed_at: "2025-01-16T12:00:00-03:00"
+  #   output_path: "outputs/blueprints/2025-01-16/my-first-blueprint/"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PROJECT INTEGRATIONS
+# ─────────────────────────────────────────────────────────────────────────────
+integrations:
+  registered_projects: []
+  # Example entry:
+  # - slug: "my-project"
+  #   name: "My Project"
+  #   path: "/path/to/my-project"
+  #   status: "ACTIVE"
+  #   last_export: null
+
+# ─────────────────────────────────────────────────────────────────────────────
+# METRICS
+# ─────────────────────────────────────────────────────────────────────────────
+metrics:
+  blueprints:
+    total: 0
+    by_status:
+      completed: 0
+      deployed: 0
+      in_progress: 0
+      failed: 0
+
+  performance:
+    avg_time_per_blueprint: null
+    avg_time_per_phase:
+      P1: null
+      P2: null
+      P3: null
+      P4: null
+
+  quality:
+    gates_passed_first_try: 0
+    gates_required_retry: 0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ALERTS & PENDING ACTIONS
+# ─────────────────────────────────────────────────────────────────────────────
+alerts:
+  - type: "INFO"
+    message: "ATHENA OS initialized. Ready to forge Blueprints."
+    timestamp: "2025-01-16T00:00:00-03:00"
+    acknowledged: false
+
+pending_actions: []
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SESSION CONFIG
+# ─────────────────────────────────────────────────────────────────────────────
+session_config:
+  auto_save_state: true
+  verbose_logging: true
+  require_gate_confirmation: true
+  default_target_project: null
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OPERATOR NOTES
+# ─────────────────────────────────────────────────────────────────────────────
+operator_notes: []
+# Add your notes here as you work
+# - timestamp: "2025-01-16T10:00:00-03:00"
+#   note: "Started using ATHENA OS today."
+
+# ─────────────────────────────────────────────────────────────────────────────
+# END OF STATE
+# ─────────────────────────────────────────────────────────────────────────────
