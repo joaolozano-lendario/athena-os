@@ -1,0 +1,223 @@
+# ╔═══════════════════════════════════════════════════════════════════════════╗
+# ║                           COGNITIVE CHECKPOINT                             ║
+# ║                        Template de Persistência                            ║
+# ╚═══════════════════════════════════════════════════════════════════════════╝
+#
+# Este template é usado para preservar contexto cognitivo entre sessões.
+# Copiar para: outputs/blueprints/{date}/{slug}/_checkpoint.yaml
+#
+# ─────────────────────────────────────────────────────────────────────────────
+
+checkpoint:
+  # ─────────────────────────────────────────────────────────────────────────
+  # IDENTIFICAÇÃO
+  # ─────────────────────────────────────────────────────────────────────────
+  blueprint_id: "BP-YYYY-MM-DD-NNN"
+  title: ""
+  slug: ""
+  last_updated: "YYYY-MM-DDTHH:MM:SS-03:00"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # ESTADO ATUAL
+  # ─────────────────────────────────────────────────────────────────────────
+  current_phase: "P1"  # P1|P2|P3|P4
+  current_gate: null   # G1|G2|G3|G4|null
+  overall_status: "IN_PROGRESS"  # IN_PROGRESS|COMPLETED|BLOCKED
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # CONTEXTO DO PROJETO ALVO
+  # ─────────────────────────────────────────────────────────────────────────
+  target_project:
+    path: ""
+    name: ""
+    stack: ""
+    notes: ""
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # FASES - CONTEXTO COGNITIVO
+  # ─────────────────────────────────────────────────────────────────────────
+  phases:
+
+    # ═══════════════════════════════════════════════════════════════════════
+    # P1: DECODE
+    # ═══════════════════════════════════════════════════════════════════════
+    P1_DECODE:
+      status: "NOT_STARTED"  # NOT_STARTED|IN_PROGRESS|COMPLETED
+      started_at: null
+      completed_at: null
+      gate_status: null  # PENDING|PASSED|FAILED
+
+      artifacts_saved:
+        - intent-spec.yaml
+
+      cognitive_context:
+        # Job To Be Done extraído
+        jtbd: ""
+
+        # Dimensões extraídas
+        dimensions:
+          what: ""
+          why: ""
+          who: ""
+          where: ""
+          when: ""
+          how: ""
+
+        # Critérios de sucesso
+        success_criteria:
+          must_have: []
+          should_have: []
+          must_not: []
+
+        # Decisões tomadas durante a fase
+        key_decisions: []
+
+        # Perguntas ainda em aberto
+        open_questions: []
+
+        # Notas gerais
+        notes: ""
+
+    # ═══════════════════════════════════════════════════════════════════════
+    # P2: ARCHITECT
+    # ═══════════════════════════════════════════════════════════════════════
+    P2_ARCHITECT:
+      status: "NOT_STARTED"
+      started_at: null
+      completed_at: null
+      gate_status: null
+
+      artifacts_saved:
+        - exec-arch.yaml
+
+      cognitive_context:
+        # Nível de complexidade identificado
+        complexity: ""  # LOW|MEDIUM|HIGH
+
+        # Abordagem arquitetural escolhida
+        architecture_approach: ""
+
+        # Fases projetadas
+        phases_designed: []
+
+        # Agentes identificados (se aplicável)
+        agents_identified: []
+
+        # Trade-offs considerados
+        trade_offs_considered: []
+
+        # Decisões arquiteturais
+        key_decisions: []
+
+        # Riscos identificados
+        risks: []
+
+        notes: ""
+
+    # ═══════════════════════════════════════════════════════════════════════
+    # P3: FRAGMENT
+    # ═══════════════════════════════════════════════════════════════════════
+    P3_FRAGMENT:
+      status: "NOT_STARTED"
+      started_at: null
+      completed_at: null
+      gate_status: null
+
+      artifacts_saved:
+        - checkpoint-map.yaml
+
+      cognitive_context:
+        # Contadores
+        total_epics: 0
+        total_stories: 0
+        total_tasks: 0
+
+        # Estrutura de decomposição (resumo)
+        epics_summary: []
+
+        # Dependências críticas identificadas
+        critical_dependencies: []
+
+        # Checkpoints definidos
+        checkpoints_defined: []
+
+        # Notas sobre a fragmentação
+        decomposition_notes: ""
+
+        key_decisions: []
+        notes: ""
+
+    # ═══════════════════════════════════════════════════════════════════════
+    # P4: CRYSTALLIZE
+    # ═══════════════════════════════════════════════════════════════════════
+    P4_CRYSTALLIZE:
+      status: "NOT_STARTED"
+      started_at: null
+      completed_at: null
+      gate_status: null
+
+      artifacts_saved:
+        - BLUEPRINT.md
+        - ACTIVATION.md
+        - taxonomy-config.yaml
+        - _metadata.yaml
+
+      cognitive_context:
+        # Artefatos gerados
+        artifacts_generated: []
+
+        # Validações realizadas
+        validations_performed: []
+
+        # Ajustes finais feitos
+        final_adjustments: []
+
+        # Notas de consolidação
+        consolidation_notes: ""
+
+        key_decisions: []
+        notes: ""
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # RESUMO PARA RECUPERAÇÃO RÁPIDA
+  # ─────────────────────────────────────────────────────────────────────────
+  recovery_summary:
+    # O que foi completado até agora
+    what_was_done: ""
+
+    # Próximos passos explícitos
+    what_comes_next: ""
+
+    # Bloqueadores atuais
+    blockers: []
+
+    # Decisões pendentes do operador
+    operator_decisions_pending: []
+
+    # Contexto crítico para não perder
+    critical_context: ""
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # HISTÓRICO DE ATUALIZAÇÕES
+  # ─────────────────────────────────────────────────────────────────────────
+  update_history:
+    - timestamp: ""
+      phase: ""
+      action: ""
+      notes: ""
+
+# ─────────────────────────────────────────────────────────────────────────────
+# INSTRUÇÕES DE USO
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# 1. Copiar este template para a pasta do Blueprint ativo
+# 2. Atualizar após cada gate passar
+# 3. Sempre preencher recovery_summary com próximos passos
+# 4. Manter update_history para rastreabilidade
+#
+# Para recuperar contexto em nova sessão:
+# 1. Ler STATE.yaml → Identificar blueprint ativo
+# 2. Ler _checkpoint.yaml → Recuperar contexto cognitivo
+# 3. Ler recovery_summary → Entender onde continuar
+#
+# ─────────────────────────────────────────────────────────────────────────────
