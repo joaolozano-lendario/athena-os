@@ -1,0 +1,126 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# EPISTEMIC STATE EXTENSION — ATHENA OS 2.0
+# ═══════════════════════════════════════════════════════════════════════════
+# Esta seção deve ser adicionada ao STATE.yaml para ATHENA 2.0
+# Define a camada epistêmica do sistema
+# ═══════════════════════════════════════════════════════════════════════════
+
+# Adicionar após a seção `session_config:` no STATE.yaml
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ESTADO EPISTÊMICO
+# ─────────────────────────────────────────────────────────────────────────────
+epistemic_state:
+  last_updated: null
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # O QUE SABEMOS COM ALTA CONFIANÇA
+  # ─────────────────────────────────────────────────────────────────────────
+  known_with_confidence:
+    description: "Fatos estabelecidos com alta certeza"
+    threshold: ">= 0.8"
+
+    facts: []
+      # Template:
+      # - statement: "X é verdade"
+      #   confidence: 0.95
+      #   source: "observação direta | teste | documentação"
+      #   established_at: "ISO-8601"
+      #   context: "contexto de estabelecimento"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # O QUE SABEMOS COM INCERTEZA
+  # ─────────────────────────────────────────────────────────────────────────
+  known_with_uncertainty:
+    description: "Hipóteses razoáveis que requerem validação"
+    threshold: "0.3-0.8"
+
+    hypotheses: []
+      # Template:
+      # - statement: "X provavelmente é Y"
+      #   confidence: 0.6
+      #   uncertainty_source: "dados limitados | suposição | analogia"
+      #   validation_needed: "como validar"
+      #   impact_if_wrong: "LOW | MEDIUM | HIGH"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # O QUE RECONHECEMOS NÃO SABER
+  # ─────────────────────────────────────────────────────────────────────────
+  unknown_acknowledged:
+    description: "Lacunas de conhecimento identificadas explicitamente"
+
+    gaps: []
+      # Template:
+      # - area: "domínio da lacuna"
+      #   impact: "LOW | MEDIUM | HIGH | CRITICAL"
+      #   plan_to_resolve: "estratégia para resolver"
+      #   blocking: true | false
+      #   acknowledged_at: "ISO-8601"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # TRACE META-COGNITIVO
+  # ─────────────────────────────────────────────────────────────────────────
+  meta_cognitive_trace:
+    description: "Registro de processos de raciocínio"
+
+    last_reflection:
+      timestamp: null
+      trigger: null  # P0_START | UNCERTAINTY | BLOCKER | OPERATOR_REQUEST
+      insights: []
+
+    active_biases_detected: []
+      # - bias: "confirmation bias"
+      #   detected_at: "ISO-8601"
+      #   mitigation: "ação tomada"
+
+    calibration:
+      description: "Precisão das estimativas de confiança"
+      accuracy: null  # 0.0-1.0
+      last_calibration: null
+      samples: 0
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # ASSUMPTIONS ATIVAS
+  # ─────────────────────────────────────────────────────────────────────────
+  active_assumptions:
+    description: "Suposições em efeito durante trabalho atual"
+
+    explicit: []
+      # - assumption: "texto"
+      #   reason: "por que assumimos"
+      #   risk_if_wrong: "consequência"
+      #   validation: "como validar"
+
+    implicit: []
+      # - assumption: "texto"
+      #   surfaced_at: "ISO-8601"
+      #   confidence: 0.0-1.0
+
+# ═══════════════════════════════════════════════════════════════════════════
+# GENIUS CONFIG (para GENIUS LAYER)
+# ═══════════════════════════════════════════════════════════════════════════
+genius_config:
+  auto_detect_nature: true
+  default_kit: null
+
+  active_kit: null
+  active_personas: []
+  active_lenses: []
+
+  dream_team_assembled: false
+  tribunal_mode: false
+
+# ═══════════════════════════════════════════════════════════════════════════
+# OBSERVABILITY HOOKS
+# ═══════════════════════════════════════════════════════════════════════════
+observability:
+  execution_logging: true
+  pattern_capture: true
+  metrics_collection: true
+
+  current_execution:
+    id: null
+    started_at: null
+    phases_completed: []
+
+# ═══════════════════════════════════════════════════════════════════════════

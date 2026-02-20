@@ -1,0 +1,139 @@
+# Campaign Manifest Template — ATHENA Orchestrated Execution Engine (FORMIGA v1.0)
+# Copy this file and customize for your campaign.
+#
+# Usage:
+#   orchestrate.sh campaigns/my-campaign.yaml          # Run campaign
+#   orchestrate.sh campaigns/my-campaign.yaml --dry-run # Validate + show plan
+#   orchestrate.sh campaigns/my-campaign.yaml --resume  # Resume after interrupt
+#   orchestrate.sh campaigns/my-campaign.yaml --status  # Show progress
+
+campaign:
+  id: "my-campaign-001"           # Unique ID (used for runtime directory)
+  name: "My Campaign"             # Human-readable name
+  project_dir: "D:/my-project"    # Target project for --add-dir (workers get access)
+  nature_code: null               # FORMIGA v1.0: Domain code for Genius Layer (COPY|ARCH|META|DATA|PROD|BRAND|LEARN|CODE)
+
+config:
+  max_parallel: 2                 # Max concurrent workers
+  max_budget_usd: 10.0            # Total campaign budget
+  max_retries: 3                  # Max attempts per task (including first)
+  qa_threshold: 80                # Minimum QA score to PASS (0-100)
+  default_model: "sonnet"         # Default model for workers
+  qa_model: "haiku"               # Default model for QA reviews
+  task_budget_usd: 0.50           # Default per-task budget
+  task_timeout_s: 600             # Default per-task timeout (seconds)
+
+  # FORMIGA v1.0: Advisory system (coherence review between waves)
+  advisory:
+    enabled: "auto"               # true|false|auto (auto = allometry decides based on task count)
+    frequency: "per_wave"         # per_wave (default) — runs after each execution wave
+    model: "sonnet"               # Model for advisory reviews
+
+  # FORMIGA v1.0: Meta-loop (self-improvement cycles)
+  meta_loop:
+    enabled: true                 # Enable forge→execute→learn→re-forge cycle
+    max_cycles: 2                 # Maximum auto-improvement cycles
+    quorum:
+      enabled: "auto"             # true|false|auto (auto = allometry decides)
+
+  # FORMIGA v1.0: Routing intelligence
+  routing:
+    default: "auto"               # auto = allometry + model selection
+    upgrade_on_retry: true        # Upgrade model on retry 2+
+
+# Worker definitions — reusable roles assigned to tasks
+# Built-in workers: implementer, writer, analyst, architect, advisor
+# Add custom workers by creating .orchestrator/workers/{name}.md
+workers:
+  analyst:
+    prompt: "workers/analyst.md"
+    tools: "Read,Grep,Glob"
+    # model: "sonnet"             # Override default_model per worker
+  writer:
+    prompt: "workers/writer.md"
+    tools: "Read,Write,Grep,Glob"
+  implementer:
+    prompt: "workers/implementer.md"
+    tools: "Read,Write,Edit,Grep,Glob"
+  architect:
+    prompt: "workers/architect.md"
+    tools: "Read,Grep,Glob"
+  advisor:
+    prompt: "workers/advisor.md"
+    tools: "Read,Grep,Glob"
+
+# Task definitions — the work to be done
+# Tasks execute in dependency order. Independent tasks run in parallel.
+tasks:
+  # Wave 1: No dependencies — these run first (up to max_parallel at a time)
+  - id: "analyze-data"
+    worker: "analyst"
+    description: |
+      Analyze the project data and produce a structured summary.
+      Focus on key metrics, patterns, and anomalies.
+    acceptance_criteria:
+      - "Contains quantitative analysis with specific numbers"
+      - "Organized into clear sections with headers"
+      - "Every finding cites its source file"
+    context_files:
+      - "data/metrics.yaml"       # Relative to project_dir
+      - "docs/README.md"
+    output: "outputs/analysis.md"  # Relative to project_dir
+    depends_on: []                 # No dependencies — Wave 1
+    qa:
+      criteria:
+        - "Analysis is quantitative, not qualitative"
+        - "All findings cite source files"
+        - "Clear section structure"
+      # threshold: 85              # Override global qa_threshold
+      # model: "sonnet"            # Override qa_model for important tasks
+    # model: "opus"                # Override worker model for complex tasks
+    # budget_usd: 1.00             # Override per-task budget
+    # FORMIGA v1.0 — new optional fields (all have defaults):
+    # files_read: []               # Files this task reads (for conflict detection)
+    # files_write: []              # Files this task writes (for conflict detection)
+    # expected_format: null        # Expected output format: json|yaml|sh|md (for innate immune check)
+    # expected_lines: 0            # Expected line count (0 = skip check)
+    # override_blacklist: false    # If true, skip negative pheromone check for this task
+
+  # Wave 2: Depends on Wave 1 output
+  - id: "write-summary"
+    worker: "writer"
+    description: |
+      Write an executive summary based on the analysis.
+      Audience: technical leadership. Tone: direct, evidence-based.
+    acceptance_criteria:
+      - "One page maximum"
+      - "References specific findings from the analysis"
+      - "Includes 3-5 actionable recommendations"
+    context_files:
+      - "outputs/analysis.md"      # Output from previous task
+    output: "outputs/summary.md"
+    depends_on: ["analyze-data"]   # Waits for Wave 1
+    qa:
+      criteria:
+        - "Under 500 words"
+        - "Every recommendation is actionable and specific"
+        - "References analysis findings by name"
+
+  # Wave 3: Depends on Wave 2
+  - id: "implement-dashboard"
+    worker: "implementer"
+    description: |
+      Create a YAML dashboard file that displays the key metrics
+      from the analysis. Follow the existing dashboard format.
+    acceptance_criteria:
+      - "Valid YAML format"
+      - "Contains all key metrics from the analysis"
+      - "Follows existing dashboard conventions"
+    context_files:
+      - "outputs/analysis.md"
+      - "outputs/summary.md"
+    output: "outputs/dashboard.yaml"
+    depends_on: ["write-summary"]
+    expected_format: "yaml"        # FORMIGA: innate immune validates YAML format
+    qa:
+      criteria:
+        - "Valid YAML (parseable by yq)"
+        - "All key metrics present"
+        - "Consistent format with project conventions"

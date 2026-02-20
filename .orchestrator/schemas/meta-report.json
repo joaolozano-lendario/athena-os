@@ -1,0 +1,58 @@
+{
+  "type": "object",
+  "required": ["trend_assessment", "systemic_issues", "pattern_updates", "recommendations", "system_health"],
+  "properties": {
+    "trend_assessment": {
+      "type": "string",
+      "enum": ["improving", "stable", "degrading"],
+      "description": "Overall system quality trend across recent blueprints"
+    },
+    "systemic_issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pattern", "evidence", "severity", "recommendation"],
+        "properties": {
+          "pattern": { "type": "string", "description": "Name/description of the systemic issue" },
+          "evidence": { "type": "string", "description": "Specific data points supporting this finding" },
+          "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+          "recommendation": { "type": "string", "description": "Actionable fix or mitigation" }
+        }
+      }
+    },
+    "pattern_updates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["action", "pattern_id", "rationale", "confidence"],
+        "properties": {
+          "action": { "type": "string", "enum": ["reinforce", "create", "prune", "flag"] },
+          "pattern_id": { "type": "string", "description": "Existing pattern ID or proposed new ID" },
+          "rationale": { "type": "string", "description": "Why this action is recommended" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "recommendations": {
+      "type": "object",
+      "required": ["immediate", "strategic"],
+      "properties": {
+        "immediate": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Actions to take before next blueprint"
+        },
+        "strategic": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Longer-term improvements for the orchestration system"
+        }
+      }
+    },
+    "system_health": {
+      "type": "string",
+      "enum": ["healthy", "degraded", "critical"],
+      "description": "Overall system health assessment"
+    }
+  }
+}

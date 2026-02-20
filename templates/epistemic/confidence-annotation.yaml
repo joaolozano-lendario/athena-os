@@ -1,0 +1,115 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# CONFIDENCE ANNOTATION TEMPLATE — ATHENA OS 2.0
+# ═══════════════════════════════════════════════════════════════════════════
+# Adicionar a todo output (Blueprint, intent-spec, exec-arch)
+# ═══════════════════════════════════════════════════════════════════════════
+
+confidence_annotation:
+  # ─────────────────────────────────────────────────────────────────────────
+  # CONFIANÇA GERAL
+  # ─────────────────────────────────────────────────────────────────────────
+  overall_confidence: 0.0  # 0.0-1.0
+
+  confidence_level: "LOW"  # Derivado automaticamente:
+    # 0.0-0.3: LOW - Especulativo, precisa validação urgente
+    # 0.3-0.6: MEDIUM - Razoável, requer atenção em pontos-chave
+    # 0.6-0.8: HIGH - Bem fundamentado, verificar assumptions
+    # 0.8-1.0: VERY_HIGH - Quase certeza, monitorar edge cases
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # CONFIANÇA POR SEÇÃO
+  # ─────────────────────────────────────────────────────────────────────────
+  section_confidence:
+    intent:
+      score: 0.0
+      notes: ""
+
+    architecture:
+      score: 0.0
+      notes: ""
+
+    fragmentation:
+      score: 0.0
+      notes: ""
+
+    deliverables:
+      score: 0.0
+      notes: ""
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # SUPOSIÇÕES
+  # ─────────────────────────────────────────────────────────────────────────
+  assumptions:
+    explicit:
+      # Suposições declaradas conscientemente
+      - statement: ""
+        basis: ""  # evidência | analogia | intuição
+        risk_if_wrong: ""
+        confidence: 0.0
+
+    implicit:
+      # Suposições descobertas durante reflexão
+      - statement: ""
+        surfaced_by: ""  # P0_REFLECT | review | feedback
+        confidence: 0.0
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # INCERTEZAS
+  # ─────────────────────────────────────────────────────────────────────────
+  uncertainties:
+    - area: ""
+      type: ""  # TECHNICAL | REQUIREMENT | SCOPE | TIMELINE
+      reason: ""
+      impact: ""  # LOW | MEDIUM | HIGH
+      mitigation: ""
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # LACUNAS DE CONHECIMENTO
+  # ─────────────────────────────────────────────────────────────────────────
+  knowledge_gaps:
+    - area: ""
+      blocking: false
+      plan_to_resolve: ""
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # CALIBRAÇÃO
+  # ─────────────────────────────────────────────────────────────────────────
+  calibration_notes: |
+    Reflexão sobre a precisão desta anotação de confiança.
+    Quanto mais incerto, mais importante documentar.
+
+# ═══════════════════════════════════════════════════════════════════════════
+# ESCALA DE CONFIANÇA — REFERÊNCIA
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# 0.0-0.1: WILD_GUESS
+#   - Sem base real
+#   - Pura especulação
+#   - Requer investigação imediata
+#
+# 0.1-0.3: LOW
+#   - Baseado em analogias fracas
+#   - Poucos dados
+#   - Validação urgente
+#
+# 0.3-0.5: MEDIUM_LOW
+#   - Algumas evidências
+#   - Experiência limitada
+#   - Verificar antes de depender
+#
+# 0.5-0.7: MEDIUM_HIGH
+#   - Evidências razoáveis
+#   - Padrões reconhecidos
+#   - Monitorar durante execução
+#
+# 0.7-0.9: HIGH
+#   - Forte base evidencial
+#   - Múltiplas fontes convergentes
+#   - Verificar edge cases
+#
+# 0.9-1.0: VERY_HIGH
+#   - Quase certeza
+#   - Verificado de múltiplas formas
+#   - Atenção a unknown unknowns
+#
+# ═══════════════════════════════════════════════════════════════════════════

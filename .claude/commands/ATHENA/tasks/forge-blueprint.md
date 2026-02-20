@@ -6,7 +6,9 @@
 
 ## Descrição
 
-Este comando executa o pipeline completo P1→P4, guiando o operador através de todas as fases para criar um Blueprint Operacional completo e pronto para exportação.
+Este comando executa o pipeline de forja **P0→P1→P2→P3→P4**, guiando o operador desde a reflexão até a cristalização do Blueprint Operacional.
+
+Execução (P5) e aprendizado (P6) são invocados separadamente via `/athena:execute` e `/ATHENA:tasks:learn`.
 
 ---
 
@@ -14,8 +16,8 @@ Este comando executa o pipeline completo P1→P4, guiando o operador através de
 
 Antes de executar:
 
-```bash
-cat STATE.yaml  # Verificar estado atual
+```
+Read STATE.yaml  # ~36 lines, verificar estado atual
 ```
 
 **Condições:**
@@ -28,62 +30,50 @@ cat STATE.yaml  # Verificar estado atual
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                     FORGE BLUEPRINT PIPELINE                        │
+│                 FORGE BLUEPRINT PIPELINE v3.1                       │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│  1. INICIALIZAÇÃO                                                   │
-│     ├── Ler STATE.yaml                                             │
+│  0. INICIALIZAÇÃO                                                   │
+│     ├── Read STATE.yaml (~36 lines)                                │
 │     ├── Verificar se IDLE                                          │
 │     ├── Gerar ID do Blueprint (BP-YYYY-MM-DD-NNN)                  │
-│     └── Atualizar STATE (current_phase: P1)                        │
+│     └── Atualizar STATE (status: FORGING)                          │
+│                                                                     │
+│  1. P0: REFLECT                                                     │
+│     ├── Read: observability/execution_log.yaml (last 5)            │
+│     ├── Read: observability/pattern_library.yaml                   │
+│     ├── IF AURUM: Read knowledge/aurum/{domain}/                   │
+│     ├── Detectar nature code                                       │
+│     ├── Carregar cognitive kit + dream team                        │
+│     ├── Antecipar riscos                                           │
+│     └── Gate G0                                                    │
 │                                                                     │
 │  2. P1: DECODE                                                      │
-│     ├── Solicitar intenção do operador                             │
-│     ├── Extrair dimensões (WHAT, WHY, WHO, WHERE, WHEN, HOW)       │
-│     ├── Formular JTBD                                              │
-│     ├── Definir critérios de sucesso                               │
-│     ├── Gerar intent-spec.yaml                                     │
-│     └── Gate G1: Intent clara?                                     │
-│         ├── SE PASS: Avançar para P2                               │
-│         └── SE FAIL: Solicitar clarificação                        │
+│     ├── Solicitar intencao do operador                             │
+│     ├── Extrair dimensoes, JTBD, criterios                         │
+│     └── Gate G1                                                    │
 │                                                                     │
 │  3. P2: ARCHITECT                                                   │
-│     ├── Analisar complexidade                                      │
-│     ├── Projetar fases                                             │
-│     ├── Definir agentes (se aplicável)                             │
+│     ├── Analisar complexidade, projetar fases                      │
 │     ├── Desenhar workflow                                          │
-│     ├── Mapear pontos de decisão                                   │
-│     ├── Gerar exec-arch.yaml                                       │
-│     └── Gate G2: Arquitetura válida?                               │
-│         ├── SE PASS: Avançar para P3                               │
-│         └── SE FAIL: Revisar arquitetura                           │
+│     └── Gate G2                                                    │
 │                                                                     │
 │  4. P3: FRAGMENT                                                    │
-│     ├── Derivar épicos das fases                                   │
-│     ├── Decompor em stories                                        │
-│     ├── Atomizar em tasks                                          │
-│     ├── Mapear dependências                                        │
-│     ├── Definir checkpoints                                        │
-│     ├── Gerar checkpoint-map.yaml                                  │
-│     └── Gate G3: Fragmentação completa?                            │
-│         ├── SE PASS: Avançar para P4                               │
-│         └── SE FAIL: Decompor mais                                 │
+│     ├── Derivar epicos, stories, tasks                             │
+│     ├── Mapear dependencias e checkpoints                          │
+│     └── Gate G3                                                    │
 │                                                                     │
 │  5. P4: CRYSTALLIZE                                                 │
-│     ├── Consolidar todos os artefatos                              │
-│     ├── Gerar BLUEPRINT.md                                         │
-│     ├── Gerar ACTIVATION.md                                        │
-│     ├── Gerar taxonomy-config.yaml                                 │
-│     ├── Gerar _metadata.yaml                                       │
-│     └── Gate G4: Pronto para exportar?                             │
-│         ├── SE PASS: Finalizar                                     │
-│         └── SE FAIL: Refinar artefatos                             │
+│     ├── Consolidar: BLUEPRINT.md, ACTIVATION.md, configs           │
+│     ├── Write: outputs/blueprints/{date}/{slug}/                   │
+│     └── Gate G4                                                    │
 │                                                                     │
 │  6. FINALIZAÇÃO                                                     │
-│     ├── Salvar todos os arquivos em outputs/blueprints/            │
-│     ├── Atualizar STATE (current_phase: IDLE)                      │
-│     ├── Atualizar métricas                                         │
-│     └── Mostrar resumo e próximos passos                           │
+│     ├── Update STATE → IDLE                                        │
+│     ├── Append to blueprints-archive.yaml                          │
+│     └── Suggest: /athena:execute or /ATHENA:tasks:learn            │
+│                                                                     │
+│  (P5: EXECUTE e P6: LEARN sao comandos separados)                  │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
@@ -94,91 +84,61 @@ cat STATE.yaml  # Verificar estado atual
 
 ### Ao iniciar este comando:
 
-1. **Ler STATE.yaml**
-   ```bash
-   cat STATE.yaml
-   ```
-
-2. **Verificar estado**
-   - Se `current_phase` não for "IDLE": Informar operador e perguntar se quer abortar trabalho anterior
+1. **Ler STATE.yaml** (~36 lines)
+   - Se `current_phase` != "IDLE": Informar operador, perguntar se quer abortar anterior
    - Se IDLE: Prosseguir
 
-3. **Gerar ID do Blueprint**
+2. **Gerar ID do Blueprint**
    - Formato: `BP-{YYYY-MM-DD}-{NNN}`
-   - NNN = próximo número sequencial do dia
 
-4. **Atualizar STATE**
+3. **Atualizar STATE** (minimal)
    ```yaml
    current_session:
-     started_at: "{timestamp}"
      active_blueprint: "{BP-ID}"
-     current_phase: "P1"
-   
+     current_phase: "P0_REFLECT"
    active_work:
-     blueprint_id: "{BP-ID}"
-     phases_status:
-       P1_DECODE:
-         status: "IN_PROGRESS"
-         started_at: "{timestamp}"
+     status: "FORGING"
    ```
 
-5. **Executar P1: DECODE**
-   
-   Solicitar ao operador:
-   > "Descreva o que você quer fazer. Pode ser uma ideia vaga, um problema, uma necessidade — eu vou extrair a estrutura."
-   
-   Após receber input, executar extração conforme `protocols/P1-DECODE.md`:
-   - Extrair dimensões
-   - Formular JTBD
-   - Definir critérios de sucesso
-   - Gerar `intent-spec.yaml`
-   
-   Apresentar resumo ao operador e solicitar validação (Gate G1).
+4. **P0: REFLECT**
+   - Read: `observability/execution_log.yaml` (last 5 entries from `executions[]`)
+   - Read: `observability/pattern_library.yaml` (validated patterns)
+   - IF AURUM available: Read `knowledge/aurum/{domain}/` matching nature
+   - Detect nature code, load cognitive kit, assemble dream team
+   - Gate G0: Reflexao completa?
+   - Write: Nothing (P0 is read-only)
 
-6. **Executar P2: ARCHITECT**
-   
-   Com base na Intent Specification:
-   - Analisar complexidade
-   - Propor fases
-   - Sugerir agentes (se necessário)
-   - Desenhar workflow
-   
-   Gerar `exec-arch.yaml`.
-   
-   Apresentar arquitetura ao operador e solicitar validação (Gate G2).
+5. **P1: DECODE**
+   - Read: `protocols/P1-DECODE.md`
+   - Solicitar ao operador: "Descreva o que quer fazer."
+   - Extrair dimensoes, formular JTBD, definir criterios
+   - Gate G1: Intent clara?
+   - Write: `intent-spec.yaml` (in memory, saved at P4)
 
-7. **Executar P3: FRAGMENT**
-   
-   Com base na Architecture:
-   - Derivar épicos
-   - Decompor stories
-   - Atomizar tasks
-   - Mapear dependências
-   - Definir checkpoints
-   
-   Gerar `checkpoint-map.yaml`.
-   
-   Apresentar fragmentação ao operador e solicitar validação (Gate G3).
+6. **P2: ARCHITECT**
+   - Read: `protocols/P2-ARCHITECT.md`
+   - Analisar complexidade, projetar fases, desenhar workflow
+   - Gate G2: Arquitetura valida?
+   - Write: `exec-arch.yaml` (in memory)
 
-8. **Executar P4: CRYSTALLIZE**
-   
-   Consolidar tudo:
-   - Gerar `BLUEPRINT.md` completo
-   - Gerar `ACTIVATION.md` pronto para uso
-   - Gerar `taxonomy-config.yaml`
-   - Gerar `_metadata.yaml`
-   
-   Apresentar artefatos ao operador e solicitar validação final (Gate G4).
+7. **P3: FRAGMENT**
+   - Read: `protocols/P3-FRAGMENT.md`
+   - Derivar epicos, decompor stories, atomizar tasks
+   - Gate G3: Fragmentacao completa?
+   - Write: `checkpoint-map.yaml` (in memory)
+
+8. **P4: CRYSTALLIZE**
+   - Read: `protocols/P4-CRYSTALLIZE.md`
+   - Consolidar: BLUEPRINT.md, ACTIVATION.md, taxonomy-config.yaml, _metadata.yaml
+   - Gate G4: Pronto para exportar?
+   - Write: All files to `outputs/blueprints/{date}/{slug}/`
 
 9. **Finalizar**
-   
-   - Salvar arquivos em `outputs/blueprints/{date}/{slug}/`
-   - Atualizar STATE para IDLE
-   - Atualizar métricas
-   - Mostrar:
-     - Resumo do Blueprint criado
-     - Path dos arquivos
-     - Comando para exportar: `/ATHENA:tasks:export-to-project {path}`
+   - Update STATE: `current_phase: IDLE`, `active_work.status: IDLE`
+   - Increment `blueprints.total_generated` in STATE
+   - Append to `observability/blueprints-archive.yaml`
+   - Show: resumo, paths, comando para executar ou exportar
+   - Suggest: `/athena:execute` or `/ATHENA:tasks:learn`
 
 ---
 
@@ -254,4 +214,4 @@ ATHENA: [Processando...]
 
 ---
 
-*Comando do ATHENA OS v1.0.0*
+*Comando do ATHENA OS v3.1.0*

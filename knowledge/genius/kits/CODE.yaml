@@ -1,0 +1,206 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# COGNITIVE KIT: CODE — Desenvolvimento de Software
+# ═══════════════════════════════════════════════════════════════════════════
+
+nature_code: "CODE"
+name: "Software Development Kit"
+version: "1.0.0"
+
+description: |
+  Kit para projetos de desenvolvimento de software: features, bugs, refactoring.
+  Ativa mentes de engenheiros lendários para guiar decisões de código.
+
+indicators:
+  keywords:
+    - feature
+    - bug
+    - código
+    - refactor
+    - implementação
+    - deploy
+    - teste
+    - debug
+    - PR
+    - commit
+
+  objectives:
+    - Fazer código funcionar
+    - Corrigir bug
+    - Adicionar feature
+    - Refatorar
+    - Melhorar performance
+
+  artifacts:
+    - Código fonte
+    - Testes
+    - Documentação técnica
+    - Pull requests
+    - Commits
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DREAM TEAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+dream_team:
+  - role: "Linux Creator"
+    persona: "Linus Torvalds"
+    persona_file: "personas/code/torvalds.md"
+    focus: "Pragmatismo, simplicidade, performance"
+    invoke_when: "Decisões de design, code review"
+
+  - role: "Game Engine Legend"
+    persona: "John Carmack"
+    persona_file: "personas/code/carmack.md"
+    focus: "Performance, otimização, foco extremo"
+    invoke_when: "Otimização, problemas difíceis"
+
+  - role: "AI Pioneer"
+    persona: "Peter Norvig"
+    persona_file: "personas/code/norvig.md"
+    focus: "Elegância, Python, IA"
+    invoke_when: "Algoritmos, clareza de código"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOMAIN LENSES
+# ─────────────────────────────────────────────────────────────────────────────
+
+domain_lenses:
+  - name: "Works First Lens"
+    question: "Funciona corretamente antes de ser elegante?"
+    reveals: "Premature optimization"
+    phase: "P3"
+
+  - name: "Readability Lens"
+    question: "Outro dev entende isso sem explicação?"
+    reveals: "Código obscuro"
+    phase: "P4"
+
+  - name: "Edge Case Lens"
+    question: "Que inputs quebram isso?"
+    reveals: "Bugs potenciais"
+    phase: "P3"
+
+  - name: "Performance Lens"
+    question: "Qual a complexidade? Escala?"
+    reveals: "Problemas de performance"
+    phase: "P4"
+
+  - name: "Test Lens"
+    question: "Como isso é testado?"
+    reveals: "Código não testável"
+    phase: "P3"
+
+  - name: "Simplicity Lens"
+    question: "Isso é o mais simples que funciona?"
+    reveals: "Over-engineering"
+    phase: "ALL"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+
+anti_patterns:
+  - name: "Premature Optimization"
+    description: "Otimizar antes de funcionar ou medir"
+    detection: "Complexidade sem métricas"
+    consequence: "Código complexo para problema inexistente"
+    mitigation: "Make it work, make it right, make it fast"
+
+  - name: "Clever Code"
+    description: "Código esperto que ninguém entende"
+    detection: "Autor não entende após 2 semanas"
+    consequence: "Manutenção impossível"
+    mitigation: "Clareza > cleverness"
+
+  - name: "Copy-Paste Programming"
+    description: "Duplicar código ao invés de abstrair"
+    detection: "Código similar em múltiplos lugares"
+    consequence: "Bugs em múltiplos lugares"
+    mitigation: "DRY quando faz sentido"
+
+  - name: "God Object"
+    description: "Classe/módulo que faz tudo"
+    detection: "Milhares de linhas, dezenas de responsabilidades"
+    consequence: "Impossível testar ou modificar"
+    mitigation: "Single Responsibility"
+
+  - name: "Stringly Typed"
+    description: "Usar strings para tudo"
+    detection: "Strings mágicas, comparações de texto"
+    consequence: "Bugs em runtime"
+    mitigation: "Types, enums, objetos tipados"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────────────────
+
+quality_gates:
+  - gate: "G1-Understanding"
+    phase: "P1"
+    criterion: "Problema está entendido"
+    pass_indicator: "Pode explicar o que resolver"
+    fail_indicator: "Começar a codar sem entender"
+
+  - gate: "G2-Design"
+    phase: "P2"
+    criterion: "Approach definido antes de codar"
+    pass_indicator: "Esboço de solução"
+    fail_indicator: "Exploratory coding sem direção"
+
+  - gate: "G3-Tests"
+    phase: "P3"
+    criterion: "Código testado adequadamente"
+    pass_indicator: "Testes passando, edge cases cobertos"
+    fail_indicator: "Sem testes ou testes fracos"
+
+  - gate: "G4-Review"
+    phase: "P4"
+    criterion: "Código revisado"
+    pass_indicator: "Self-review ou peer review feito"
+    fail_indicator: "Commit sem revisão"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PATTERNS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────────────
+
+success_patterns:
+  - name: "Red-Green-Refactor"
+    description: "TDD cycle"
+    when_to_apply: "Desenvolvimento de features"
+    how_to_apply: "Teste falha → Código mínimo → Refactor"
+
+  - name: "Spike and Stabilize"
+    description: "Prototipar rápido, depois solidificar"
+    when_to_apply: "Incerteza técnica"
+    how_to_apply: "Spike throwaway → learn → proper implementation"
+
+  - name: "Rubber Duck Debugging"
+    description: "Explicar problema para encontrar solução"
+    when_to_apply: "Bugs difíceis"
+    how_to_apply: "Explicar linha por linha em voz alta"
+
+  - name: "Binary Search Debugging"
+    description: "Dividir para conquistar bugs"
+    when_to_apply: "Bug difícil de localizar"
+    how_to_apply: "Metade do código funciona? Qual metade?"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REFERÊNCIAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+references:
+  books:
+    - "The Pragmatic Programmer - Hunt & Thomas"
+    - "Clean Code - Robert Martin"
+    - "Refactoring - Martin Fowler"
+    - "Working Effectively with Legacy Code - Michael Feathers"
+    - "Test Driven Development - Kent Beck"
+
+  concepts:
+    - "SOLID Principles"
+    - "DRY / YAGNI"
+    - "Test Driven Development"
+    - "Refactoring Patterns"
+    - "Code Smells"
+
+# ═══════════════════════════════════════════════════════════════════════════

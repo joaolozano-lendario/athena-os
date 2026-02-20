@@ -1,28 +1,7 @@
 # ═══════════════════════════════════════════════════════════════════════════
-# ATHENA OS .gitignore
+# ATHENA OS .gitignore (PRIVATE BRANCH)
 # ═══════════════════════════════════════════════════════════════════════════
-
-# ─────────────────────────────────────────────────────────────────────────────
-# OUTPUTS - Personal/Generated Content
-# ─────────────────────────────────────────────────────────────────────────────
-# Personal Blueprints (keep examples/ for reference)
-outputs/blueprints/
-outputs/activations/
-!outputs/.gitkeep
-
-# ─────────────────────────────────────────────────────────────────────────────
-# INTEGRATIONS - Local Project Configs
-# ─────────────────────────────────────────────────────────────────────────────
-# Personal integration configs (keep template)
-integrations/*.yaml
-!integrations/_template.yaml
-
-# ─────────────────────────────────────────────────────────────────────────────
-# STATE - Personal State File
-# ─────────────────────────────────────────────────────────────────────────────
-# The actual STATE is personal; we provide STATE.example.yaml
-STATE.yaml
-!STATE.example.yaml
+# Esta é a branch private - outputs e STATE são INCLUÍDOS no Git
 
 # ─────────────────────────────────────────────────────────────────────────────
 # SYSTEM FILES
@@ -63,7 +42,6 @@ nul
 # Vim
 *.swp
 *.swo
-*~
 
 # Emacs
 \#*\#

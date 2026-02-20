@@ -1,0 +1,219 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# COGNITIVE KIT: COPY — Copywriting & Persuasão
+# ═══════════════════════════════════════════════════════════════════════════
+
+nature_code: "COPY"
+name: "Copywriting & Persuasion Kit"
+version: "1.0.0"
+
+description: |
+  Kit para projetos de copywriting, persuasão e vendas.
+  Ativa as mentes mais brilhantes da história do copywriting
+  para guiar a criação de copy que converte.
+
+indicators:
+  keywords:
+    - headline
+    - copy
+    - hook
+    - persuasão
+    - conversão
+    - CTA
+    - landing page
+    - email marketing
+    - VSL
+    - sales letter
+
+  objectives:
+    - Convencer alguém a agir
+    - Aumentar conversões
+    - Criar mensagens persuasivas
+    - Vender produto ou serviço
+
+  artifacts:
+    - Headlines
+    - Landing pages
+    - Emails de vendas
+    - VSLs
+    - Sales letters
+    - Ads
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DREAM TEAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+dream_team:
+  - role: "Strategic Commander"
+    persona: "Eugene Schwartz"
+    persona_file: "personas/copywriting/schwartz.md"
+    focus: "Níveis de consciência, sofisticação de mercado"
+    invoke_when: "Definindo estratégia, analisando mercado"
+
+  - role: "Scientific Tester"
+    persona: "Claude Hopkins"
+    persona_file: "personas/copywriting/hopkins.md"
+    focus: "Testes, métricas, abordagem científica"
+    invoke_when: "Validando claims, estruturando testes"
+
+  - role: "Master Storyteller"
+    persona: "Gary Halbert"
+    persona_file: "personas/copywriting/halbert.md"
+    focus: "Hooks, storytelling, engagement"
+    invoke_when: "Criando aberturas, construindo narrativas"
+
+  - role: "Brand Guardian"
+    persona: "David Ogilvy"
+    persona_file: "personas/copywriting/ogilvy.md"
+    focus: "Pesquisa, brand, long-term thinking"
+    invoke_when: "Considerando marca, pesquisando audiência"
+
+  - role: "Psychology Expert"
+    persona: "Gary Bencivenga"
+    persona_file: "personas/copywriting/bencivenga.md"
+    focus: "Psicologia profunda, gatilhos emocionais"
+    invoke_when: "Entendendo motivações, crafting appeals"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOMAIN LENSES
+# ─────────────────────────────────────────────────────────────────────────────
+
+domain_lenses:
+  - name: "Awareness Lens"
+    question: "Em que nível de consciência está o prospect?"
+    reveals: "Se o copy está calibrado para o estágio certo"
+    phase: "P1"
+
+  - name: "Sophistication Lens"
+    question: "Qual o nível de sofisticação deste mercado?"
+    reveals: "Que tipo de claim e prova serão necessários"
+    phase: "P1"
+
+  - name: "Big Idea Lens"
+    question: "Qual é a Big Idea única e memorável?"
+    reveals: "Se o copy tem diferenciação real"
+    phase: "P2"
+
+  - name: "Proof Stack Lens"
+    question: "A prova é suficiente e relevante?"
+    reveals: "Gaps de credibilidade"
+    phase: "P2"
+
+  - name: "Emotional Core Lens"
+    question: "Qual é a emoção dominante sendo ativada?"
+    reveals: "Se o copy conecta no nível emocional certo"
+    phase: "ALL"
+
+  - name: "Objection Lens"
+    question: "Quais objeções não foram endereçadas?"
+    reveals: "Pontos de atrito que matam conversão"
+    phase: "P4"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+
+anti_patterns:
+  - name: "Feature Dumping"
+    description: "Listar features sem traduzir em benefícios"
+    detection: "Copy cheio de especificações sem 'so what?'"
+    consequence: "Zero conexão emocional, baixa conversão"
+    mitigation: "Cada feature → benefício → emoção"
+
+  - name: "Claim Without Proof"
+    description: "Fazer promessas sem evidência"
+    detection: "Afirmações fortes sem backup"
+    consequence: "Perda de credibilidade"
+    mitigation: "Todo claim precisa de prova proporcional"
+
+  - name: "Wrong Awareness Level"
+    description: "Copy para nível de consciência errado"
+    detection: "Prospect não entende ou não se conecta"
+    consequence: "Mensagem não ressoa"
+    mitigation: "Calibrar usando framework de Schwartz"
+
+  - name: "Boring Opening"
+    description: "Começar sem hook poderoso"
+    detection: "Primeiras linhas não prendem atenção"
+    consequence: "Abandono imediato"
+    mitigation: "Testar múltiplos hooks, liderar com impacto"
+
+  - name: "Weak CTA"
+    description: "Call-to-action fraco ou confuso"
+    detection: "Leitor não sabe o que fazer"
+    consequence: "Conversão perdida no último metro"
+    mitigation: "CTA claro, urgente, com benefício"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────────────────
+
+quality_gates:
+  - gate: "G1-Awareness"
+    phase: "P1"
+    criterion: "Nível de consciência do prospect está definido"
+    pass_indicator: "Pode nomear o nível e justificar"
+    fail_indicator: "Não sabe em que estágio o prospect está"
+
+  - gate: "G2-BigIdea"
+    phase: "P2"
+    criterion: "Big Idea está clara e diferenciada"
+    pass_indicator: "Pode expressar em uma frase memorável"
+    fail_indicator: "Ideia é genérica ou confusa"
+
+  - gate: "G3-ProofStack"
+    phase: "P3"
+    criterion: "Provas adequadas para cada claim"
+    pass_indicator: "Todo claim tem prova proporcional"
+    fail_indicator: "Claims sem suporte"
+
+  - gate: "G4-Resonance"
+    phase: "P4"
+    criterion: "Copy ressoa emocionalmente"
+    pass_indicator: "Leitura provoca resposta emocional"
+    fail_indicator: "Copy é informativo mas frio"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PATTERNS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────────────
+
+success_patterns:
+  - name: "Star-Story-Solution"
+    description: "Estrutura de Halbert para copy"
+    when_to_apply: "Sales letters, emails longos"
+    how_to_apply: "Apresentar herói → contar história → revelar solução"
+
+  - name: "AIDA Flow"
+    description: "Attention-Interest-Desire-Action"
+    when_to_apply: "Copy de qualquer formato"
+    how_to_apply: "Estruturar progressão através dos 4 estágios"
+
+  - name: "Problem-Agitate-Solve"
+    description: "Estrutura PAS"
+    when_to_apply: "Copy focado em dor"
+    how_to_apply: "Identificar problema → intensificar → oferecer solução"
+
+  - name: "Reason Why"
+    description: "Justificar toda afirmação"
+    when_to_apply: "Todo copy"
+    how_to_apply: "Adicionar 'porque...' após cada claim"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REFERÊNCIAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+references:
+  books:
+    - "Breakthrough Advertising - Eugene Schwartz"
+    - "Scientific Advertising - Claude Hopkins"
+    - "The Boron Letters - Gary Halbert"
+    - "Ogilvy on Advertising - David Ogilvy"
+    - "Influence - Robert Cialdini"
+
+  concepts:
+    - "5 Levels of Awareness"
+    - "Market Sophistication"
+    - "Big Idea"
+    - "Proof Stack"
+    - "The 6 Principles of Influence"
+
+# ═══════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,203 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# COGNITIVE KIT: PROD — Produtividade & Workflows
+# ═══════════════════════════════════════════════════════════════════════════
+
+nature_code: "PROD"
+name: "Productivity & Workflows Kit"
+version: "1.0.0"
+
+description: |
+  Kit para projetos de produtividade, automação e otimização de workflows.
+  Ativa mentes especializadas em eficiência, hábitos e sistemas de trabalho.
+
+indicators:
+  keywords:
+    - workflow
+    - automação
+    - produtividade
+    - processo
+    - eficiência
+    - hábitos
+    - routine
+    - sistemas pessoais
+
+  objectives:
+    - Otimizar como trabalho é feito
+    - Automatizar processos repetitivos
+    - Criar sistemas de produtividade
+    - Melhorar eficiência
+
+  artifacts:
+    - Processos documentados
+    - SOPs
+    - Automações
+    - Templates de workflow
+    - Sistemas de hábitos
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DREAM TEAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+dream_team:
+  - role: "Efficiency Hacker"
+    persona: "Tim Ferriss"
+    persona_file: "personas/productivity/ferriss.md"
+    focus: "80/20, eliminação, automação"
+    invoke_when: "Identificando o que eliminar, automatizar"
+
+  - role: "Habit Architect"
+    persona: "James Clear"
+    persona_file: "personas/productivity/clear.md"
+    focus: "Atomic habits, sistemas, identidade"
+    invoke_when: "Projetando hábitos, mudança de comportamento"
+
+  - role: "Deep Work Specialist"
+    persona: "Cal Newport"
+    persona_file: "personas/productivity/newport.md"
+    focus: "Foco profundo, trabalho significativo"
+    invoke_when: "Protegendo foco, eliminando distrações"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOMAIN LENSES
+# ─────────────────────────────────────────────────────────────────────────────
+
+domain_lenses:
+  - name: "Elimination Lens"
+    question: "O que pode ser eliminado completamente?"
+    reveals: "Atividades que não geram valor"
+    phase: "P1"
+
+  - name: "Automation Lens"
+    question: "O que pode ser automatizado?"
+    reveals: "Tarefas repetitivas candidatas"
+    phase: "P2"
+
+  - name: "Delegation Lens"
+    question: "O que pode ser delegado?"
+    reveals: "Tarefas que outros podem fazer"
+    phase: "P2"
+
+  - name: "Batch Lens"
+    question: "O que pode ser agrupado?"
+    reveals: "Context switching desnecessário"
+    phase: "P3"
+
+  - name: "Friction Lens"
+    question: "Onde está a fricção?"
+    reveals: "Pontos de atrito que desaceleram"
+    phase: "ALL"
+
+  - name: "Energy Lens"
+    question: "Isso gera ou drena energia?"
+    reveals: "Sustentabilidade do sistema"
+    phase: "P4"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+
+anti_patterns:
+  - name: "Productivity Porn"
+    description: "Consumir conteúdo sobre produtividade sem aplicar"
+    detection: "Muitas ferramentas, poucos resultados"
+    consequence: "Ilusão de progresso"
+    mitigation: "Implementar antes de consumir mais"
+
+  - name: "Premature Automation"
+    description: "Automatizar antes de otimizar processo"
+    detection: "Automação de processo ineficiente"
+    consequence: "Ineficiência automatizada"
+    mitigation: "Simplificar → Automatizar"
+
+  - name: "Tool Overload"
+    description: "Muitas ferramentas, sistema fragmentado"
+    detection: "Informação espalhada em 10+ apps"
+    consequence: "Overhead de gestão de ferramentas"
+    mitigation: "Consolidar, escolher stack mínimo"
+
+  - name: "Process Theater"
+    description: "Processos para impressionar, não para funcionar"
+    detection: "Documentação que ninguém segue"
+    consequence: "Burocracia sem valor"
+    mitigation: "Processo mínimo que funciona"
+
+  - name: "Busy vs Productive"
+    description: "Confundir ocupação com produtividade"
+    detection: "Muito esforço, pouco output valioso"
+    consequence: "Burnout sem resultados"
+    mitigation: "Medir output, não input"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────────────────
+
+quality_gates:
+  - gate: "G1-ValueStream"
+    phase: "P1"
+    criterion: "Fluxo de valor mapeado"
+    pass_indicator: "Pode desenhar fluxo atual end-to-end"
+    fail_indicator: "Processo é caixa preta"
+
+  - gate: "G2-Elimination"
+    phase: "P2"
+    criterion: "O que eliminar está identificado"
+    pass_indicator: "Lista de atividades a parar"
+    fail_indicator: "Apenas adicionando, nunca removendo"
+
+  - gate: "G3-Sustainability"
+    phase: "P3"
+    criterion: "Sistema é sustentável"
+    pass_indicator: "Funciona sem força de vontade"
+    fail_indicator: "Requer disciplina sobre-humana"
+
+  - gate: "G4-Measurement"
+    phase: "P4"
+    criterion: "Sucesso é mensurável"
+    pass_indicator: "Métricas de output definidas"
+    fail_indicator: "Apenas métricas de atividade"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PATTERNS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────────────
+
+success_patterns:
+  - name: "MED (Minimum Effective Dose)"
+    description: "O mínimo necessário para resultado"
+    when_to_apply: "Otimização de processos"
+    how_to_apply: "Qual o mínimo que gera 80% do resultado?"
+
+  - name: "Habit Stacking"
+    description: "Anexar novo hábito a existente"
+    when_to_apply: "Implementação de novos comportamentos"
+    how_to_apply: "Depois de [HÁBITO ATUAL], vou [NOVO HÁBITO]"
+
+  - name: "Environment Design"
+    description: "Projetar ambiente para comportamento desejado"
+    when_to_apply: "Mudança de comportamento"
+    how_to_apply: "Tornar bom fácil, ruim difícil"
+
+  - name: "Weekly Review"
+    description: "Revisão semanal sistemática"
+    when_to_apply: "Manutenção de sistemas"
+    how_to_apply: "Mesmo dia, mesmo horário, mesma checklist"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REFERÊNCIAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+references:
+  books:
+    - "The 4-Hour Workweek - Tim Ferriss"
+    - "Atomic Habits - James Clear"
+    - "Deep Work - Cal Newport"
+    - "Getting Things Done - David Allen"
+    - "Essentialism - Greg McKeown"
+
+  concepts:
+    - "80/20 Principle"
+    - "Habit Loops"
+    - "Flow State"
+    - "Time Blocking"
+    - "PARA Method"
+
+# ═══════════════════════════════════════════════════════════════════════════

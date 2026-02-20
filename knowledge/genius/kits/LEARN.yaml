@@ -1,0 +1,204 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# COGNITIVE KIT: LEARN — Educação & Cursos
+# ═══════════════════════════════════════════════════════════════════════════
+
+nature_code: "LEARN"
+name: "Education & Courses Kit"
+version: "1.0.0"
+
+description: |
+  Kit para projetos educacionais: cursos, treinamentos, tutoriais.
+  Ativa mentes especializadas em aprendizado, pedagogia e transmissão.
+
+indicators:
+  keywords:
+    - curso
+    - educação
+    - treinamento
+    - aprendizado
+    - tutorial
+    - ensino
+    - aula
+    - workshop
+    - mentoria
+
+  objectives:
+    - Ensinar algo a alguém
+    - Criar conteúdo educacional
+    - Transferir conhecimento
+    - Capacitar pessoas
+
+  artifacts:
+    - Currículos de curso
+    - Módulos de aprendizado
+    - Tutoriais
+    - Exercícios
+    - Materiais de apoio
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DREAM TEAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+dream_team:
+  - role: "Master Explainer"
+    persona: "Richard Feynman"
+    persona_file: "personas/education/feynman.md"
+    focus: "Simplicidade, analogias, compreensão profunda"
+    invoke_when: "Simplificando conceitos complexos"
+
+  - role: "Learning Scientist"
+    persona: "Barbara Oakley"
+    persona_file: "personas/education/oakley.md"
+    focus: "Meta-learning, técnicas de estudo"
+    invoke_when: "Projetando experiência de aprendizado"
+
+  - role: "Memory Expert"
+    persona: "Benedict Carey"
+    persona_file: "personas/education/carey.md"
+    focus: "Retenção, espaçamento, prática"
+    invoke_when: "Otimizando para retenção"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOMAIN LENSES
+# ─────────────────────────────────────────────────────────────────────────────
+
+domain_lenses:
+  - name: "Feynman Lens"
+    question: "Uma criança de 12 anos entenderia?"
+    reveals: "Complexidade desnecessária"
+    phase: "ALL"
+
+  - name: "Prior Knowledge Lens"
+    question: "Que conhecimento prévio é assumido?"
+    reveals: "Gaps de pré-requisitos"
+    phase: "P1"
+
+  - name: "Transformation Lens"
+    question: "Como o aluno será diferente depois?"
+    reveals: "Clareza de outcome"
+    phase: "P1"
+
+  - name: "Practice Lens"
+    question: "Onde o aluno pratica?"
+    reveals: "Gaps de aplicação"
+    phase: "P3"
+
+  - name: "Motivation Lens"
+    question: "Por que o aluno continuaria?"
+    reveals: "Problemas de engajamento"
+    phase: "P2"
+
+  - name: "Retention Lens"
+    question: "O aluno lembrará em 30 dias?"
+    reveals: "Necessidade de reforço"
+    phase: "P4"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+
+anti_patterns:
+  - name: "Curse of Knowledge"
+    description: "Não conseguir ver do ponto de vista do novato"
+    detection: "Jargão sem explicação, passos pulados"
+    consequence: "Alunos perdidos"
+    mitigation: "Testar com iniciantes reais"
+
+  - name: "Info Dump"
+    description: "Despejar informação sem estrutura"
+    detection: "Conteúdo denso sem pausas ou práticas"
+    consequence: "Sobrecarga cognitiva"
+    mitigation: "Chunk, sequence, practice"
+
+  - name: "Theory Only"
+    description: "Conceitos sem aplicação prática"
+    detection: "Nenhum exercício, nenhum projeto"
+    consequence: "Conhecimento inerte"
+    mitigation: "70% prática, 30% teoria"
+
+  - name: "One Size Fits All"
+    description: "Mesmo conteúdo para todos os níveis"
+    detection: "Avançados entediados, iniciantes perdidos"
+    consequence: "Ninguém bem servido"
+    mitigation: "Trilhas por nível"
+
+  - name: "Motivation Void"
+    description: "Não conectar com o 'por que'"
+    detection: "Conteúdo sem contexto de aplicação"
+    consequence: "Abandono"
+    mitigation: "Começar com benefício, mostrar aplicação"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────────────────
+
+quality_gates:
+  - gate: "G1-Transformation"
+    phase: "P1"
+    criterion: "Transformação do aluno definida"
+    pass_indicator: "Pode descrever antes/depois"
+    fail_indicator: "Vago sobre o que aluno ganha"
+
+  - gate: "G2-Prerequisites"
+    phase: "P2"
+    criterion: "Pré-requisitos claros"
+    pass_indicator: "Lista de conhecimentos necessários"
+    fail_indicator: "Assumidos mas não declarados"
+
+  - gate: "G3-Practice"
+    phase: "P3"
+    criterion: "Oportunidades de prática adequadas"
+    pass_indicator: "Exercícios para cada conceito"
+    fail_indicator: "Apenas teoria"
+
+  - gate: "G4-Feynman"
+    phase: "P4"
+    criterion: "Explicações são claras para iniciantes"
+    pass_indicator: "Não-expert entende"
+    fail_indicator: "Jargão, complexidade"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PATTERNS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────────────
+
+success_patterns:
+  - name: "Feynman Technique"
+    description: "Explicar como se para uma criança"
+    when_to_apply: "Criação de qualquer explicação"
+    how_to_apply: "Simplificar até criança entender, então explicar"
+
+  - name: "Spaced Repetition"
+    description: "Revisar em intervalos crescentes"
+    when_to_apply: "Retenção de longo prazo"
+    how_to_apply: "Revisões em 1, 3, 7, 14, 30 dias"
+
+  - name: "Scaffolding"
+    description: "Apoio que é gradualmente removido"
+    when_to_apply: "Construção de habilidades"
+    how_to_apply: "Muita ajuda → menos ajuda → independência"
+
+  - name: "Concrete to Abstract"
+    description: "Começar com exemplos concretos"
+    when_to_apply: "Introdução de conceitos"
+    how_to_apply: "3+ exemplos concretos antes de abstrair"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REFERÊNCIAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+references:
+  books:
+    - "Surely You're Joking, Mr. Feynman!"
+    - "A Mind for Numbers - Barbara Oakley"
+    - "How We Learn - Benedict Carey"
+    - "Make It Stick - Brown, Roediger, McDaniel"
+    - "Peak - Anders Ericsson"
+
+  concepts:
+    - "Feynman Technique"
+    - "Spaced Repetition"
+    - "Deliberate Practice"
+    - "Cognitive Load"
+    - "Zone of Proximal Development"
+
+# ═══════════════════════════════════════════════════════════════════════════

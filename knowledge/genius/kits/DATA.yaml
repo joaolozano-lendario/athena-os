@@ -1,0 +1,206 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# COGNITIVE KIT: DATA — Análise & Insights
+# ═══════════════════════════════════════════════════════════════════════════
+
+nature_code: "DATA"
+name: "Data Analysis & Insights Kit"
+version: "1.0.0"
+
+description: |
+  Kit para projetos de análise de dados, pesquisa e geração de insights.
+  Ativa mentes especializadas em visualização, estatística e
+  pensamento crítico sobre dados.
+
+indicators:
+  keywords:
+    - análise
+    - dados
+    - dashboard
+    - insights
+    - métricas
+    - relatório
+    - visualização
+    - data science
+    - research
+
+  objectives:
+    - Extrair insights de dados
+    - Criar visualizações
+    - Construir dashboards
+    - Fazer análise exploratória
+    - Gerar relatórios
+
+  artifacts:
+    - Dashboards
+    - Relatórios
+    - Visualizações
+    - Análises estatísticas
+    - Data pipelines
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DREAM TEAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+dream_team:
+  - role: "Visual Information Expert"
+    persona: "Edward Tufte"
+    persona_file: "personas/data/tufte.md"
+    focus: "Visualização de dados, clareza, integridade"
+    invoke_when: "Criando visualizações, apresentando dados"
+
+  - role: "Decision Scientist"
+    persona: "Daniel Kahneman"
+    persona_file: "personas/data/kahneman.md"
+    focus: "Vieses cognitivos, decisões sob incerteza"
+    invoke_when: "Validando interpretações, evitando vieses"
+
+  - role: "Risk Analyst"
+    persona: "Nassim Taleb"
+    persona_file: "personas/data/taleb.md"
+    focus: "Incerteza, fat tails, antifragilidade"
+    invoke_when: "Analisando riscos, considerando outliers"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOMAIN LENSES
+# ─────────────────────────────────────────────────────────────────────────────
+
+domain_lenses:
+  - name: "Data Integrity Lens"
+    question: "Os dados são confiáveis? Qual a proveniência?"
+    reveals: "Problemas de qualidade de dados"
+    phase: "P1"
+
+  - name: "Bias Lens"
+    question: "Que vieses podem estar afetando esta análise?"
+    reveals: "Vieses de seleção, confirmação, survivorship"
+    phase: "ALL"
+
+  - name: "Correlation vs Causation Lens"
+    question: "Isso é correlação ou causação?"
+    reveals: "Conclusões precipitadas"
+    phase: "P4"
+
+  - name: "Signal vs Noise Lens"
+    question: "Isso é sinal ou ruído?"
+    reveals: "Overfit, padrões espúrios"
+    phase: "P2"
+
+  - name: "Black Swan Lens"
+    question: "Que eventos raros não estamos considerando?"
+    reveals: "Riscos de cauda"
+    phase: "P2"
+
+  - name: "So What Lens"
+    question: "E daí? Que ação isso informa?"
+    reveals: "Insights sem actionability"
+    phase: "P4"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+
+anti_patterns:
+  - name: "Chart Junk"
+    description: "Visualizações cheias de elementos desnecessários"
+    detection: "Gráficos com 3D, gradientes, elementos decorativos"
+    consequence: "Dados obscurecidos por design"
+    mitigation: "Data-ink ratio máximo (Tufte)"
+
+  - name: "Cherry Picking"
+    description: "Selecionar dados que suportam conclusão desejada"
+    detection: "Período de análise conveniente, dados filtrados"
+    consequence: "Decisões baseadas em visão distorcida"
+    mitigation: "Mostrar dados completos, declarar filtros"
+
+  - name: "Correlation Causation"
+    description: "Assumir causação de correlação"
+    detection: "Claims causais sem experimento controlado"
+    consequence: "Intervenções ineficazes"
+    mitigation: "Linguagem precisa, disclaimers"
+
+  - name: "Dashboard Cemetery"
+    description: "Dashboards criados mas nunca usados"
+    detection: "Métricas que ninguém olha"
+    consequence: "Esforço desperdiçado"
+    mitigation: "Começar com decisão, depois dashboard"
+
+  - name: "Precision Illusion"
+    description: "Falsa precisão em números incertos"
+    detection: "Projeções com casas decimais absurdas"
+    consequence: "Confiança indevida em estimativas"
+    mitigation: "Mostrar intervalos de confiança"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────────────────
+
+quality_gates:
+  - gate: "G1-DataQuality"
+    phase: "P1"
+    criterion: "Qualidade e proveniência dos dados verificadas"
+    pass_indicator: "Sources documentadas, qualidade avaliada"
+    fail_indicator: "Origem dos dados desconhecida"
+
+  - gate: "G2-BiasCheck"
+    phase: "P2"
+    criterion: "Vieses potenciais identificados"
+    pass_indicator: "Lista de vieses e mitigações"
+    fail_indicator: "Nenhuma análise de viés"
+
+  - gate: "G3-Actionability"
+    phase: "P3"
+    criterion: "Insights levam a ações específicas"
+    pass_indicator: "Cada insight tem ação recomendada"
+    fail_indicator: "Insights interessantes mas não acionáveis"
+
+  - gate: "G4-Clarity"
+    phase: "P4"
+    criterion: "Visualizações são claras e precisas"
+    pass_indicator: "Leitor entende sem explicação"
+    fail_indicator: "Requer interpretação do analista"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PATTERNS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────────────
+
+success_patterns:
+  - name: "Question First"
+    description: "Começar com pergunta, não com dados"
+    when_to_apply: "Início de qualquer análise"
+    how_to_apply: "Definir pergunta antes de tocar nos dados"
+
+  - name: "Layered Abstraction"
+    description: "Overview primeiro, zoom on demand"
+    when_to_apply: "Dashboards, relatórios"
+    how_to_apply: "Summary → details disponíveis"
+
+  - name: "Pre-Mortem"
+    description: "Imaginar falha antes de concluir"
+    when_to_apply: "Validação de conclusões"
+    how_to_apply: "Como esta análise poderia estar errada?"
+
+  - name: "Steel Man"
+    description: "Considerar melhor argumento contra"
+    when_to_apply: "Antes de apresentar conclusões"
+    how_to_apply: "Qual o argumento mais forte contra minha conclusão?"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REFERÊNCIAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+references:
+  books:
+    - "The Visual Display of Quantitative Information - Edward Tufte"
+    - "Thinking, Fast and Slow - Daniel Kahneman"
+    - "The Black Swan - Nassim Taleb"
+    - "How to Lie with Statistics - Darrell Huff"
+    - "Storytelling with Data - Cole Knaflic"
+
+  concepts:
+    - "Data-Ink Ratio"
+    - "Cognitive Biases"
+    - "Fat Tails"
+    - "Simpson's Paradox"
+    - "Base Rate Fallacy"
+
+# ═══════════════════════════════════════════════════════════════════════════

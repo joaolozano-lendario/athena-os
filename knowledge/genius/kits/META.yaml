@@ -1,0 +1,205 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# COGNITIVE KIT: META — Meta-Sistemas & Frameworks
+# ═══════════════════════════════════════════════════════════════════════════
+
+nature_code: "META"
+name: "Meta-Systems & Frameworks Kit"
+version: "1.0.0"
+
+description: |
+  Kit para projetos de meta-sistemas: sistemas que geram sistemas,
+  frameworks, templates, e abstrações de alto nível.
+  Ativa mentes especializadas em recursão, padrões e sistemas.
+
+indicators:
+  keywords:
+    - framework
+    - meta
+    - sistema de sistemas
+    - abstração
+    - templates
+    - gerador
+    - scaffolding
+    - protocolo
+    - metodologia
+
+  objectives:
+    - Criar sistema que cria sistemas
+    - Projetar framework reutilizável
+    - Abstrair padrões comuns
+    - Gerar código/outputs automaticamente
+
+  artifacts:
+    - Frameworks
+    - Templates
+    - Protocolos
+    - Generators
+    - Meta-documentação
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DREAM TEAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+dream_team:
+  - role: "Recursion Master"
+    persona: "Douglas Hofstadter"
+    persona_file: "personas/meta/hofstadter.md"
+    focus: "Strange loops, self-reference, emergência"
+    invoke_when: "Projetando recursão, self-improvement"
+
+  - role: "Pattern Architect"
+    persona: "Christopher Alexander"
+    persona_file: "personas/meta/alexander.md"
+    focus: "Pattern languages, quality without a name"
+    invoke_when: "Identificando padrões, criando linguagens"
+
+  - role: "Systems Thinker"
+    persona: "Donella Meadows"
+    persona_file: "personas/meta/meadows.md"
+    focus: "Leverage points, feedback loops, sistemas"
+    invoke_when: "Analisando dinâmicas, encontrando alavancas"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOMAIN LENSES
+# ─────────────────────────────────────────────────────────────────────────────
+
+domain_lenses:
+  - name: "Recursion Lens"
+    question: "O sistema pode melhorar a si mesmo?"
+    reveals: "Capacidade de auto-evolução"
+    phase: "P2"
+
+  - name: "Leverage Lens"
+    question: "Onde está o ponto de maior alavancagem?"
+    reveals: "Intervenções de alto impacto"
+    phase: "ALL"
+
+  - name: "Emergence Lens"
+    question: "Que comportamento emerge das regras simples?"
+    reveals: "Propriedades emergentes do sistema"
+    phase: "P2"
+
+  - name: "Abstraction Lens"
+    question: "Qual o nível certo de abstração?"
+    reveals: "Over-abstraction ou under-abstraction"
+    phase: "P3"
+
+  - name: "Feedback Lens"
+    question: "Quais são os loops de feedback?"
+    reveals: "Dinâmicas de auto-reforço ou balanceamento"
+    phase: "P2"
+
+  - name: "Composability Lens"
+    question: "As partes se compõem facilmente?"
+    reveals: "Qualidade da modularização"
+    phase: "P3"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+
+anti_patterns:
+  - name: "Infinite Abstraction"
+    description: "Abstrair ao infinito sem valor concreto"
+    detection: "Camadas de abstração que não simplificam"
+    consequence: "Complexidade acidental, difícil de usar"
+    mitigation: "Testar usabilidade em casos reais"
+
+  - name: "Framework for Everything"
+    description: "Generalizar demais, servir ninguém bem"
+    detection: "Framework tenta resolver todo problema possível"
+    consequence: "Complexo demais para casos simples"
+    mitigation: "Opinionated > generalist"
+
+  - name: "Meta-Paralysis"
+    description: "Ficar refinando meta-sistema ao invés de usar"
+    detection: "Mais tempo em meta do que em uso real"
+    consequence: "Sistema nunca validado na prática"
+    mitigation: "Use early, use often"
+
+  - name: "Clever Code"
+    description: "Recursões elegantes mas incompreensíveis"
+    detection: "Autor não entende após 2 semanas"
+    consequence: "Manutenção impossível"
+    mitigation: "Clareza > elegância"
+
+  - name: "Pattern Worship"
+    description: "Aplicar padrões por aplicar"
+    detection: "Padrões que não resolvem problema real"
+    consequence: "Complexidade sem benefício"
+    mitigation: "Padrão serve ao problema, não vice-versa"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────────────────
+
+quality_gates:
+  - gate: "G1-UseCase"
+    phase: "P1"
+    criterion: "Caso de uso concreto definido"
+    pass_indicator: "Pode descrever 3+ usos reais"
+    fail_indicator: "Apenas abstração teórica"
+
+  - gate: "G2-Simplicity"
+    phase: "P2"
+    criterion: "Complexidade justificada pelo valor"
+    pass_indicator: "Simplicidade máxima para funcionalidade"
+    fail_indicator: "Complexidade sem propósito"
+
+  - gate: "G3-Usability"
+    phase: "P3"
+    criterion: "Usuário consegue usar sem ajuda"
+    pass_indicator: "Documentação clara, API intuitiva"
+    fail_indicator: "Requer explicação extensiva"
+
+  - gate: "G4-SelfApplication"
+    phase: "P4"
+    criterion: "Sistema aplicável a si mesmo"
+    pass_indicator: "Bootstrapping possível"
+    fail_indicator: "Não passa teste de recursão"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PATTERNS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────────────
+
+success_patterns:
+  - name: "Eat Your Own Dog Food"
+    description: "Usar o sistema para construir o sistema"
+    when_to_apply: "Validação de meta-sistemas"
+    how_to_apply: "Aplicar framework a si mesmo"
+
+  - name: "Simple Rules, Complex Behavior"
+    description: "Regras simples que geram comportamento rico"
+    when_to_apply: "Design de sistemas adaptativos"
+    how_to_apply: "Minimizar regras, maximizar emergência"
+
+  - name: "Progressive Disclosure"
+    description: "Simplicidade na superfície, poder na profundidade"
+    when_to_apply: "APIs e interfaces"
+    how_to_apply: "Defaults sensatos, customização avançada"
+
+  - name: "Convention over Configuration"
+    description: "Convenções fortes reduzem configuração"
+    when_to_apply: "Frameworks opinionated"
+    how_to_apply: "Definir convenções claras, permitir override"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REFERÊNCIAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+references:
+  books:
+    - "Gödel, Escher, Bach - Douglas Hofstadter"
+    - "A Pattern Language - Christopher Alexander"
+    - "Thinking in Systems - Donella Meadows"
+    - "The Design of Design - Fred Brooks"
+    - "Structure and Interpretation of Computer Programs"
+
+  concepts:
+    - "Strange Loops"
+    - "Leverage Points"
+    - "Pattern Languages"
+    - "Feedback Loops"
+    - "Emergence"
+
+# ═══════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,206 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# COGNITIVE KIT: ARCH — Arquitetura de Sistemas
+# ═══════════════════════════════════════════════════════════════════════════
+
+nature_code: "ARCH"
+name: "System Architecture Kit"
+version: "1.0.0"
+
+description: |
+  Kit para projetos de arquitetura de software e sistemas.
+  Ativa mentes de arquitetos e engenheiros renomados
+  para guiar decisões técnicas com rigor e pragmatismo.
+
+indicators:
+  keywords:
+    - API
+    - microservices
+    - database
+    - infra
+    - scalability
+    - patterns
+    - architecture
+    - sistema
+    - integração
+    - backend
+
+  objectives:
+    - Construir sistema técnico
+    - Definir arquitetura
+    - Resolver problema de scale
+    - Integrar sistemas
+
+  artifacts:
+    - Diagramas de arquitetura
+    - APIs
+    - Schemas
+    - Infrastructure as Code
+    - Technical specs
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DREAM TEAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+dream_team:
+  - role: "Pattern Master"
+    persona: "Martin Fowler"
+    persona_file: "personas/architecture/fowler.md"
+    focus: "Patterns, refactoring, enterprise architecture"
+    invoke_when: "Escolhendo patterns, refatorando"
+
+  - role: "Clean Code Guardian"
+    persona: "Robert 'Uncle Bob' Martin"
+    persona_file: "personas/architecture/uncle-bob.md"
+    focus: "Clean code, SOLID, clean architecture"
+    invoke_when: "Estruturando código, definindo boundaries"
+
+  - role: "Pragmatic Engineer"
+    persona: "Kent Beck"
+    persona_file: "personas/architecture/kent-beck.md"
+    focus: "TDD, XP, simplicidade"
+    invoke_when: "Validando complexidade, testabilidade"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOMAIN LENSES
+# ─────────────────────────────────────────────────────────────────────────────
+
+domain_lenses:
+  - name: "Coupling Lens"
+    question: "Quão acoplados estão os componentes?"
+    reveals: "Pontos de fragilidade e rigidez"
+    phase: "P2"
+
+  - name: "Scalability Lens"
+    question: "Como isso se comporta com 10x, 100x carga?"
+    reveals: "Gargalos potenciais"
+    phase: "P2"
+
+  - name: "Failure Mode Lens"
+    question: "Como o sistema falha? O que acontece quando X quebra?"
+    reveals: "Riscos de disponibilidade"
+    phase: "P2"
+
+  - name: "Testability Lens"
+    question: "Como isso será testado? É testável isoladamente?"
+    reveals: "Problemas de design que dificultam testes"
+    phase: "P3"
+
+  - name: "Change Lens"
+    question: "Quanto esforço para mudar X?"
+    reveals: "Rigidez arquitetural"
+    phase: "ALL"
+
+  - name: "Simplicity Lens"
+    question: "Isso é o mais simples que funciona?"
+    reveals: "Over-engineering"
+    phase: "ALL"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+
+anti_patterns:
+  - name: "Big Ball of Mud"
+    description: "Arquitetura sem estrutura clara"
+    detection: "Tudo depende de tudo, mudança quebra tudo"
+    consequence: "Sistema impossível de manter"
+    mitigation: "Definir boundaries claras, modularizar"
+
+  - name: "Premature Optimization"
+    description: "Otimizar antes de precisar"
+    detection: "Complexidade sem métricas que justifiquem"
+    consequence: "Tempo gasto em problemas que não existem"
+    mitigation: "Medir primeiro, otimizar depois"
+
+  - name: "Golden Hammer"
+    description: "Usar mesma solução para todo problema"
+    detection: "Tecnologia escolhida não é ideal para o caso"
+    consequence: "Solução sub-ótima, complexidade desnecessária"
+    mitigation: "Avaliar trade-offs para cada decisão"
+
+  - name: "Resume Driven Development"
+    description: "Escolher tech para currículo, não para problema"
+    detection: "Stack over-engineered sem justificativa"
+    consequence: "Complexidade desnecessária, manutenção difícil"
+    mitigation: "Tecnologia certa para o problema certo"
+
+  - name: "Distributed Monolith"
+    description: "Microservices mas com deployment acoplado"
+    detection: "Serviços que precisam ser deployados juntos"
+    consequence: "Pior dos dois mundos"
+    mitigation: "Ou desacople de verdade ou use monolith"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────────────────
+
+quality_gates:
+  - gate: "G1-Requirements"
+    phase: "P1"
+    criterion: "Requisitos funcionais e não-funcionais claros"
+    pass_indicator: "NFRs documentados com métricas"
+    fail_indicator: "Apenas requisitos funcionais vagos"
+
+  - gate: "G2-TradeOffs"
+    phase: "P2"
+    criterion: "Trade-offs explícitos e justificados"
+    pass_indicator: "Decisões têm prós/contras documentados"
+    fail_indicator: "Decisões sem justificativa"
+
+  - gate: "G3-Boundaries"
+    phase: "P3"
+    criterion: "Boundaries entre componentes definidas"
+    pass_indicator: "Interfaces claras, contratos definidos"
+    fail_indicator: "Componentes entrelaçados"
+
+  - gate: "G4-Deployability"
+    phase: "P4"
+    criterion: "Sistema é deployável e operável"
+    pass_indicator: "CI/CD possível, observability planejada"
+    fail_indicator: "Deploy manual, sem monitoring"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PATTERNS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────────────
+
+success_patterns:
+  - name: "Start Simple"
+    description: "Começar com arquitetura mais simples possível"
+    when_to_apply: "Início de projetos, incerteza alta"
+    how_to_apply: "Monolith primeiro, extrair quando necessário"
+
+  - name: "Design for Change"
+    description: "Projetar para mudança, não para perfeição"
+    when_to_apply: "Sempre"
+    how_to_apply: "Boundaries claras, baixo acoplamento"
+
+  - name: "Make It Work, Make It Right, Make It Fast"
+    description: "Sequência de Kent Beck"
+    when_to_apply: "Desenvolvimento iterativo"
+    how_to_apply: "Funcionalidade → qualidade → performance"
+
+  - name: "Strangler Fig"
+    description: "Migração incremental de sistemas legados"
+    when_to_apply: "Modernização de sistemas"
+    how_to_apply: "Substituir pedaço a pedaço, não big bang"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REFERÊNCIAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+references:
+  books:
+    - "Clean Architecture - Robert Martin"
+    - "Patterns of Enterprise Application Architecture - Martin Fowler"
+    - "Designing Data-Intensive Applications - Martin Kleppmann"
+    - "Building Microservices - Sam Newman"
+    - "Extreme Programming Explained - Kent Beck"
+
+  concepts:
+    - "SOLID Principles"
+    - "CAP Theorem"
+    - "Event Sourcing"
+    - "CQRS"
+    - "Domain-Driven Design"
+
+# ═══════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,210 @@
+# FORMICA v4.0 — Centralized Configuration
+# All values here were previously hardcoded across lib/*.sh
+# Remove this file to revert to built-in defaults (identical to v3.9 behavior)
+
+orchestration:
+  task_timeout_s: 600
+  lock_timeout_ms: 20000       # state_write lock spin (200 retries × 100ms)
+  cas_max_retries: 5           # Compare-and-swap retries
+  kill_timeout_s: 2            # SIGTERM → SIGKILL grace period
+  stagger_sleep_s: 2           # Worker launch stagger
+  poll_interval_s: 0.5         # Main loop poll interval (v4.2: 2→0.5)
+  wall_clock_timeout_s: 3600   # Meta-loop wall clock (1h)
+  jsonl_lock_retries: 20       # JSONL append lock retries
+  lock_stale_age_s: 60         # Lock file stale threshold
+  retry_backoff_multiplier_s: 3  # Retry backoff: sleep(attempt * N)
+  default_task_budget_usd: 0.50
+  default_max_budget_usd: 50
+
+allometry:
+  small_threshold: 8           # Tasks ≤ N → small colony
+  medium_threshold: 25         # Tasks ≤ N → medium colony
+  token_budget_base: 60000
+  token_budget_exponent: 0.75
+  token_budget_floor: 3000
+  signal_injection_max_small: 2
+  signal_injection_max_medium: 4
+  signal_injection_max_large: 6
+
+routing:
+  budget_guard_pct: 15         # Budget % → force haiku (v4.2: 30→15)
+  gateway_blocking_factor: 3   # Blocking factor for gateway exemption
+  pheromone_sonnet_threshold: 0.60
+  pheromone_prob_min: 0.10
+  pheromone_prob_max: 0.90
+  pheromone_hard_severity: 4
+  blacklist_ttl_days: 90
+  friction_upgrade_threshold: 2
+  gateway_budget_multiplier: 1.5
+  budget_kill_detection_pct: 0.90
+  budget_kill_scale_factor: 1.5
+  micro_fix_budget_fraction: 0.30
+
+pheromone:
+  evaporation_rate: 0.90
+  signal_ttl_waves: 2
+  friction_ttl_waves: 3
+  lock_timeout_ms: 5000        # 50 retries × 100ms
+  min_observations: 2
+
+quorum:
+  done_threshold: 0.90
+  retry_threshold: 0.70
+  reexecute_threshold: 0.40
+  disagreement_threshold: 0.40
+  budget_escalate_pct: 20
+  sigmoid_steepness: 12
+  sigmoid_midpoint: 0.75
+  weight_qa: 0.40
+  weight_advisory: 0.25
+  weight_colony: 0.15
+  weight_structural: 0.20
+  weight_qa_noadv: 0.50
+  weight_colony_noadv: 0.20
+  weight_structural_noadv: 0.30
+  demand_signal_threshold: 3
+  demand_group_min: 2
+
+immune:
+  promotion_threshold: 3       # Violations before promoting to immune memory
+  min_file_bytes: 10
+  max_file_bytes: 512000       # 500KB
+  line_count_min_pct: 30
+  line_count_max_pct: 300
+  qa_crash_fallback_score: 70
+  inferred_lines_short: 50     # desc < 100 chars
+  inferred_lines_long: 200     # desc >= 100 chars
+
+token_estimation:
+  code_chars_per_token: 2.0    # .sh, .py, .js
+  prose_chars_per_token: 5.0   # .md, .txt (was 4.5, actual measured closer to 5)
+  config_chars_per_token: 3.0  # .yaml, .toml, .json
+  mixed_chars_per_token: 4.0   # default/unknown
+  truncation_safety_margin: 500
+  truncation_min_remaining: 200
+  truncation_char_multiplier: 4
+  cli_overhead_tokens: 20000
+  words_per_token_ratio: 7.9
+  future_file_token_estimate: 500
+  safety_budget_multiplier: 3.0
+  safety_budget_floor: 0.15
+
+advisory:
+  max_budget_usd: 0.30
+  coherence_pause: 5
+  coherence_cancel: 3
+  min_wave: 2
+  pass_rate_floor: 50
+  adjustment_threshold: 7
+  qa_threshold_step: 5
+  qa_threshold_cap: 95
+  context_recent_qa_count: 5
+  context_recent_friction_count: 10
+  context_output_preview_lines: 30
+
+qa:
+  default_budget_usd: 0.20
+  budget_fraction: 0.50
+  min_budget_usd: 0.15
+  micro_fix_floor_offset: 15
+  micro_fix_absolute_floor: 60
+  rework_floor: 60
+  pass_threshold_default: 80
+  rework_threshold_default: 60
+  feedback_max_chars: 2000
+
+meta_supervisor:
+  critical_pass_rate_pct: 30
+  critical_min_samples: 6
+  critical_cost_velocity: 1.5
+  repeated_friction_threshold: 3
+  budget_conserve_pct: 20
+
+friction:
+  trend_min_events: 10
+  trend_window_size: 5
+  trend_delta_threshold: 0.05
+  consecutive_cause_threshold: 3
+  consecutive_scan_window: 15
+  max_worker_patterns: 5
+
+epigenetics:
+  multiplier_min: 0.50
+  multiplier_max: 3.00
+  min_blueprints_for_evidence: 2
+  budget_exhaustion_min_count: 2
+  budget_multiplier_step: 0.20
+  pattern_prune_threshold: 0.30
+  pattern_decay_rate: 0.95
+  max_patterns_inject: 5
+
+colony:
+  signal_intensity_floor: 0.40
+  convention_max_lines: 15
+  genius_kit_max_lines: 50
+
+pricing:
+  haiku_input_per_1m: 0.80
+  haiku_output_per_1m: 4.00
+  sonnet_input_per_1m: 3.00
+  sonnet_output_per_1m: 15.00
+  opus_input_per_1m: 15.00
+  opus_output_per_1m: 75.00
+  cache_hit_factor: 0.15
+  qa_overhead_fraction: 0.30
+  advisory_cost_per_wave: 0.03
+  expected_cost_multiplier: 1.30
+  tasks_per_wave_estimate: 5
+
+hooks:
+  enabled: true                    # Master switch: set true to activate hook infrastructure
+  validators_dir: "hooks/validators"
+  extractors_dir: "hooks/extractors"
+  contract_format: "json"
+  strict_orphan_threshold: 0       # CSS orphans allowed before blocking (0 = zero tolerance)
+
+modes:
+  economic:
+    max_parallel: 1
+    qa_threshold: 70
+    max_retries: 1
+    budget_factor: 0.70
+  quality:
+    max_parallel: 2
+    qa_threshold: 85
+    max_retries: 3
+    budget_factor: 1.50
+  speed:
+    max_parallel: 4
+    qa_threshold: 75
+    max_retries: 2
+    budget_factor: 1.00
+  guided:
+    max_parallel: 2
+    qa_threshold: 80
+    max_retries: 3
+    budget_factor: 1.20
+
+budget:
+  tool_use_multipliers:
+    analyst: 2.5
+    writer: 1.1
+    qa: 1.5
+    implementer: 3.0
+    architect: 2.0
+    advisor: 1.2
+    default: 1.5
+
+evaluate:
+  enabled: true
+  trigger: "gateway"
+  min_score: 85
+  min_budget_remaining_pct: 40
+  model: "opus"
+  budget_usd: 0.30
+
+context:
+  double_load_prevention:
+    enabled: true
+    line_threshold: 500
+    inject_read_instruction: true

@@ -1,0 +1,66 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# TEMPLATE: Execution Entry
+# ═══════════════════════════════════════════════════════════════════════════
+# Use este template para registrar execuções no execution_log.yaml
+
+- id: "EXEC-{YYYY-MM-DD}-{NNN}"
+  blueprint_id: "BP-{YYYY-MM-DD}-{NNN}"
+  title: "{Título do Blueprint}"
+  target_project: "{D:/path/to/project}"
+
+  timing:
+    started_at: "{ISO-8601}"
+    completed_at: "{ISO-8601}"
+    total_minutes: 0
+
+  status: "COMPLETED"  # COMPLETED | FAILED | PARTIAL
+
+  phases_executed:
+    P0_REFLECT: false
+    P1_DECODE: true
+    P2_ARCHITECT: true
+    P3_FRAGMENT: true
+    P4_CRYSTALLIZE: true
+    P5_LEARN: false
+
+  metrics:
+    tasks_completed: 0
+    tasks_total: 0
+    completion_rate: 0.0
+
+    gates:
+      G1_passed: true
+      G2_passed: true
+      G3_passed: true
+      G4_passed: true
+      retries_needed: 0
+
+    artifacts:
+      files_created: 0
+      files_modified: 0
+      lines_written: 0
+
+  genius:
+    nature_detected: null  # COPY | ARCH | META | DATA | PROD | BRAND | LEARN | CODE
+    kit_activated: null
+    personas_consulted: []
+    lenses_applied: []
+
+  epistemic:
+    overall_confidence: 0.0
+    uncertainties_logged: 0
+    assumptions_documented: 0
+    unknowns_acknowledged: 0
+
+  learning:
+    lessons: []
+    patterns_discovered: []
+    anti_patterns_avoided: []
+    suggestions_for_improvement: []
+
+  context:
+    blockers_encountered: []
+    decisions_made: []
+    operator_feedback: ""
+
+# ═══════════════════════════════════════════════════════════════════════════

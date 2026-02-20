@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "blueprint_id": { "type": "string" },
+    "manifest_path": { "type": "string" },
+    "status": { "type": "string", "enum": ["running", "completed", "failed", "paused", "cancelled"] },
+    "started_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "config": {
+      "type": "object",
+      "properties": {
+        "max_parallel": { "type": "integer" },
+        "max_retries": { "type": "integer" },
+        "qa_threshold": { "type": "integer" }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "limit_usd": { "type": "number" },
+        "used_usd": { "type": "number" },
+        "estimated_remaining": { "type": "number" }
+      },
+      "required": ["limit_usd", "used_usd"]
+    },
+    "tasks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "enum": ["pending", "running", "rework", "completed", "rejected", "exhausted", "dep-failed", "aborted", "paused"] },
+          "worker": { "type": "string" },
+          "model": { "type": "string" },
+          "depends_on": { "type": "array", "items": { "type": "string" } },
+          "attempts": { "type": "integer" },
+          "score": { "type": ["integer", "null"] },
+          "pid": { "type": ["integer", "null"] },
+          "started_at": { "type": ["string", "null"] },
+          "completed_at": { "type": ["string", "null"] },
+          "last_feedback": { "type": ["string", "null"] }
+        },
+        "required": ["status", "worker", "depends_on", "attempts"]
+      }
+    },
+    "counters": {
+      "type": "object",
+      "properties": {
+        "running": { "type": "integer" },
+        "completed": { "type": "integer" },
+        "failed": { "type": "integer" },
+        "total": { "type": "integer" }
+      }
+    }
+  },
+  "required": ["blueprint_id", "status", "tasks", "counters"]
+}

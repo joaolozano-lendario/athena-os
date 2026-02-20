@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "coherence_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Cross-task coherence score (0-10)"
+    },
+    "quality_trend": {
+      "type": "string",
+      "enum": ["improving", "stable", "degrading"],
+      "description": "Quality trajectory across recent tasks"
+    },
+    "recommendations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Specific actionable recommendations"
+    },
+    "risk_flags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Emerging risks or concerns"
+    },
+    "adjustments": {
+      "type": "object",
+      "properties": {
+        "increase_qa_threshold": { "type": "boolean" },
+        "upgrade_model": { "type": "boolean" },
+        "pause_blueprint": { "type": "boolean" },
+        "context_additions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "description": "Suggested blueprint adjustments"
+    }
+  },
+  "required": ["coherence_score", "quality_trend", "recommendations", "risk_flags"],
+  "additionalProperties": false
+}

@@ -1,0 +1,45 @@
+# Campaign Manifest — ATHENA Orchestrated Execution Engine v1.0
+# Reference specification for campaign YAML format.
+# See .orchestrator/campaigns/_template.yaml for annotated example.
+
+campaign:
+  id: "{campaign-id}"               # REQUIRED. Unique identifier.
+  name: "{Campaign Name}"           # REQUIRED. Human-readable name.
+  project_dir: "{/path/to/project}" # REQUIRED. Target project for --add-dir.
+
+config:
+  max_parallel: 2                   # Max concurrent workers (default: 2)
+  max_budget_usd: 10.0              # Total campaign budget (default: 50)
+  max_retries: 3                    # Max attempts per task (default: 3)
+  qa_threshold: 80                  # Minimum QA score 0-100 (default: 80)
+  default_model: "sonnet"           # Worker model (default: sonnet)
+  qa_model: "haiku"                 # QA model (default: haiku)
+  task_budget_usd: 0.50             # Per-task budget (default: 0.50)
+  task_timeout_s: 600               # Per-task timeout seconds (default: 600)
+
+workers:
+  "{worker-name}":
+    prompt: "workers/{name}.md"     # Path relative to .orchestrator/
+    tools: "Read,Write,Grep,Glob"   # Comma-separated tool list
+    model: "{model}"                # Optional: override default_model
+
+tasks:
+  - id: "{task-id}"                 # REQUIRED. Unique within campaign.
+    worker: "{worker-name}"         # REQUIRED. Must match workers key.
+    description: |                  # REQUIRED. What to do.
+      {Task description}
+    acceptance_criteria:             # REQUIRED. Worker contract.
+      - "{criterion 1}"
+      - "{criterion 2}"
+    context_files:                   # File paths (relative to project_dir)
+      - "{path/to/file}"
+    output: "{path/to/output}"      # REQUIRED. Where worker writes result.
+    depends_on: []                   # Task IDs that must complete first.
+    cwd: "{optional/working/dir}"    # Optional per-task working directory.
+    qa:
+      criteria:                      # QA rubric (defaults to acceptance_criteria)
+        - "{qa criterion 1}"
+      threshold: 80                  # Optional: override global qa_threshold
+      model: "haiku"                 # Optional: override global qa_model
+    model: "sonnet"                  # Optional: override worker model
+    budget_usd: 0.50                 # Optional: override per-task budget

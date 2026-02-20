@@ -1,0 +1,127 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# COGNITIVE KIT TEMPLATE — ATHENA OS 2.0
+# ═══════════════════════════════════════════════════════════════════════════
+# Template para criar novos Cognitive Kits
+# ═══════════════════════════════════════════════════════════════════════════
+
+nature_code: "{CODE}"
+name: "{Nome do Kit}"
+version: "1.0.0"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DESCRIÇÃO
+# ─────────────────────────────────────────────────────────────────────────────
+
+description: |
+  {Descrição do domínio e quando este kit se aplica}
+
+indicators:
+  keywords:
+    - "{keyword_1}"
+    - "{keyword_2}"
+    - "{keyword_3}"
+
+  objectives:
+    - "{objetivo_1}"
+    - "{objetivo_2}"
+
+  artifacts:
+    - "{artefato_1}"
+    - "{artefato_2}"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DREAM TEAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+dream_team:
+  - role: "Primary Expert"
+    persona: "{nome}"
+    persona_file: "personas/{domain}/{file}.md"
+    focus: "{foco principal}"
+    invoke_when: "{quando consultar}"
+
+  - role: "Secondary Expert"
+    persona: "{nome}"
+    persona_file: "personas/{domain}/{file}.md"
+    focus: "{foco principal}"
+    invoke_when: "{quando consultar}"
+
+  - role: "Contrarian"
+    persona: "{nome}"
+    persona_file: "personas/{domain}/{file}.md"
+    focus: "{foco principal}"
+    invoke_when: "{quando consultar}"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOMAIN LENSES
+# ─────────────────────────────────────────────────────────────────────────────
+
+domain_lenses:
+  - name: "{Nome da Lente}"
+    question: "{Pergunta poderosa que a lente faz}"
+    reveals: "{O que essa lente revela quando aplicada}"
+    phase: "P1|P2|P3|P4|ALL"
+
+  - name: "{Nome da Lente 2}"
+    question: "{Pergunta poderosa}"
+    reveals: "{O que revela}"
+    phase: "ALL"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+
+anti_patterns:
+  - name: "{Nome do Anti-Pattern}"
+    description: "{O que é este anti-pattern}"
+    detection: "{Como detectar que está acontecendo}"
+    consequence: "{O que acontece se não corrigir}"
+    mitigation: "{Como evitar ou corrigir}"
+
+  - name: "{Nome do Anti-Pattern 2}"
+    description: "{descrição}"
+    detection: "{detecção}"
+    consequence: "{consequência}"
+    mitigation: "{mitigação}"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────────────────
+
+quality_gates:
+  - gate: "G1-{nome}"
+    phase: "P1"
+    criterion: "{O que verificar}"
+    pass_indicator: "{Como saber se passou}"
+    fail_indicator: "{Como saber se falhou}"
+
+  - gate: "G2-{nome}"
+    phase: "P2"
+    criterion: "{critério}"
+    pass_indicator: "{indicador de sucesso}"
+    fail_indicator: "{indicador de falha}"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PATTERNS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────────────
+
+success_patterns:
+  - name: "{Nome do Padrão}"
+    description: "{O que é}"
+    when_to_apply: "{Quando usar}"
+    how_to_apply: "{Como aplicar}"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REFERÊNCIAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+references:
+  books:
+    - "{Livro 1}"
+    - "{Livro 2}"
+
+  concepts:
+    - "{Conceito 1}"
+    - "{Conceito 2}"
+
+# ═══════════════════════════════════════════════════════════════════════════

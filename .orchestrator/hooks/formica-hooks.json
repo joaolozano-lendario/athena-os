@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${ORCHESTRATOR_DIR}/hooks/pre-write-validator.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${ORCHESTRATOR_DIR}/hooks/post-write-contract.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

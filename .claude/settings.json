@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "athena:execute",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/athena-stop-handler.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/update-intel.sh $CLAUDE_FILE_PATH"
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "ATHENA_VERSION": "3.1.0",
+    "PLANNING_DIR": ".planning"
+  }
+}

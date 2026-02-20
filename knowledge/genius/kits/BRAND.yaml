@@ -1,0 +1,204 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# COGNITIVE KIT: BRAND — Branding & Posicionamento
+# ═══════════════════════════════════════════════════════════════════════════
+
+nature_code: "BRAND"
+name: "Branding & Positioning Kit"
+version: "1.0.0"
+
+description: |
+  Kit para projetos de branding, posicionamento e construção de marca.
+  Ativa mentes especializadas em diferenciação, storytelling e marketing.
+
+indicators:
+  keywords:
+    - marca
+    - brand
+    - posicionamento
+    - identidade
+    - messaging
+    - diferenciação
+    - personal brand
+    - logo
+    - visual identity
+
+  objectives:
+    - Construir/fortalecer marca
+    - Definir posicionamento
+    - Criar identidade visual
+    - Diferenciar no mercado
+
+  artifacts:
+    - Brand guidelines
+    - Messaging documents
+    - Visual identity
+    - Positioning statements
+    - Brand stories
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DREAM TEAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+dream_team:
+  - role: "Permission Marketing Pioneer"
+    persona: "Seth Godin"
+    persona_file: "personas/brand/godin.md"
+    focus: "Tribos, remarkable, purple cow"
+    invoke_when: "Definindo diferenciação, triagem"
+
+  - role: "Social Media Tactician"
+    persona: "Gary Vaynerchuk"
+    persona_file: "personas/brand/vaynerchuk.md"
+    focus: "Content, hustle, plataformas"
+    invoke_when: "Estratégia de conteúdo, presença digital"
+
+  - role: "Positioning Strategist"
+    persona: "Al Ries"
+    persona_file: "personas/brand/ries.md"
+    focus: "Posicionamento, categorias, mente do consumidor"
+    invoke_when: "Definindo posição de mercado"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DOMAIN LENSES
+# ─────────────────────────────────────────────────────────────────────────────
+
+domain_lenses:
+  - name: "Purple Cow Lens"
+    question: "O que faz isso remarkable?"
+    reveals: "Se há diferenciação real"
+    phase: "P1"
+
+  - name: "Category Lens"
+    question: "Em que categoria estamos? Devemos criar uma nova?"
+    reveals: "Oportunidades de posicionamento"
+    phase: "P2"
+
+  - name: "Enemy Lens"
+    question: "Quem é o inimigo da marca?"
+    reveals: "Clareza de posicionamento por contraste"
+    phase: "P2"
+
+  - name: "Tribe Lens"
+    question: "Quem são as pessoas que se conectam com isso?"
+    reveals: "Definição de audiência ideal"
+    phase: "P1"
+
+  - name: "Story Lens"
+    question: "Qual é a história de origem?"
+    reveals: "Narrativa autêntica"
+    phase: "P3"
+
+  - name: "Consistency Lens"
+    question: "Isso é consistente em todos os touchpoints?"
+    reveals: "Gaps de branding"
+    phase: "P4"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────────────────────────────
+
+anti_patterns:
+  - name: "Generic Brand"
+    description: "Marca que poderia ser de qualquer um"
+    detection: "Substitua nome por concorrente, nada muda"
+    consequence: "Invisibilidade no mercado"
+    mitigation: "Encontrar diferenciação real"
+
+  - name: "Identity Crisis"
+    description: "Mensagens inconsistentes"
+    detection: "Cada peça comunica algo diferente"
+    consequence: "Confusão na mente do consumidor"
+    mitigation: "Um positioning statement, tudo deriva dele"
+
+  - name: "Everybody's Friend"
+    description: "Tentar agradar todos"
+    detection: "Medo de polarizar"
+    consequence: "Não conecta profundamente com ninguém"
+    mitigation: "Escolher tribo, aceitar rejeição de outros"
+
+  - name: "Logo Obsession"
+    description: "Focar em logo antes de estratégia"
+    detection: "Discussões infinitas sobre cores e fontes"
+    consequence: "Superficialidade"
+    mitigation: "Strategy first, visual depois"
+
+  - name: "Fake Authenticity"
+    description: "Autenticidade fabricada"
+    detection: "História de origem que não é verdade"
+    consequence: "Erosão de confiança quando descoberto"
+    mitigation: "Encontrar verdade real, mesmo se menos glamorosa"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUALITY GATES
+# ─────────────────────────────────────────────────────────────────────────────
+
+quality_gates:
+  - gate: "G1-Differentiation"
+    phase: "P1"
+    criterion: "Diferenciação clara e defensável"
+    pass_indicator: "Pode articular em uma frase"
+    fail_indicator: "Genérico, 'nós também'"
+
+  - gate: "G2-Positioning"
+    phase: "P2"
+    criterion: "Posição de mercado definida"
+    pass_indicator: "Positioning statement completo"
+    fail_indicator: "Vago sobre onde compete"
+
+  - gate: "G3-Consistency"
+    phase: "P3"
+    criterion: "Consistência em todos touchpoints"
+    pass_indicator: "Guidelines seguidos, tom unificado"
+    fail_indicator: "Cada peça parece marca diferente"
+
+  - gate: "G4-Resonance"
+    phase: "P4"
+    criterion: "Ressoa com audiência target"
+    pass_indicator: "Feedback positivo de tribe"
+    fail_indicator: "Indiferença ou confusão"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PATTERNS DE SUCESSO
+# ─────────────────────────────────────────────────────────────────────────────
+
+success_patterns:
+  - name: "Category of One"
+    description: "Criar categoria onde você é o único"
+    when_to_apply: "Mercado saturado"
+    how_to_apply: "Combinar atributos de forma única"
+
+  - name: "Enemy Definition"
+    description: "Definir contra o que você luta"
+    when_to_apply: "Clarificação de posicionamento"
+    how_to_apply: "Nós somos X, não Y"
+
+  - name: "Origin Story"
+    description: "Contar história de como começou"
+    when_to_apply: "Humanização de marca"
+    how_to_apply: "O momento de insight que iniciou tudo"
+
+  - name: "Consistent Voice"
+    description: "Mesma voz em todo lugar"
+    when_to_apply: "Todo conteúdo"
+    how_to_apply: "Guia de voz e tom"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REFERÊNCIAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+references:
+  books:
+    - "Purple Cow - Seth Godin"
+    - "Tribes - Seth Godin"
+    - "Positioning - Al Ries & Jack Trout"
+    - "Building a StoryBrand - Donald Miller"
+    - "Jab, Jab, Jab, Right Hook - Gary Vaynerchuk"
+
+  concepts:
+    - "Purple Cow"
+    - "Positioning"
+    - "Brand Archetypes"
+    - "Category Design"
+    - "StoryBrand Framework"
+
+# ═══════════════════════════════════════════════════════════════════════════

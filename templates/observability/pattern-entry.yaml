@@ -1,0 +1,65 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# TEMPLATE: Pattern Entry
+# ═══════════════════════════════════════════════════════════════════════════
+# Use este template para registrar padrões no pattern_library.yaml
+
+- id: "PAT-{NNN}"
+  name: "{Nome descritivo do padrão}"
+
+  classification:
+    domain: "{COPY|ARCH|META|DATA|PROD|BRAND|LEARN|CODE|UNIVERSAL}"
+    type: "{SUCCESS|ANTI|EMERGENT}"
+    scope: "{TACTICAL|STRATEGIC|OPERATIONAL}"
+
+  discovery:
+    discovered_at: "{ISO-8601}"
+    discovered_in: "BP-{...}"
+    discovered_by: "{operador|sistema}"
+    context: "{Breve descrição do contexto de descoberta}"
+
+  content:
+    description: |
+      {O que é este padrão - descrição completa}
+
+    when_to_apply: |
+      {Situações ideais para aplicar}
+      - Condição 1
+      - Condição 2
+
+    how_to_apply: |
+      {Passos concretos de aplicação}
+      1. Passo 1
+      2. Passo 2
+      3. Passo 3
+
+    expected_outcome: |
+      {O que esperar quando aplicado corretamente}
+
+    pitfalls: |
+      {Armadilhas comuns ao aplicar}
+
+  validation:
+    confidence: 0.0  # 0.0-1.0, aumenta com uso
+    times_applied: 0
+    times_successful: 0
+    success_rate: 0.0
+    last_applied: null
+
+  related:
+    complementary_patterns: []
+    conflicting_patterns: []
+    source_personas: []
+    source_lenses: []
+
+  examples:
+    - context: "{Situação específica}"
+      application: "{Como foi aplicado}"
+      outcome: "{Resultado obtido}"
+
+  meta:
+    created_at: "{ISO-8601}"
+    last_updated: "{ISO-8601}"
+    version: 1
+    status: "CANDIDATE"  # CANDIDATE | VALIDATED | DEPRECATED
+
+# ═══════════════════════════════════════════════════════════════════════════

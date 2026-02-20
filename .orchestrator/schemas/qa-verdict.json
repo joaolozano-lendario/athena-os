@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall quality score"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["PASS", "REWORK", "REJECT"],
+      "description": "Quality verdict"
+    },
+    "feedback": {
+      "type": "string",
+      "description": "Specific, actionable feedback for the worker"
+    },
+    "criteria_scores": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "description": "Per-criterion scores"
+    },
+    "colony_signal": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["insight", "warning", "pattern", "risk"],
+          "description": "Signal type for colony awareness"
+        },
+        "signal": {
+          "type": "string",
+          "description": "Brief signal message for future workers"
+        },
+        "intensity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Signal intensity (0-1)"
+        }
+      },
+      "description": "Optional colony signal for peer-to-peer awareness"
+    }
+  },
+  "required": ["score", "verdict", "feedback", "criteria_scores"],
+  "additionalProperties": false
+}

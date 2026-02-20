@@ -4,146 +4,57 @@
 
 ---
 
-## Descrição
-
-Exibe o estado atual do sistema de forma clara e acionável, incluindo:
-- Status geral
-- Trabalho em progresso (se houver)
-- Blueprints recentes
-- Alertas pendentes
-
----
-
-## Uso
-
-```bash
-/ATHENA:tasks:check-state
-```
-
----
-
-## Output Esperado
-
-```
-╔═══════════════════════════════════════════════════════════════════╗
-║                      ATHENA OS - STATUS                           ║
-╚═══════════════════════════════════════════════════════════════════╝
-
-Sistema: ATHENA OS v1.0.0
-Status:  OPERATIONAL ✓
-Última atualização: 2025-01-16T14:30:00-03:00
-
-─────────────────────────────────────────────────────────────────────
-SESSÃO ATUAL
-─────────────────────────────────────────────────────────────────────
-
-Estado: IDLE | WORKING
-
-[SE IDLE]
-Nenhum trabalho em progresso.
-→ Use /ATHENA:tasks:forge-blueprint para criar um Blueprint
-
-[SE WORKING]
-Blueprint Ativo: BP-2025-01-16-001
-Intent: "Framework de análise de dados Tally"
-Fase Atual: P2 (ARCHITECT)
-Gate Pendente: G2
-
-Progresso:
-  P1 DECODE     [████████████] COMPLETED ✓
-  P2 ARCHITECT  [██████░░░░░░] IN PROGRESS (Gate G2 pendente)
-  P3 FRAGMENT   [░░░░░░░░░░░░] NOT STARTED
-  P4 CRYSTALLIZE[░░░░░░░░░░░░] NOT STARTED
-
-→ Continue com: Validar arquitetura (Gate G2)
-
-─────────────────────────────────────────────────────────────────────
-BLUEPRINTS RECENTES
-─────────────────────────────────────────────────────────────────────
-
-| ID                  | Título                  | Status    | Data       |
-|---------------------|-------------------------|-----------|------------|
-| BP-2025-01-15-002   | Análise de Competitors  | EXPORTED  | 2025-01-15 |
-| BP-2025-01-15-001   | Refactor do AD Anatomy  | COMPLETED | 2025-01-15 |
-
-─────────────────────────────────────────────────────────────────────
-MÉTRICAS
-─────────────────────────────────────────────────────────────────────
-
-Total de Blueprints: 5
-Exportados: 3
-Tempo médio por Blueprint: 45 min
-
-─────────────────────────────────────────────────────────────────────
-ALERTAS
-─────────────────────────────────────────────────────────────────────
-
-[SE HOUVER ALERTAS]
-⚠️ [WARNING] Blueprint BP-2025-01-14-001 não foi exportado há 2 dias
-
-[SE NÃO HOUVER]
-✓ Nenhum alerta pendente
-
-─────────────────────────────────────────────────────────────────────
-COMANDOS DISPONÍVEIS
-─────────────────────────────────────────────────────────────────────
-
-/ATHENA:tasks:forge-blueprint    - Criar novo Blueprint
-/ATHENA:tasks:validate-blueprint - Validar Blueprint
-/ATHENA:tasks:export-to-project  - Exportar para projeto
-
-═══════════════════════════════════════════════════════════════════
-```
-
----
-
 ## Instruções para ATHENA
 
-1. **Ler STATE.yaml**
-   ```bash
-   cat STATE.yaml
+1. **Read STATE.yaml** (~36 lines — lean index)
+
+2. **Show system pulse:**
+   - Version, status, last_updated
+   - Current phase (IDLE / FORGING / EXECUTING)
+   - Last completed blueprint
+   - AURUM connection status
+
+3. **IF active_work.status != IDLE:**
+   - Read the referenced project-memory file
+   - Show active blueprint, phase, progress
+
+4. **IF user asks for details, read on-demand:**
+   - `observability/blueprints-archive.yaml` for blueprint history
+   - `observability/execution_log.yaml` for execution history
+   - `observability/integration-registry.yaml` for registered projects
+   - `observability/project-memory/{slug}.yaml` for project details
+
+5. **Show modular file map:**
+   ```
+   STATE.yaml (pulse)
+    ├── observability/blueprints-archive.yaml (12 blueprints)
+    ├── observability/execution_log.yaml (3 executions)
+    ├── observability/integration-registry.yaml (6 projects)
+    ├── observability/pattern_library.yaml (4 anti-patterns)
+    └── observability/project-memory/ (per-project state)
    ```
 
-2. **Extrair informações relevantes**
-   - system.status
-   - current_session
-   - active_work (se houver)
-   - blueprints.recent (últimos 5)
-   - metrics
-   - alerts
-
-3. **Formatar output**
-   - Usar tabelas para listas
-   - Usar cores/símbolos para status
-   - Sugerir próxima ação relevante
-
-4. **Mostrar ao operador**
-   - Output limpo e escaneável
-   - Foco no que é acionável
+6. **Suggest next action** based on state
 
 ---
 
-## Casos Especiais
+## Output Format
 
-### Sistema Nunca Usado
 ```
-Status: IDLE
-Nenhum Blueprint ainda.
-→ Comece com /ATHENA:tasks:forge-blueprint
-```
+ATHENA OS v{version} — {status}
+Last updated: {date}
 
-### Trabalho Abandonado
-```
-⚠️ Blueprint BP-... está IN_PROGRESS há mais de 24h
-→ Continue ou use /ATHENA:tasks:abort-work para limpar
-```
+Session: {IDLE | FORGING BP-xxx | EXECUTING BP-xxx}
+Last completed: {BP-ID}
+AURUM: {CONNECTED | OFFLINE}
 
-### Muitos Blueprints Não Exportados
-```
-⚠️ 3 Blueprints concluídos mas não exportados
-→ Use /ATHENA:tasks:export-to-project para exportar
+Blueprints: {total} generated | Archive: observability/blueprints-archive.yaml
+Executions: {total} logged | Log: observability/execution_log.yaml
+Projects: {total} registered | Registry: observability/integration-registry.yaml
+
+Next: {suggested action}
 ```
 
 ---
 
-*Comando do ATHENA OS v1.0.0*
+*Comando do ATHENA OS v3.1.0*
